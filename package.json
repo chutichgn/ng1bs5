@@ -1,8 +1,8 @@
 {
-  "name": "angularjs-bootstrap-5",
+  "name": "ng1bs5",
   "version": "2.0.0",
-  "description": "AngularJS Bootstrap 5 components in ES6 style",
-  "main": "dist/angular-bootstrap-5.js",
+  "description": "AngularJS 1.x Bootstrap 5 components in ES6 style",
+  "main": "dist/ng1bs5.js",
   "module": "index.js",
   "scripts": {
     "build": "webpack --mode production",
@@ -12,6 +12,8 @@
   },
   "keywords": [
     "angularjs",
+    "angular1",
+    "ng1",
     "bootstrap5",
     "bootstrap",
     "es6",
@@ -43,6 +45,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/angular-bootstrap-5"
-  }
+    "url": "https://github.com/chutichgn/ng1bs5"
+  },
+  "bugs": {
+    "url": "https://github.com/chutichgn/ng1bs5/issues"
+  },
+  "homepage": "https://github.com/chutichgn/ng1bs5#readme"
 }

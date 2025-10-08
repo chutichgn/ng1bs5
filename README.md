@@ -1,6 +1,44 @@
-# AngularJS Bootstrap 5 - ES6 Edition
+# ng1bs5 - AngularJS 1.x Bootstrap 5 Components
 
-A modern ES6 conversion of the AngularJS Bootstrap 5 component library with Strict DI, webpack support, and modular architecture.
+A modern ES6 conversion of Bootstrap 5 components for AngularJS 1.x with Strict DI, webpack support, and modular architecture.
+
+**GitHub Repository**: [https://github.com/chutichgn/ng1bs5](https://github.com/chutichgn/ng1bs5)
+
+## Installation
+
+### NPM
+```bash
+npm install ng1bs5
+```
+
+### GitHub
+```bash
+git clone https://github.com/chutichgn/ng1bs5.git
+cd ng1bs5
+npm install
+npm run build
+```
+
+## Quick Start
+
+### 1. Include Dependencies
+```html
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- AngularJS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+
+<!-- ng1bs5 -->
+<script src="node_modules/ng1bs5/dist/ng1bs5.js"></script>
+```
+
+### 2. Add Module Dependency
+```javascript
+angular.module('myApp', ['ng1bs5']);
+```
+
+That's it! All components are now available in your application.
 
 ## Project Structure
 
@@ -25,18 +63,26 @@ ng1bs5/
 │   │   └── datepicker.module.js       # STUB - TODO
 │   ├── icons/
 │   │   └── icons.module.js            # COMPLETE
+│   ├── loading-overlay/
+│   │   └── loading-overlay.module.js  # STUB - TODO
 │   ├── modal/
 │   │   └── modal.module.js            # STUB - TODO
+│   ├── offcanvas/
+│   │   └── offcanvas.module.js        # STUB - TODO
 │   ├── pagination/
 │   │   └── pagination.module.js       # COMPLETE
 │   ├── popover/
-│   │   └── popover.module.js          # STUB - TODO
+│   │   ├── popover.module.js          # COMPLETE ✅
+│   │   ├── README.md                  # Full documentation
+│   │   └── popover.spec.js            # Unit tests
 │   ├── progressbar/
 │   │   └── progressbar.module.js      # COMPLETE
 │   ├── rating/
 │   │   └── rating.module.js           # STUB - TODO
 │   ├── tabs/
 │   │   └── tabs.module.js             # STUB - TODO
+│   ├── toast/
+│   │   └── toast.module.js            # STUB - TODO
 │   └── tooltip/
 │       └── tooltip.module.js          # COMPLETE
 └── styles/
@@ -171,65 +217,91 @@ angular.module('app', [MyModule]);
 
 ## Completing the Remaining Components
 
-### Components to Complete
+### Completed Components (8/16 - 50%)
+
+1. ✅ **Accordion** - Multi-level collapsible panels with auto-close
+2. ✅ **Alert** - Dismissible alerts with auto-timeout
+3. ✅ **Collapse** - Animated collapse/expand with horizontal support
+4. ✅ **Icons** - Bootstrap Icons with caching and dynamic loading
+5. ✅ **Pagination** - Advanced pagination with pivot mode
+6. ✅ **Progressbar** - Striped and animated progress bars
+7. ✅ **Tooltip** - Smart tooltips with fallback positioning
+8. ✅ **Popover** - Advanced popovers with templates, controllers, and callbacks
+
+### Components to Complete (8/16 remaining)
 
 1. **Autocomplete** (`components/autocomplete/autocomplete.module.js`)
-   - Implement bs5Autocomplete directive
-   - Implement bs5AutocompleteList directive
-   - Add remote and local datasource support
-   - Add keyboard navigation (arrow keys, enter)
+    - Implement bs5Autocomplete directive
+    - Implement bs5AutocompleteList directive
+    - Add remote and local datasource support
+    - Add keyboard navigation (arrow keys, enter)
 
 2. **Datepicker** (`components/datepicker/datepicker.module.js`)
-   - Implement bs5Datepicker directive
-   - Create calendar UI with month/year navigation
-   - Add min/max date validation
-   - Integrate with ngModel
+    - Implement bs5Datepicker directive
+    - Create calendar UI with month/year navigation
+    - Add min/max date validation
+    - Integrate with ngModel
 
 3. **Modal** (`components/modal/modal.module.js`)
-   - Implement $bs5Modal factory service
-   - Implement $$modalStack service
-   - Implement $$modalBackdrop service
-   - Add support for templateUrl and controller
+    - Implement $bs5Modal factory service
+    - Implement $$modalStack service
+    - Implement $$modalBackdrop service
+    - Add support for templateUrl and controller
 
-4. **Popover** (`components/popover/popover.module.js`)
-   - Similar to Tooltip but with title and content
-   - Add templateUrl support
-   - Add controller binding
-   - Implement trigger options (click, hover, focus)
+4. **Rating** (`components/rating/rating.module.js`)
+    - Implement bs5Rating directive
+    - Implement bs5RatingPartial directive (for partial stars)
+    - Add icon/image support
+    - Add readonly/disabled modes
+    - Integrate with ngModel and form validation
 
-5. **Rating** (`components/rating/rating.module.js`)
-   - Implement bs5Rating directive
-   - Implement bs5RatingPartial directive (for partial stars)
-   - Add icon/image support
-   - Add readonly/disabled modes
-   - Integrate with ngModel and form validation
+5. **Tabs** (`components/tabs/tabs.module.js`)
+    - Implement Bs5TabsetController
+    - Implement bs5Tabset directive
+    - Implement bs5Tab directive
+    - Add transclude support for custom headings
+    - Support pills, tabs, and underline styles
 
-6. **Tabs** (`components/tabs/tabs.module.js`)
-   - Implement Bs5TabsetController
-   - Implement bs5Tabset directive
-   - Implement bs5Tab directive
-   - Add transclude support for custom headings
-   - Support pills, tabs, and underline styles
+6. **Toast** (`components/toast/toast.module.js`)
+    - Implement $bs5Toast service for programmatic creation
+    - Support multiple positions (top-left, top-right, bottom-left, bottom-right, etc.)
+    - Auto-dismiss with configurable timeout
+    - Toast stacking and queuing
+    - Different types (success, error, warning, info)
+
+7. **Offcanvas** (`components/offcanvas/offcanvas.module.js`)
+    - Implement $bs5Offcanvas service factory
+    - Four placement options (start, end, top, bottom)
+    - Backdrop support (static, clickable, none)
+    - Keyboard support (ESC to close)
+    - Template and controller binding
+
+8. **Loading Overlay** (`components/loading-overlay/loading-overlay.module.js`)
+    - Implement $bs5LoadingOverlay service
+    - Implement bs5LoadingOverlay directive
+    - Full-screen and container-specific overlays
+    - Customizable spinner styles
+    - Promise integration for async operations
 
 ### Steps to Complete Each Component
 
 1. **Refer to the Original ES5 Code**: Check the uploaded `angular-bootstrap-5.js` file for the complete implementation
 
-2. **Convert to ES6 Class Syntax**: 
-   - Change function constructors to ES6 classes
-   - Use `static $inject = [...]` for Strict DI
-   - Use arrow functions for link functions to preserve `this` context
+2. **Convert to ES6 Class Syntax**:
+    - Change function constructors to ES6 classes
+    - Use `static $inject = [...]` for Strict DI
+    - Use arrow functions for link functions to preserve `this` context
 
-3. **Extract Templates**: 
-   - Move inline templates to const variables at the top of the file
-   - Or keep them in the directive definition
+3. **Extract Templates**:
+    - Move inline templates to const variables at the top of the file
+    - Or keep them in the directive definition
 
 4. **Import Dependencies**:
-   - Import required modules at the top
-   - Add module dependencies in `angular.module(NAME, [deps])`
+    - Import required modules at the top
+    - Add module dependencies in `angular.module(NAME, [deps])`
 
 5. **Export Module Name**:
-   - Always export the module name: `export default MODULE_NAME;`
+    - Always export the module name: `export default MODULE_NAME;`
 
 6. **Test Thoroughly**: Ensure all functionality works as expected
 
@@ -291,7 +363,7 @@ export default MODULE_NAME;
 ```javascript
 // Your main app file
 import angular from 'angular';
-import ng1bs5 from 'angularjs-bootstrap-5';
+import ng1bs5 from 'ng1bs5';
 
 angular.module('myApp', [ng1bs5]);
 ```
@@ -300,10 +372,28 @@ angular.module('myApp', [ng1bs5]);
 
 ```javascript
 import angular from 'angular';
-import { AlertModule } from 'angularjs-bootstrap-5/components/alert/alert.module';
-import { TooltipModule } from 'angularjs-bootstrap-5/components/tooltip/tooltip.module';
+import AlertModule from 'ng1bs5/components/alert/alert.module';
+import TooltipModule from 'ng1bs5/components/tooltip/tooltip.module';
 
 angular.module('myApp', [AlertModule, TooltipModule]);
+```
+
+### Using via Script Tag
+
+```html
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <script src="angular.min.js"></script>
+    <script src="ng1bs5.js"></script>
+</head>
+<body>
+    <script>
+        angular.module('myApp', ['ng1bs5']);
+    </script>
+</body>
+</html>
 ```
 
 ### In Your HTML
@@ -369,6 +459,12 @@ angular.module('myApp', [AlertModule, TooltipModule]);
 #### Accordion
 - **Directives**: `bs5-accordion`, `bs5-accordion-group`
 - **Features**: Auto-close, custom headings, open/close callbacks
+
+#### Popover
+- **Directive**: `bs5-popover` (attribute)
+- **Attributes**: `bs5-popover`, `title`, `placement`, `trigger`, `animate`, `html`, `delay`, `template-url`, `popover-controller`, `handler`, `container`, `offset`, `fallback-placements`
+- **Features**: HTML content, templates, controller binding, promise-based callbacks, smart positioning
+- **Documentation**: See [components/popover/README.md](components/popover/README.md) for full API
 
 ## Dependencies
 
