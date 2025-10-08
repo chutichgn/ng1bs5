@@ -13,7 +13,7 @@ import DOMModule from '../../services/dom.service';
 // - Promise-based API
 // - Animation support
 
-const MODULE_NAME = 'bs5.offcanvas';
+const MODULE_NAME = 'ng1bs5.offcanvas';
 
 angular
     .module(MODULE_NAME, [DOMModule]);

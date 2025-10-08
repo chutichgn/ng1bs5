@@ -52,9 +52,13 @@
             <div class="col-12">
                 <div class="alert alert-info">
                     <h5 class="alert-heading">📚 About These Demos</h5>
-                    <p class="mb-0">
+                    <p class="mb-2">
                         These standalone demos showcase ng1bs5 components using the compiled distribution file (<code>dist/ng1bs5.js</code>).
                         Each demo runs independently without any build tools - just open the HTML file in your browser!
+                    </p>
+                    <p class="mb-0">
+                        <strong>Important:</strong> These demos use <code>ng1bs5.js</code> which includes all Bootstrap 5 JavaScript functionality.
+                        You do NOT need to include <code>bootstrap.bundle.min.js</code> separately.
                     </p>
                 </div>
             </div>
@@ -172,12 +176,16 @@
                         <h5 class="card-title">🚀 Getting Started</h5>
                         <p class="card-text">To use ng1bs5 in your project:</p>
                         <ol>
-                            <li>Include AngularJS and Bootstrap 5 CSS</li>
+                            <li>Include AngularJS from CDN</li>
+                            <li>Include Bootstrap 5 CSS from CDN</li>
                             <li>Include the ng1bs5 library: <code>&lt;script src="dist/ng1bs5.js"&gt;&lt;/script&gt;</code></li>
                             <li>Add the required module to your app: <code>angular.module('myApp', ['ng1bs5.{component}'])</code></li>
                             <li>Use the components in your templates!</li>
                         </ol>
-                        <p class="mb-0"><strong>Note:</strong> For ES6 module imports, check out the <a href="../es6-demo/" class="text-decoration-none">ES6 Demo</a>.</p>
+                        <div class="alert alert-warning mt-3 mb-0">
+                            <strong>⚠️ Important:</strong> Do NOT include <code>bootstrap.bundle.min.js</code> when using ng1bs5.js. 
+                            The ng1bs5 library already includes all Bootstrap 5 JavaScript functionality.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -194,6 +202,9 @@
 
     <!-- Required Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/angular@1.8.3/angular.min.js"></script>
+    <!-- ng1bs5 Library - includes all Bootstrap 5 JS functionality -->
+    <script src="../dist/ng1bs5.js"></script>
+    
     <script>
         // Simple app initialization for the index page
         angular.module('demoApp', []);

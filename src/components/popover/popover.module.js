@@ -272,7 +272,7 @@ class PopoverDirective {
     }
 }
 
-const MODULE_NAME = 'bs5.popover';
+const MODULE_NAME = 'ng1bs5.popover';
 
 angular
     .module(MODULE_NAME, [DOMModule, PositionModule])

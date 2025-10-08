@@ -37,7 +37,7 @@ class ProgressbarDirective {
     }
 }
 
-const MODULE_NAME = 'bs5.progressbar';
+const MODULE_NAME = 'ng1bs5.progressbar';
 
 angular
     .module(MODULE_NAME, [])

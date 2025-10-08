@@ -41,7 +41,8 @@ module.exports = {
     extensions: ['.js'],
     alias: {
       // Alias to import ng1bs5 components directly from source
-      '@ng1bs5': path.resolve(__dirname, '../components')
+      // Updated path to match new project structure with src/ folder
+      '@ng1bs5': path.resolve(__dirname, '../src/components')
     }
   }
 };

@@ -9,7 +9,7 @@ import DOMModule from '../../services/dom.service';
 // - Support for pills, tabs, and underline styles
 // - Transclude support for custom heading content
 
-const MODULE_NAME = 'bs5.tabs';
+const MODULE_NAME = 'ng1bs5.tabs';
 
 angular
     .module(MODULE_NAME, [DOMModule]);

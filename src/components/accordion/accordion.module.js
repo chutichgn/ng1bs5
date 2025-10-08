@@ -152,7 +152,7 @@ class AccordionTranscludeDirective {
     }
 }
 
-const MODULE_NAME = 'bs5.accordion';
+const MODULE_NAME = 'ng1bs5.accordion';
 
 angular
     .module(MODULE_NAME, [DOMModule])

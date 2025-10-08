@@ -190,7 +190,7 @@ class PaginationDirective {
     }
 }
 
-const MODULE_NAME = 'bs5.pagination';
+const MODULE_NAME = 'ng1bs5.pagination';
 
 angular
     .module(MODULE_NAME, [])

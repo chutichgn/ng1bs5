@@ -47,7 +47,7 @@ class AlertDirective {
     }
 }
 
-const MODULE_NAME = 'bs5.alert';
+const MODULE_NAME = 'ng1bs5.alert';
 
 angular
     .module(MODULE_NAME, [])

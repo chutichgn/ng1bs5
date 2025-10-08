@@ -201,7 +201,7 @@ Each module exports its module name for dependency injection:
 import angular from 'angular';
 import DependencyModule from '../dependency/dependency.module';
 
-const MODULE_NAME = 'bs5.myComponent';
+const MODULE_NAME = 'ng1bs5.myComponent';
 
 angular.module(MODULE_NAME, [DependencyModule]);
 
@@ -309,7 +309,7 @@ angular.module('app', [MyModule]);
 
 ### Original ES5 Code:
 ```javascript
-angular.module('bs5.example', [])
+angular.module('ng1bs5.example', [])
     .directive('bs5Example', ['$timeout', function($timeout) {
         return {
             restrict: 'E',
@@ -347,7 +347,7 @@ class ExampleDirective {
     }
 }
 
-const MODULE_NAME = 'bs5.example';
+const MODULE_NAME = 'ng1bs5.example';
 
 angular
     .module(MODULE_NAME, [])

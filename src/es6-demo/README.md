@@ -59,17 +59,36 @@ This demo uses:
 - **ES6 Modules**: Import/export syntax for modular code
 - **Webpack**: Module bundler and development server
 - **Babel**: Transpile ES6+ to browser-compatible JavaScript
-- **Bootstrap 5**: Loaded as an npm package
-- **ng1bs5 Components**: Imported directly from source via webpack alias
+- **Bootstrap 5**: Loaded as an npm package (CSS only)
+- **ng1bs5 Components**: Imported directly from `src/components/` via webpack alias
+
+### Project Structure
+
+The ng1bs5 project structure (after your reorganization):
+```
+ng1bs5/
+├── src/
+│   ├── components/      # ng1bs5 components
+│   ├── services/
+│   ├── styles/
+│   ├── index.js
+│   └── module.js
+├── dist/
+│   ├── ng1bs5.js       # Compiled library
+│   └── es6-demo/       # Built ES6 demo output
+└── es6-demo/           # This demo folder
+    └── src/
+        └── ...
+```
 
 ### Import Components
 
-Components can be imported in two ways:
+Components are imported from `../src/components/` using the `@ng1bs5` webpack alias:
 
-#### 1. From the ng1bs5 library (when available):
 ```javascript
-import { ModalModule } from '@ng1bs5/modal';
-import { PopoverModule } from '@ng1bs5/popover';
+// In your app.js
+import ModalModule from '@ng1bs5/modal';
+import PopoverModule from '@ng1bs5/popover';
 
 angular.module('myApp', [
   ModalModule.name,
@@ -77,10 +96,13 @@ angular.module('myApp', [
 ]);
 ```
 
-#### 2. Direct import (as shown in examples):
+The `@ng1bs5` alias is configured in `webpack.config.js`:
 ```javascript
-import './components/modal-example';
-import './components/popover-example';
+resolve: {
+  alias: {
+    '@ng1bs5': path.resolve(__dirname, '../src/components')
+  }
+}
 ```
 
 ## 📝 Component Examples
@@ -91,37 +113,40 @@ Each component example in `src/components/` demonstrates:
 - Integration with ng1bs5 components
 - Best practices for AngularJS + ES6
 
-### Example Structure
+### ng1bs5 Directives
 
-```javascript
-// modal-example.js
-import angular from 'angular';
-// import { ModalModule } from '@ng1bs5/modal';
+ng1bs5 provides AngularJS directives for Bootstrap components:
 
-class ModalExampleController {
-  constructor($scope) {
-    'ngInject';
-    // Controller logic
-  }
-}
+- **`bs-popover`** - Popover directive
+- **`bs-tooltip`** - Tooltip directive  
+- **`data-bs-toggle`** - Works with modals, dropdowns, etc.
+- **`data-bs-dismiss`** - Dismiss modals, alerts, etc.
 
-const ModalExampleComponent = {
-  template: `...`,
-  controller: ModalExampleController
-};
+Example usage:
+```html
+<!-- Popover -->
+<button bs-popover 
+        data-bs-title="Title"
+        data-bs-content="Content">
+  Click me
+</button>
 
-const module = angular.module('modalExample', [
-  // ModalModule.name
-])
-.component('modalExample', ModalExampleComponent);
+<!-- Tooltip -->
+<button bs-tooltip 
+        data-bs-title="Tooltip text">
+  Hover me
+</button>
 
-export default module;
+<!-- Modal -->
+<button data-bs-toggle="modal" data-bs-target="#myModal">
+  Open Modal
+</button>
 ```
 
 ## 🎯 Key Features
 
 ### Webpack Configuration
-- **Alias for ng1bs5**: `@ng1bs5` points to your components directory
+- **Alias for ng1bs5**: `@ng1bs5` points to `../src/components/`
 - **Hot Module Replacement**: Changes reflect immediately
 - **Production Build**: Optimized bundle with content hashing
 
@@ -144,24 +169,70 @@ To use this setup in your own project:
    npm install
    ```
 
-3. Import ng1bs5 components:
+3. Update the webpack alias to match your project structure:
    ```javascript
-   import { ModalModule } from '@ng1bs5/modal';
+   // In webpack.config.js
+   resolve: {
+     alias: {
+       '@ng1bs5': path.resolve(__dirname, '../src/components')
+     }
+   }
    ```
 
-4. Add to your Angular module:
+4. Import ng1bs5 components:
+   ```javascript
+   import ModalModule from '@ng1bs5/modal';
+   ```
+
+5. Add to your Angular module:
    ```javascript
    angular.module('myApp', [
      ModalModule.name
    ]);
    ```
 
-5. Use in your templates:
+6. Use ng1bs5 directives in your templates:
    ```html
-   <button data-bs-toggle="modal" data-bs-target="#myModal">
-     Open Modal
+   <button bs-popover 
+           data-bs-title="Title"
+           data-bs-content="Content">
+     Click me
    </button>
    ```
+
+## ⚠️ Important Notes
+
+### No Bootstrap Bundle JS Needed
+
+ng1bs5 **replaces** Bootstrap's JavaScript. You do NOT need to include `bootstrap.bundle.min.js`.
+
+**✅ Correct:**
+```javascript
+import 'bootstrap/dist/css/bootstrap.min.css';  // CSS only
+import ModalModule from '@ng1bs5/modal';        // ng1bs5 provides JS
+```
+
+**❌ Incorrect:**
+```javascript
+import 'bootstrap';  // DON'T import Bootstrap JS
+import * as bootstrap from 'bootstrap';  // DON'T do this
+```
+
+### Using ng1bs5 Directives
+
+Instead of manually initializing Bootstrap components with JavaScript, use ng1bs5 directives:
+
+**❌ Old Way (native Bootstrap):**
+```javascript
+const popover = new bootstrap.Popover(element);
+```
+
+**✅ New Way (ng1bs5):**
+```html
+<button bs-popover data-bs-title="Title" data-bs-content="Content">
+  Click me
+</button>
+```
 
 ## 🔍 Debugging
 
@@ -173,13 +244,18 @@ To use this setup in your own project:
 ### Common Issues
 
 **Components not working?**
-- Ensure Bootstrap CSS is loaded
-- Check that Bootstrap JS is available globally (`window.bootstrap`)
-- Verify component modules are imported correctly
+- Ensure you're importing from the correct path (`@ng1bs5`)
+- Check that component modules are added to your Angular module
+- Verify webpack alias points to `../src/components/`
 
 **Build errors?**
 - Clear `node_modules` and reinstall: `rm -rf node_modules && npm install`
 - Clear webpack cache: `rm -rf node_modules/.cache`
+
+**"Module not found: @ng1bs5/..."**
+- Check webpack.config.js alias configuration
+- Verify the path `../src/components/` exists
+- Ensure your ng1bs5 components are in the correct location
 
 ## 🎨 Customization
 
@@ -222,7 +298,7 @@ Add custom styles by:
 ## 🔗 Related
 
 - [Standalone HTML Demos](../html-demo/) - No-build-tool demos
-- [ng1bs5 Components](../components/) - Source components
+- [ng1bs5 Source](../src/components/) - Source components
 - [GitHub Repository](https://github.com/chutichgn/ng1bs5)
 
 ## 📄 License
@@ -242,6 +318,7 @@ To add more component examples:
 - **Hot Reload**: Changes to JS/HTML files will automatically reload the browser
 - **Bundle Analysis**: Run `npm run build -- --analyze` to visualize bundle size
 - **Production Testing**: Build and serve: `npm run build && npx http-server ../dist/es6-demo`
+- **Use ng1bs5 Directives**: Prefer `bs-popover`, `bs-tooltip` over manual Bootstrap JS
 
 ## 📚 Learn More
 

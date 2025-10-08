@@ -75,7 +75,7 @@ npm run dev     # Development server
 npm run build   # Production build
 ```
 
-[👉 View ES6 Demo README](es6-demo/README.md)
+[👉 View ES6 Demo README](src/es6-demo/README.md)
 
 ## 🚀 Quick Start
 
@@ -174,7 +174,7 @@ resolve: {
 ## 📖 Documentation
 
 - **HTML Demos**: See [html-demo/README.md](html-demo/README.md)
-- **ES6 Demos**: See [es6-demo/README.md](es6-demo/README.md)
+- **ES6 Demos**: See [es6-demo/README.md](src/es6-demo/README.md)
 - **Bootstrap 5**: [Official Documentation](https://getbootstrap.com/docs/5.0/)
 - **AngularJS**: [Official Guide](https://docs.angularjs.org/)
 

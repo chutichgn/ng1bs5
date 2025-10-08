@@ -136,7 +136,7 @@ class CollapseDirective {
     }
 }
 
-const MODULE_NAME = 'bs5.collapse';
+const MODULE_NAME = 'ng1bs5.collapse';
 
 angular
     .module(MODULE_NAME, [])

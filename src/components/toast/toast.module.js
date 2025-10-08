@@ -12,7 +12,7 @@ import ToastService from "./toast.service";
 // - Custom templates
 // - Animation support
 
-const MODULE_NAME = 'bs5.toast';
+const MODULE_NAME = 'ng1bs5.toast';
 
 angular
     .module(MODULE_NAME, [])

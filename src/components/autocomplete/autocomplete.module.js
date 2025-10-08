@@ -9,7 +9,7 @@ import PositionModule from '../../services/position.service';
 // - Remote and local datasource support
 // - Keyboard navigation
 
-const MODULE_NAME = 'bs5.autocomplete';
+const MODULE_NAME = 'ng1bs5.autocomplete';
 
 angular
     .module(MODULE_NAME, [DOMModule, PositionModule]);

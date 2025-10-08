@@ -144,7 +144,7 @@ export class DOMService {
     }
 }
 
-const MODULE_NAME = 'bs5.dom';
+const MODULE_NAME = 'ng1bs5.dom';
 
 angular
     .module(MODULE_NAME, [])

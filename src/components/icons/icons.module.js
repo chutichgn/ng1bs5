@@ -82,7 +82,7 @@ class IconDirective {
     }
 }
 
-const MODULE_NAME = 'bs5.icons';
+const MODULE_NAME = 'ng1bs5.icons';
 
 angular
     .module(MODULE_NAME, [])

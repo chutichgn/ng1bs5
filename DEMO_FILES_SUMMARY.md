@@ -218,7 +218,7 @@ import './components/new-component-example';
 Each demo folder includes its own detailed README:
 
 - **[html-demo/README.md](html-demo/README.md)** - Complete HTML demo documentation
-- **[es6-demo/README.md](es6-demo/README.md)** - Complete ES6 demo documentation
+- **[es6-demo/README.md](src/es6-demo/README.md)** - Complete ES6 demo documentation
 - **[DEMOS_README.md](DEMOS_README.md)** - Overview of both demo types
 
 ## 🔗 Integration Examples

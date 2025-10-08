@@ -12,7 +12,7 @@ import angular from 'angular';
 // - Promise integration (show during async operations)
 // - Backdrop blur/opacity options
 
-const MODULE_NAME = 'bs5.loadingOverlay';
+const MODULE_NAME = 'ng1bs5.loadingOverlay';
 
 angular
     .module(MODULE_NAME, []);

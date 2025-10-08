@@ -9,7 +9,7 @@ import IconsModule from '../icons/icons.module';
 // - Trail effect on hover
 // - Form validation integration
 
-const MODULE_NAME = 'bs5.rating';
+const MODULE_NAME = 'ng1bs5.rating';
 
 angular
     .module(MODULE_NAME, [IconsModule]);

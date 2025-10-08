@@ -8,7 +8,7 @@ import PositionModule from '../../services/position.service';
 // - Date selection with min/max date support
 // - Input field integration
 
-const MODULE_NAME = 'bs5.datepicker';
+const MODULE_NAME = 'ng1bs5.datepicker';
 
 angular
     .module(MODULE_NAME, [DOMModule, PositionModule]);

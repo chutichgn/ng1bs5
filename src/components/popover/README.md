@@ -430,7 +430,7 @@ If you're migrating from the old ES5 version:
 
 ```javascript
 // Old ES5
-angular.module('app', ['bs5.popover'])
+angular.module('app', ['ng1bs5.popover'])
     .directive('myDirective', ['$bs5Popover', function($bs5Popover) {
         // ...
     }]);

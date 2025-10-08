@@ -151,7 +151,7 @@ class TooltipDirective {
     }
 }
 
-const MODULE_NAME = 'bs5.tooltip';
+const MODULE_NAME = 'ng1bs5.tooltip';
 
 angular
     .module(MODULE_NAME, [DOMModule, PositionModule])

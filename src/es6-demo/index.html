@@ -59,43 +59,70 @@
         <div class="demo-header text-center">
             <h1 class="display-4 fw-bold mb-3">ng1bs5 ES6 Demo</h1>
             <p class="lead mb-2">Bootstrap 5 Components for AngularJS with ES6 Modules</p>
-            <p class="mb-0">This demo imports components directly from source using ES6 modules</p>
+            <p class="mb-0">This demo imports ng1bs5 components directly from source using ES6 modules</p>
         </div>
 
         <!-- Info Alert -->
         <div class="alert alert-info mb-4">
             <h5 class="alert-heading">📦 ES6 Module Demo</h5>
-            <p class="mb-0">
-                This demo application uses ES6 imports to load ng1bs5 components directly from the source.
+            <p class="mb-2">
+                This demo application uses ES6 imports to load ng1bs5 components directly from the source (<code>src/components/</code>).
                 It's built with Webpack and demonstrates how to use the library in modern JavaScript applications.
+            </p>
+            <p class="mb-0">
+                <strong>Important:</strong> This demo uses ng1bs5 directives (like <code>bs-popover</code>, <code>bs-tooltip</code>) 
+                instead of native Bootstrap JavaScript. All Bootstrap functionality is provided by ng1bs5.
             </p>
         </div>
 
         <!-- Component Tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#modal-tab" type="button">
+                <button class="nav-link" 
+                        ng-class="{active: currentTab === 'modal'}"
+                        ng-click="switchTab('modal')"
+                        type="button">
                     Modal
                 </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#popover-tab" type="button">
+                <button class="nav-link"
+                        ng-class="{active: currentTab === 'popover'}"
+                        ng-click="switchTab('popover')"
+                        type="button">
                     Popover
                 </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tooltip-tab" type="button">
+                <button class="nav-link"
+                        ng-class="{active: currentTab === 'tooltip'}"
+                        ng-click="switchTab('tooltip')"
+                        type="button">
                     Tooltip
                 </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#dropdown-tab" type="button">
+                <button class="nav-link"
+                        ng-class="{active: currentTab === 'dropdown'}"
+                        ng-click="switchTab('dropdown')"
+                        type="button">
                     Dropdown
                 </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#accordion-tab" type="button">
+                <button class="nav-link"
+                        ng-class="{active: currentTab === 'accordion'}"
+                        ng-click="switchTab('accordion')"
+                        type="button">
                     Accordion
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link"
+                        ng-class="{active: currentTab === 'toast'}"
+                        ng-click="switchTab('toast')"
+                        type="button">
+                    Toast
                 </button>
             </li>
         </ul>
@@ -103,10 +130,10 @@
         <!-- Tab Content -->
         <div class="tab-content">
             <!-- Modal Tab -->
-            <div class="tab-pane fade show active" id="modal-tab">
+            <div ng-show="currentTab === 'modal'">
                 <div class="component-section">
                     <h2 class="section-title">Modal Component</h2>
-                    <p>Dialog boxes and popup windows with Bootstrap 5 styling.</p>
+                    <p>Dialog boxes and popup windows with ng1bs5.</p>
                     
                     <div class="example-area text-center">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
@@ -122,8 +149,8 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>This modal is loaded from the ng1bs5 source using ES6 imports!</p>
-                                    <p class="mb-0">The component is imported directly, not from a bundled distribution file.</p>
+                                    <p>This modal is powered by ng1bs5 loaded via ES6 imports!</p>
+                                    <p class="mb-0">The component is imported directly from <code>src/components/</code>.</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -135,63 +162,106 @@
 
                     <div class="code-example">
                         <strong>Import:</strong>
-                        <pre><code>import { ModalModule } from '@ng1bs5/modal';</code></pre>
+                        <pre><code>import ModalModule from '@ng1bs5/modal';
+
+angular.module('myApp', [ModalModule.name]);</code></pre>
                     </div>
                 </div>
             </div>
 
             <!-- Popover Tab -->
-            <div class="tab-pane fade" id="popover-tab">
+            <div ng-show="currentTab === 'popover'">
                 <div class="component-section">
                     <h2 class="section-title">Popover Component</h2>
-                    <p>Contextual overlays for displaying additional content.</p>
+                    <p>Contextual overlays using ng1bs5 directive <code>bs-popover</code>.</p>
                     
                     <div class="example-area text-center">
                         <button type="button" 
-                                class="btn btn-primary"
+                                class="btn btn-primary me-2"
                                 bs-popover 
                                 data-bs-title="ES6 Popover"
-                                data-bs-content="This popover is imported as an ES6 module!"
+                                data-bs-content="This popover is powered by ng1bs5 imported as an ES6 module!"
                                 data-bs-placement="top">
-                            Click for Popover
+                            Click for Popover (Top)
+                        </button>
+                        <button type="button" 
+                                class="btn btn-success"
+                                bs-popover 
+                                data-bs-title="Another Popover"
+                                data-bs-content="ng1bs5 makes Bootstrap 5 work seamlessly with AngularJS!"
+                                data-bs-placement="bottom">
+                            Click for Popover (Bottom)
                         </button>
                     </div>
 
                     <div class="code-example">
                         <strong>Import:</strong>
-                        <pre><code>import { PopoverModule } from '@ng1bs5/popover';</code></pre>
+                        <pre><code>import PopoverModule from '@ng1bs5/popover';
+
+angular.module('myApp', [PopoverModule.name]);</code></pre>
+                        <br>
+                        <strong>Usage:</strong>
+                        <pre><code>&lt;button bs-popover 
+        data-bs-title="Title"
+        data-bs-content="Content"
+        data-bs-placement="top"&gt;
+    Click me
+&lt;/button&gt;</code></pre>
                     </div>
                 </div>
             </div>
 
             <!-- Tooltip Tab -->
-            <div class="tab-pane fade" id="tooltip-tab">
+            <div ng-show="currentTab === 'tooltip'">
                 <div class="component-section">
                     <h2 class="section-title">Tooltip Component</h2>
-                    <p>Helpful hints that appear on hover.</p>
+                    <p>Helpful hints using ng1bs5 directive <code>bs-tooltip</code>.</p>
                     
                     <div class="example-area text-center">
                         <button type="button" 
-                                class="btn btn-primary"
+                                class="btn btn-primary me-2"
                                 bs-tooltip 
-                                data-bs-title="ES6 Tooltip!"
+                                data-bs-title="ES6 Tooltip on top!"
                                 data-bs-placement="top">
-                            Hover for Tooltip
+                            Hover for Tooltip (Top)
+                        </button>
+                        <button type="button" 
+                                class="btn btn-info me-2"
+                                bs-tooltip 
+                                data-bs-title="Tooltip on right!"
+                                data-bs-placement="right">
+                            Hover for Tooltip (Right)
+                        </button>
+                        <button type="button" 
+                                class="btn btn-success"
+                                bs-tooltip 
+                                data-bs-title="Tooltip on bottom!"
+                                data-bs-placement="bottom">
+                            Hover for Tooltip (Bottom)
                         </button>
                     </div>
 
                     <div class="code-example">
                         <strong>Import:</strong>
-                        <pre><code>import { TooltipModule } from '@ng1bs5/tooltip';</code></pre>
+                        <pre><code>import TooltipModule from '@ng1bs5/tooltip';
+
+angular.module('myApp', [TooltipModule.name]);</code></pre>
+                        <br>
+                        <strong>Usage:</strong>
+                        <pre><code>&lt;button bs-tooltip 
+        data-bs-title="Tooltip text"
+        data-bs-placement="top"&gt;
+    Hover me
+&lt;/button&gt;</code></pre>
                     </div>
                 </div>
             </div>
 
             <!-- Dropdown Tab -->
-            <div class="tab-pane fade" id="dropdown-tab">
+            <div ng-show="currentTab === 'dropdown'">
                 <div class="component-section">
                     <h2 class="section-title">Dropdown Component</h2>
-                    <p>Toggleable contextual menus.</p>
+                    <p>Toggleable contextual menus with ng1bs5.</p>
                     
                     <div class="example-area text-center">
                         <div class="dropdown">
@@ -209,16 +279,18 @@
 
                     <div class="code-example">
                         <strong>Import:</strong>
-                        <pre><code>import { DropdownModule } from '@ng1bs5/dropdown';</code></pre>
+                        <pre><code>import DropdownModule from '@ng1bs5/dropdown';
+
+angular.module('myApp', [DropdownModule.name]);</code></pre>
                     </div>
                 </div>
             </div>
 
             <!-- Accordion Tab -->
-            <div class="tab-pane fade" id="accordion-tab">
+            <div ng-show="currentTab === 'accordion'">
                 <div class="component-section">
                     <h2 class="section-title">Accordion Component</h2>
-                    <p>Collapsible content panels.</p>
+                    <p>Collapsible content panels with ng1bs5.</p>
                     
                     <div class="example-area">
                         <div class="accordion" id="accordionExample">
@@ -230,7 +302,7 @@
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        This is the first item's accordion body loaded via ES6 modules.
+                                        This is the first item's accordion body loaded via ES6 modules using ng1bs5.
                                     </div>
                                 </div>
                             </div>
@@ -251,7 +323,49 @@
 
                     <div class="code-example">
                         <strong>Import:</strong>
-                        <pre><code>import { AccordionModule } from '@ng1bs5/accordion';</code></pre>
+                        <pre><code>import AccordionModule from '@ng1bs5/accordion';
+
+angular.module('myApp', [AccordionModule.name]);</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toast Tab -->
+            <div ng-show="currentTab === 'toast'">
+                <div class="component-section">
+                    <h2 class="section-title">Toast Component</h2>
+                    <p>Push notifications with ng1bs5.</p>
+                    
+                    <div class="example-area text-center">
+                        <button type="button" class="btn btn-primary" ng-click="showToast()">
+                            Show Toast
+                        </button>
+                    </div>
+
+                    <div class="toast-container position-fixed top-0 end-0 p-3">
+                        <div id="liveToast" class="toast" role="alert">
+                            <div class="toast-header">
+                                <strong class="me-auto">ng1bs5</strong>
+                                <small>Just now</small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                            </div>
+                            <div class="toast-body">
+                                Hello from ng1bs5 ES6 demo! This toast is powered by ng1bs5.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-example">
+                        <strong>Import:</strong>
+                        <pre><code>import ToastModule from '@ng1bs5/toast';
+
+angular.module('myApp', [ToastModule.name]);</code></pre>
+                        <br>
+                        <strong>Controller:</strong>
+                        <pre><code>$scope.showToast = function() {
+    const toast = new bootstrap.Toast(document.getElementById('liveToast'));
+    toast.show();
+};</code></pre>
                     </div>
                 </div>
             </div>
@@ -275,13 +389,17 @@
             <div class="code-example">
                 <strong>4. Import components in your app.js:</strong>
                 <pre><code>import angular from 'angular';
-import { ModalModule } from '@ng1bs5/modal';
-import { PopoverModule } from '@ng1bs5/popover';
+import ModalModule from '@ng1bs5/modal';
+import PopoverModule from '@ng1bs5/popover';
 
 const app = angular.module('myApp', [
   ModalModule.name,
   PopoverModule.name
 ]);</code></pre>
+            </div>
+            <div class="alert alert-warning mt-3">
+                <strong>⚠️ Note:</strong> The <code>@ng1bs5</code> alias is configured in <code>webpack.config.js</code> 
+                to point to <code>../src/components/</code>. Adjust this path if your project structure is different.
             </div>
         </div>
 

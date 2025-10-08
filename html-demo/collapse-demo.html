@@ -103,13 +103,18 @@
 &lt;!-- Bootstrap CSS --&gt;
 &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
 
-&lt;!-- ng1bs5 Library --&gt;
+&lt;!-- ng1bs5 Library (includes all Bootstrap 5 JS functionality) --&gt;
 &lt;script src="../dist/ng1bs5.js"&gt;&lt;/script&gt;</code></pre>
             </div>
 
             <div class="code-block mt-3">
                 <strong>2. Add module dependency:</strong>
                 <pre><code>angular.module('myApp', ['ng1bs5.collapse']);</code></pre>
+            </div>
+
+            <div class="alert alert-info mt-3">
+                <strong>Note:</strong> ng1bs5.js includes all Bootstrap 5 JavaScript functionality. 
+                You do NOT need to include bootstrap.bundle.min.js separately.
             </div>
         </div>
 
@@ -120,14 +125,13 @@
 
     <!-- Required Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/angular@1.8.3/angular.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- ng1bs5 Library - replaces bootstrap.bundle.min.js -->
     <script src="../dist/ng1bs5.js"></script>
     
     <script>
         // Demo App
         angular.module('collapseDemoApp', ['ng1bs5.collapse'])
             .controller('CollapseDemoController', ['$scope', function($scope) {
-                // Add controller logic here
                 console.log('Collapse demo initialized');
             }]);
     </script>

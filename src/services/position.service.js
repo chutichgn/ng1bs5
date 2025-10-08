@@ -389,7 +389,7 @@ export class PositionService {
     }
 }
 
-const MODULE_NAME = 'bs5.position';
+const MODULE_NAME = 'ng1bs5.position';
 
 angular
     .module(MODULE_NAME, [DOMModule])

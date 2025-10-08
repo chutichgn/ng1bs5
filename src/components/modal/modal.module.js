@@ -10,7 +10,7 @@ import PositionModule from '../../services/position.service';
 // - Controller binding
 // - Promise-based API
 
-const MODULE_NAME = 'bs5.modal';
+const MODULE_NAME = 'ng1bs5.modal';
 
 angular
     .module(MODULE_NAME, [DOMModule, PositionModule]);

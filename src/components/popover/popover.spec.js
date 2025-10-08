@@ -10,7 +10,7 @@ describe('bs5Popover directive', function() {
     var element, scope;
 
     // Load the module
-    beforeEach(module('bs5.popover'));
+    beforeEach(module('ng1bs5.popover'));
 
     // Inject dependencies
     beforeEach(inject(function(_$compile_, _$rootScope_, _$timeout_, _$templateCache_, _$document_) {
@@ -191,7 +191,7 @@ describe('bs5Popover directive', function() {
                 '<div><p>{{ctrl.message}}</p><button ng-click="ctrl.update()">Update</button></div>'
             );
 
-            angular.module('bs5.popover').controller('TestPopoverController', function() {
+            angular.module('ng1bs5.popover').controller('TestPopoverController', function() {
                 var ctrl = this;
                 ctrl.message = 'Initial';
                 
@@ -231,7 +231,7 @@ describe('bs5Popover directive', function() {
         it('should call controller $onInit if it exists', function() {
             var initSpy = jasmine.createSpy('$onInit');
             
-            angular.module('bs5.popover').controller('InitTestController', function() {
+            angular.module('ng1bs5.popover').controller('InitTestController', function() {
                 this.$onInit = initSpy;
             });
 
