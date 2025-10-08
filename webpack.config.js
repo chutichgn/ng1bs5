@@ -6,7 +6,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'angular-bootstrap-5.js',
     library: {
-      name: 'ngBootstrap5',
+      name: 'ng1bs5',
       type: 'umd',
       export: 'default'
     },

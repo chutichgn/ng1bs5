@@ -291,9 +291,9 @@ export default MODULE_NAME;
 ```javascript
 // Your main app file
 import angular from 'angular';
-import ngBootstrap5 from 'angularjs-bootstrap-5';
+import ng1bs5 from 'angularjs-bootstrap-5';
 
-angular.module('myApp', [ngBootstrap5]);
+angular.module('myApp', [ng1bs5]);
 ```
 
 ### Using Individual Components

@@ -1,4 +1,6 @@
 import angular from 'angular';
+import {toastDirective} from "./toast.directive";
+import ToastService from "./toast.service";
 
 // TODO: Implement Toast component following the pattern from the completed components
 // Key features:
@@ -13,6 +15,8 @@ import angular from 'angular';
 const MODULE_NAME = 'bs5.toast';
 
 angular
-    .module(MODULE_NAME, []);
+    .module(MODULE_NAME, [])
+.component('toast', toastDirective)
+.service('ToastService', ToastService);
 
 export default MODULE_NAME;

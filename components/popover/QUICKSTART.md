@@ -33,7 +33,7 @@ npm run build
 ### 2. Initialize Your App
 
 ```javascript
-angular.module('myApp', ['ngBootstrap5'])
+angular.module('myApp', ['ng1bs5'])
     .controller('MainController', function() {
         var vm = this;
         // Your controller code
@@ -269,7 +269,7 @@ Always give users a clear way to close the popover, especially with click trigge
 1. Check Bootstrap 5 CSS is loaded
 2. Verify directive name is `bs5-popover` (not `bs-popover`)
 3. Check browser console for errors
-4. Ensure ngBootstrap5 module is imported
+4. Ensure ng1bs5 module is imported
 
 ### Content Not Displaying
 1. For HTML: Make sure `html="true"` is set
@@ -336,7 +336,7 @@ my-project/
 
 **app.js**
 ```javascript
-angular.module('myApp', ['ngBootstrap5']);
+angular.module('myApp', ['ng1bs5']);
 ```
 
 **main.controller.js**

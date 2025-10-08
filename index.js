@@ -29,7 +29,7 @@ import TooltipModule from './components/tooltip/tooltip.module';
 // Styles
 import './styles/styles.css';
 
-const MODULE_NAME = 'ngBootstrap5';
+const MODULE_NAME = 'ng1bs5';
 
 angular.module(MODULE_NAME, [
     AccordionModule,
