@@ -272,10 +272,10 @@ class PopoverDirective {
     }
 }
 
-const MODULE_NAME = 'ng1bs5.popover';
+const POPOVER_MODULE_NAME = 'ng1bs5.popover';
 
 angular
-    .module(MODULE_NAME, [DOMModule, PositionModule])
+    .module(POPOVER_MODULE_NAME, [DOMModule, PositionModule])
     .directive('bs5Popover', () => new PopoverDirective(...PopoverDirective.$inject));
 
-export default MODULE_NAME;
+export default POPOVER_MODULE_NAME;

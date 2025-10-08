@@ -36,6 +36,14 @@ const PopoverExampleComponent = {
         Popover functionality is provided by ng1bs5's <code>bs-popover</code> directive.
         Add the directive to any element with <code>data-bs-title</code> and <code>data-bs-content</code>.
       </p>
+      
+         <button class="btn btn-info" 
+                        bs5-popover="Popover on right"
+                        title="Right Popover"
+                        placement="right">
+                    Right
+                </button>
+                
     </div>
   `,
   controller: PopoverExampleController

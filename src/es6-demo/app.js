@@ -80,8 +80,8 @@ app.controller('DemoController', ['$scope', function($scope) {
 }]);
 
 // Bootstrap the application
-angular.element(document).ready(function() {
-  angular.bootstrap(document, ['ng1bs5Demo']);
-});
+// angular.element(document).ready(function() {
+//   angular.bootstrap(document, ['ng1bs5Demo']);
+// });
 
 export default app;

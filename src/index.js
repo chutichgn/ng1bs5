@@ -29,9 +29,9 @@ import TooltipModule from './components/tooltip/tooltip.module';
 // Styles
 import './styles/styles.css';
 
-const MODULE_NAME = 'ng1bs5';
+const NG1BS5_MODULE_NAME = 'ng1bs5';
 
-angular.module(MODULE_NAME, [
+angular.module(NG1BS5_MODULE_NAME, [
     AccordionModule,
     AlertModule,
     AutocompleteModule,
@@ -50,4 +50,4 @@ angular.module(MODULE_NAME, [
     TooltipModule
 ]);
 
-export default MODULE_NAME;
+export default NG1BS5_MODULE_NAME;
