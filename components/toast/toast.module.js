@@ -1,0 +1,18 @@
+import angular from 'angular';
+
+// TODO: Implement Toast component following the pattern from the completed components
+// Key features:
+// - bs5Toast service for programmatic toast creation
+// - Multiple toast positions (top-left, top-right, bottom-left, bottom-right, etc.)
+// - Auto-dismiss with configurable timeout
+// - Toast stacking/queuing
+// - Different types (success, error, warning, info)
+// - Custom templates
+// - Animation support
+
+const MODULE_NAME = 'bs5.toast';
+
+angular
+    .module(MODULE_NAME, []);
+
+export default MODULE_NAME;

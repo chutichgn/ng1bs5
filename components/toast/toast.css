@@ -1,0 +1,70 @@
+/**
+ * Bootstrap 5 Toast Component - Minimal Required Styles
+ * Bootstrap 5 handles all toast styling - we only add positioning
+ */
+
+/* Toast container positioning and layering */
+.toast-container {
+    z-index: 1090 !important;
+    pointer-events: none;
+}
+
+.toast-container .toast {
+    pointer-events: auto;
+    margin-bottom: 0.5rem;
+}
+
+.toast-container .toast:last-child {
+    margin-bottom: 0;
+}
+
+/* Position variants for toast container */
+.toast-container.top-start {
+    top: 0;
+    left: 0;
+}
+
+.toast-container.top-center {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.toast-container.top-end {
+    top: 0;
+    right: 0;
+}
+
+.toast-container.middle-start {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.toast-container.middle-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.toast-container.middle-end {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.toast-container.bottom-start {
+    bottom: 0;
+    left: 0;
+}
+
+.toast-container.bottom-center {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.toast-container.bottom-end {
+    bottom: 0;
+    right: 0;
+}

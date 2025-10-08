@@ -1,0 +1,120 @@
+<!-- 
+  ng1bs5 Default Templates
+  Include this file in your HTML to use the default loading overlay templates
+  
+  Usage:
+  <script src="ng1bs5-templates.html"></script>
+  
+  Or copy these templates into your own HTML file
+-->
+
+<!-- Default Bootstrap 5 Border Spinner (Light Background) -->
+<script type="text/ng-template" id="defaultTemplate.html">
+  <div class="bs-loading-overlay bs-loading-overlay-light" style="
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    z-index: 99999 !important;
+    pointer-events: auto !important;
+  ">
+    <div class="spinner-border" 
+         role="status"
+         ng-class="options.spinnerClass || 'text-primary'"
+         ng-style="options.spinnerStyle || { width: '3rem', height: '3rem' }">
+      <span class="visually-hidden">{{ options.loadingText || 'Loading...' }}</span>
+    </div>
+  </div>
+</script>
+
+<!-- Grow Spinner (Dark Background) -->
+<script type="text/ng-template" id="growSpinner.html">
+  <div class="bs-loading-overlay bs-loading-overlay-dark" style="
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    z-index: 99999 !important;
+    pointer-events: auto !important;
+  ">
+    <div class="text-center">
+      <div class="spinner-grow" 
+           role="status"
+           ng-class="options.spinnerClass || 'text-light'"
+           ng-style="options.spinnerStyle || { width: '3rem', height: '3rem' }">
+        <span class="visually-hidden">{{ options.loadingText || 'Loading...' }}</span>
+      </div>
+      <div ng-if="options.showText" class="mt-2 text-light">
+        {{ options.loadingText || 'Loading...' }}
+      </div>
+    </div>
+  </div>
+</script>
+
+<!-- Large Spinner with Text -->
+<script type="text/ng-template" id="largeSpinner.html">
+  <div class="bs-loading-overlay bs-loading-overlay-light" style="
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    z-index: 99999 !important;
+    pointer-events: auto !important;
+  ">
+    <div class="text-center">
+      <div class="spinner-border" 
+           role="status"
+           ng-class="options.spinnerClass || 'text-primary'"
+           ng-style="options.spinnerStyle || { width: '4rem', height: '4rem' }">
+        <span class="visually-hidden">{{ options.loadingText || 'Loading...' }}</span>
+      </div>
+      <div class="mt-3 fw-bold" ng-class="options.textClass || 'text-primary'">
+        {{ options.loadingText || 'Loading...' }}
+      </div>
+    </div>
+  </div>
+</script>
+
+<!-- Multiple Spinners -->
+<script type="text/ng-template" id="multiSpinner.html">
+  <div class="bs-loading-overlay bs-loading-overlay-light" style="
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    z-index: 99999 !important;
+    pointer-events: auto !important;
+  ">
+    <div class="d-flex gap-3">
+      <div class="spinner-border text-primary" role="status" style="width: 2rem; height: 2rem;">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-border text-success" role="status" style="width: 2rem; height: 2rem;">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-border text-danger" role="status" style="width: 2rem; height: 2rem;">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+</script>

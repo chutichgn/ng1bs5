@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html ng-app="demoApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS Bootstrap 5 - ES6 Demo</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+    
+    <!-- Your built library -->
+    <script src="dist/angular-bootstrap-5.js"></script>
+</head>
+<body ng-controller="DemoController as vm" class="p-4">
+    <div class="container">
+        <h1 class="mb-4">AngularJS Bootstrap 5 - ES6 Components Demo</h1>
+        
+        <!-- Alert Example -->
+        <h2>Alert Component</h2>
+        <bs5-alert type="success" dismissible="true">
+            <bs5-icon icon="check-circle" size="20"></bs5-icon>
+            This is a success alert with an icon!
+        </bs5-alert>
+        
+        <bs5-alert type="warning" dismissible="true" timeout="5000">
+            This alert will auto-dismiss after 5 seconds
+        </bs5-alert>
+        
+        <!-- Collapse Example -->
+        <h2 class="mt-4">Collapse Component</h2>
+        <button class="btn btn-primary mb-2" ng-click="vm.isCollapsed = !vm.isCollapsed">
+            Toggle Collapse
+        </button>
+        <div bs5-collapse="vm.isCollapsed" class="border p-3">
+            <p>This content can be collapsed and expanded!</p>
+            <p>Click the button above to toggle visibility.</p>
+        </div>
+        
+        <!-- Progressbar Example -->
+        <h2 class="mt-4">Progressbar Component</h2>
+        <bs5-progressbar 
+            value="vm.progress" 
+            bg-type="success" 
+            stripes="true" 
+            animate="true"
+            display-percent="true">
+        </bs5-progressbar>
+        <button class="btn btn-sm btn-primary mt-2" ng-click="vm.incrementProgress()">
+            Increment Progress
+        </button>
+        
+        <!-- Pagination Example -->
+        <h2 class="mt-4">Pagination Component</h2>
+        <bs5-pagination
+            current-page="vm.currentPage"
+            number-items="100"
+            page-size="10"
+            page-change="vm.onPageChange($page, $pageSize)">
+        </bs5-pagination>
+        <p>Current Page: {{vm.currentPage}}</p>
+        
+        <!-- Accordion Example -->
+        <h2 class="mt-4">Accordion Component</h2>
+        <bs5-accordion close-others="true">
+            <bs5-accordion-group heading="First Section" is-open="true">
+                <p>Content of the first section.</p>
+                <p>You can put any HTML content here.</p>
+            </bs5-accordion-group>
+            <bs5-accordion-group heading="Second Section">
+                <p>Content of the second section.</p>
+                <ul>
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li>
+                </ul>
+            </bs5-accordion-group>
+            <bs5-accordion-group heading="Third Section">
+                <p>Content of the third section.</p>
+            </bs5-accordion-group>
+        </bs5-accordion>
+        
+        <!-- Tooltip Example -->
+        <h2 class="mt-4">Tooltip Component</h2>
+        <button class="btn btn-info" 
+                bs5-tooltip="This is a tooltip!" 
+                placement="top">
+            Hover for Tooltip (Top)
+        </button>
+        <button class="btn btn-info ms-2" 
+                bs5-tooltip="Another tooltip!" 
+                placement="right">
+            Hover for Tooltip (Right)
+        </button>
+        
+        <!-- Popover Example -->
+        <h2 class="mt-4">Popover Component</h2>
+        <div class="d-flex gap-2 flex-wrap">
+            <button class="btn btn-primary" 
+                    bs5-popover="This is a simple popover with text content. Click again to close."
+                    title="Popover Title">
+                Click for Popover
+            </button>
+            
+            <button class="btn btn-success" 
+                    bs5-popover="<strong>HTML content</strong> with <em>formatting</em>!"
+                    title="HTML Popover"
+                    html="true">
+                HTML Popover
+            </button>
+            
+            <button class="btn btn-warning" 
+                    bs5-popover="Hover to see this popover"
+                    title="Hover Popover"
+                    trigger="hover"
+                    placement="top">
+                Hover Popover
+            </button>
+            
+            <button class="btn btn-info" 
+                    bs5-popover
+                    template-url="popover-demo-template.html"
+                    title="Interactive Popover"
+                    handler="vm.handlePopoverData($data)">
+                Template Popover
+            </button>
+        </div>
+        
+        <div class="mt-2" ng-if="vm.popoverMessage">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                {{vm.popoverMessage}}
+                <button type="button" class="btn-close" ng-click="vm.popoverMessage = null"></button>
+            </div>
+        </div>
+        
+        <!-- Hidden template for popover -->
+        <script type="text/ng-template" id="popover-demo-template.html">
+            <div>
+                <p>This is a template-based popover!</p>
+                <input type="text" class="form-control form-control-sm mb-2" 
+                       ng-model="message" 
+                       placeholder="Enter a message">
+                <div class="d-flex gap-1">
+                    <button class="btn btn-sm btn-primary" ng-click="close(message)">
+                        Send
+                    </button>
+                    <button class="btn btn-sm btn-secondary" ng-click="dismiss('cancelled')">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </script>
+        
+        <!-- Icons Example -->
+        <h2 class="mt-4">Icons Component</h2>
+        <p>
+            <bs5-icon icon="heart-fill" color="red" size="24"></bs5-icon>
+            <bs5-icon icon="star-fill" color="gold" size="24"></bs5-icon>
+            <bs5-icon icon="shield-check" color="green" size="24"></bs5-icon>
+            <bs5-icon icon="emoji-smile" color="blue" size="24"></bs5-icon>
+        </p>
+    </div>
+    
+    <script>
+        angular.module('demoApp', ['ngBootstrap5'])
+            .controller('DemoController', function() {
+                var vm = this;
+                
+                vm.isCollapsed = false;
+                vm.progress = 30;
+                vm.currentPage = 1;
+                vm.popoverMessage = null;
+                
+                vm.incrementProgress = function() {
+                    vm.progress = Math.min(100, vm.progress + 10);
+                };
+                
+                vm.onPageChange = function(page, pageSize) {
+                    console.log('Page changed to:', page, 'Page size:', pageSize);
+                };
+                
+                vm.handlePopoverData = function(data) {
+                    if (data) {
+                        vm.popoverMessage = 'Received from popover: ' + data;
+                    }
+                };
+            });
+    </script>
+</body>
+</html>

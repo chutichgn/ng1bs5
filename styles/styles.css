@@ -1,0 +1,53 @@
+/* Angular Bootstrap 5 - Custom Styles */
+
+/* Autocomplete List */
+bs5-autocomplete-list {
+    position: absolute;
+    overflow-x: hidden;
+    z-index: 9999;
+}
+
+bs5-autocomplete-list li {
+    cursor: pointer;
+}
+
+/* Calendar/Datepicker */
+.calendar {
+    position: absolute;
+    border: 1px solid #000;
+    z-index: 9999;
+}
+
+/* Rating */
+bs5-rating {
+    display: inline-block;
+}
+
+[bs5-rating]:not(.readonly) > *,
+bs5-rating:not(.readonly) > * {
+    cursor: pointer;
+}
+
+[bs5-rating].disabled > *,
+bs5-rating.disabled > * {
+    cursor: not-allowed;
+    filter: grayscale(60%);
+    opacity: 0.17;
+}
+
+bs5-rating-partial > span {
+    position: relative;
+}
+
+bs5-rating-partial > span > span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+/* Tabset */
+.bs5-tabset {
+    /* Add custom tabset styles as needed */
+}
