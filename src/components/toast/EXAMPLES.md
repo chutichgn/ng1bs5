@@ -460,6 +460,6 @@ class ProgressController {
 
 ## See Also
 
-- [README](./README.md) - Overview and quick start
-- [API Reference](./API.md) - Complete API documentation
-- [Changelog](./CHANGELOG.md) - Version history
+- [README](README.md) - Overview and quick start
+- [API Reference](API.md) - Complete API documentation
+- [Changelog](CHANGELOG.md) - Version history

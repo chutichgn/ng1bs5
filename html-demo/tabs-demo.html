@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="tabsDemo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs Component Demo - ng1bs5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+    <style>
+        .demo-section { margin-bottom: 3rem; }
+        .code-example { background-color: #f8f9fa; padding: 1rem; border-radius: 0.25rem; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">← Back to Components</a>
+            <span class="navbar-text">Tabs Component Demo</span>
+        </div>
+    </nav>
+
+    <div class="container" ng-controller="TabsDemoCtrl">
+        <h1 class="mb-4">Tabs Component</h1>
+        <p class="lead">Create tabbable panes for organizing content into separate views.</p>
+
+        <div class="demo-section">
+            <h2>Basic Tabs</h2>
+            <div class="mb-3">
+                <bs-tabs>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" bs-tab-link="home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" bs-tab-link="profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" bs-tab-link="contact">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <bs-tab-pane id="home" active="true">
+                            <p class="mt-3">This is the home tab content. Lorem ipsum dolor sit amet.</p>
+                        </bs-tab-pane>
+                        <bs-tab-pane id="profile">
+                            <p class="mt-3">This is the profile tab content. Consectetur adipiscing elit.</p>
+                        </bs-tab-pane>
+                        <bs-tab-pane id="contact">
+                            <p class="mt-3">This is the contact tab content. Sed do eiusmod tempor.</p>
+                        </bs-tab-pane>
+                    </div>
+                </bs-tabs>
+            </div>
+            <div class="code-example">
+                <pre><code class="language-html">&lt;bs-tabs&gt;
+    &lt;ul class="nav nav-tabs"&gt;
+        &lt;li class="nav-item"&gt;
+            &lt;a class="nav-link active" bs-tab-link="home"&gt;Home&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class="tab-content"&gt;
+        &lt;bs-tab-pane id="home" active="true"&gt;
+            Content...
+        &lt;/bs-tab-pane&gt;
+    &lt;/div&gt;
+&lt;/bs-tabs&gt;</code></pre>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Pills Style</h2>
+            <div class="mb-3">
+                <bs-tabs>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active" bs-tab-link="pill1">Active</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" bs-tab-link="pill2">Second</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" bs-tab-link="pill3">Third</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <bs-tab-pane id="pill1" active="true">
+                            <p class="mt-3">Pills tab 1 content.</p>
+                        </bs-tab-pane>
+                        <bs-tab-pane id="pill2">
+                            <p class="mt-3">Pills tab 2 content.</p>
+                        </bs-tab-pane>
+                        <bs-tab-pane id="pill3">
+                            <p class="mt-3">Pills tab 3 content.</p>
+                        </bs-tab-pane>
+                    </div>
+                </bs-tabs>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Component API</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>bs-tab-link</code></td>
+                        <td>string</td>
+                        <td>required</td>
+                        <td>ID of the tab pane to show</td>
+                    </tr>
+                    <tr>
+                        <td><code>active</code></td>
+                        <td>boolean</td>
+                        <td>false</td>
+                        <td>Whether tab pane is active on load</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+    <script src="../dist/ng1bs5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script>
+        angular.module('tabsDemo', ['ng1bs5'])
+            .controller('TabsDemoCtrl', ['$scope', function($scope) {}]);
+    </script>
+</body>
+</html>

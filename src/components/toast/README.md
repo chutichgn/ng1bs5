@@ -64,9 +64,9 @@ this.ToastService.create({
 
 ## Documentation
 
-- [API Reference](./API.md) - Complete API documentation
-- [Examples](./EXAMPLES.md) - More usage examples
-- [Changelog](./CHANGELOG.md) - Version history
+- [API Reference](API.md) - Complete API documentation
+- [Examples](EXAMPLES.md) - More usage examples
+- [Changelog](CHANGELOG.md) - Version history
 
 ## Basic Example
 

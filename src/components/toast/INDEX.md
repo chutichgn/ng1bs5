@@ -5,15 +5,15 @@ Complete documentation for the ng1bs5 Toast component.
 ## 📚 Documentation Structure
 
 ### Getting Started
-- **[README.md](./README.md)** - Overview, features, installation, and quick start guide
+- **[README.md](README.md)** - Overview, features, installation, and quick start guide
 - **[QUICK-REFERENCE.md](./QUICK-REFERENCE.md)** - Fast lookup reference for common tasks
 
 ### Detailed Guides
-- **[API.md](./API.md)** - Complete API reference with all methods and options
-- **[EXAMPLES.md](./EXAMPLES.md)** - Real-world examples and integration patterns
+- **[API.md](API.md)** - Complete API reference with all methods and options
+- **[EXAMPLES.md](EXAMPLES.md)** - Real-world examples and integration patterns
 
 ### Project Information
-- **[CHANGELOG.md](./CHANGELOG.md)** - Version history and release notes
+- **[CHANGELOG.md](CHANGELOG.md)** - Version history and release notes
 - **[CONTRIBUTING.md](./CONTRIBUTING.md)** - Guide for contributors
 
 ---
@@ -21,18 +21,18 @@ Complete documentation for the ng1bs5 Toast component.
 ## 🚀 Quick Links
 
 ### For New Users
-1. Start with [README.md](./README.md) for an overview
-2. Try the [Quick Start](./README.md#quick-start) examples
+1. Start with [README.md](README.md) for an overview
+2. Try the [Quick Start](README.md#quick-start) examples
 3. Check [QUICK-REFERENCE.md](./QUICK-REFERENCE.md) for common patterns
 
 ### For Developers
-1. Review [API.md](./API.md) for detailed API docs
-2. Browse [EXAMPLES.md](./EXAMPLES.md) for integration patterns
+1. Review [API.md](API.md) for detailed API docs
+2. Browse [EXAMPLES.md](EXAMPLES.md) for integration patterns
 3. Read [CONTRIBUTING.md](./CONTRIBUTING.md) before contributing
 
 ### For Troubleshooting
 1. Check [FAQ](#faq) section below
-2. Review [EXAMPLES.md](./EXAMPLES.md) for working patterns
+2. Review [EXAMPLES.md](EXAMPLES.md) for working patterns
 3. Search [GitHub Issues](https://github.com/chutichgn/ng1bs5/issues)
 
 ---
@@ -40,44 +40,44 @@ Complete documentation for the ng1bs5 Toast component.
 ## 📖 Documentation by Topic
 
 ### Installation & Setup
-- [Installation](./README.md#installation)
-- [Project Setup](./README.md#quick-start)
+- [Installation](README.md#installation)
+- [Project Setup](README.md#quick-start)
 - [Development Setup](./CONTRIBUTING.md#development-setup)
 
 ### Basic Usage
-- [Quick Start](./README.md#quick-start)
-- [Basic Examples](./EXAMPLES.md#basic-examples)
+- [Quick Start](README.md#quick-start)
+- [Basic Examples](EXAMPLES.md#basic-examples)
 - [Quick Reference](./QUICK-REFERENCE.md)
 
 ### Configuration
-- [Configuration Options](./README.md#configuration-options)
-- [Position Options](./README.md#position-options)
-- [API Reference](./API.md#options)
+- [Configuration Options](README.md#configuration-options)
+- [Position Options](README.md#position-options)
+- [API Reference](API.md#options)
 
 ### Advanced Features
-- [Advanced Usage](./README.md#advanced-usage)
-- [Real-World Use Cases](./EXAMPLES.md#real-world-use-cases)
-- [Integration Examples](./EXAMPLES.md#integration-examples)
-- [Advanced Patterns](./EXAMPLES.md#advanced-patterns)
+- [Advanced Usage](README.md#advanced-usage)
+- [Real-World Use Cases](EXAMPLES.md#real-world-use-cases)
+- [Integration Examples](EXAMPLES.md#integration-examples)
+- [Advanced Patterns](EXAMPLES.md#advanced-patterns)
 
 ### API Documentation
-- [ToastService Methods](./API.md#methods)
-- [Configuration Options](./API.md#options)
-- [Return Values](./API.md#return-values)
-- [Type Definitions](./API.md#type-definitions)
+- [ToastService Methods](API.md#methods)
+- [Configuration Options](API.md#options)
+- [Return Values](API.md#return-values)
+- [Type Definitions](API.md#type-definitions)
 
 ### Styling & Customization
-- [Styling](./README.md#styling)
-- [Custom Styling](./README.md#custom-styling)
+- [Styling](README.md#styling)
+- [Custom Styling](README.md#custom-styling)
 - [Color Schemes](./QUICK-REFERENCE.md#color-schemes)
 
 ### Integration
-- [HTTP Interceptor](./EXAMPLES.md#with-http-interceptor)
-- [State Changes](./EXAMPLES.md#with-state-change-events)
-- [Form Validation](./EXAMPLES.md#with-form-validation)
+- [HTTP Interceptor](EXAMPLES.md#with-http-interceptor)
+- [State Changes](EXAMPLES.md#with-state-change-events)
+- [Form Validation](EXAMPLES.md#with-form-validation)
 
 ### Best Practices
-- [UI/UX Guidelines](./EXAMPLES.md#uiux-best-practices)
+- [UI/UX Guidelines](EXAMPLES.md#uiux-best-practices)
 - [Coding Standards](./CONTRIBUTING.md#coding-standards)
 - [Common Patterns](./QUICK-REFERENCE.md#common-patterns)
 
@@ -93,9 +93,9 @@ Complete documentation for the ng1bs5 Toast component.
 - [Pull Request Process](./CONTRIBUTING.md#pull-request-process)
 
 ### Version History
-- [Changelog](./CHANGELOG.md)
-- [Migration Guides](./CHANGELOG.md#migration-guides)
-- [Breaking Changes](./CHANGELOG.md#breaking-changes)
+- [Changelog](CHANGELOG.md)
+- [Migration Guides](CHANGELOG.md#migration-guides)
+- [Breaking Changes](CHANGELOG.md#breaking-changes)
 
 ---
 
@@ -107,7 +107,7 @@ Complete documentation for the ng1bs5 Toast component.
 ```javascript
 ToastService.success('Operation completed!', 'Success');
 ```
-[More examples →](./README.md#quick-start)
+[More examples →](README.md#quick-start)
 
 #### Show an error that requires manual close?
 ```javascript
@@ -115,7 +115,7 @@ ToastService.error('Something went wrong', 'Error', {
   autohide: false
 });
 ```
-[More examples →](./EXAMPLES.md#form-submission)
+[More examples →](EXAMPLES.md#form-submission)
 
 #### Change the toast position?
 ```javascript
@@ -123,7 +123,7 @@ ToastService.info('Message', 'Title', {
   position: 'bottom-end'
 });
 ```
-[Position options →](./README.md#position-options)
+[Position options →](README.md#position-options)
 
 #### Add a timestamp?
 ```javascript
@@ -131,13 +131,13 @@ ToastService.success('Saved', 'Success', {
   timestamp: true
 });
 ```
-[Timestamp examples →](./API.md#timestamp)
+[Timestamp examples →](API.md#timestamp)
 
 #### Create a toast without a title?
 ```javascript
 ToastService.success('Simple message', '');
 ```
-[Colored body examples →](./EXAMPLES.md#basic-examples)
+[Colored body examples →](EXAMPLES.md#basic-examples)
 
 #### Control toast duration?
 ```javascript
@@ -155,7 +155,7 @@ const toast = ToastService.info('Loading...', '', {
 // Later...
 toast.hide();
 ```
-[Manual control →](./API.md#manual-control)
+[Manual control →](API.md#manual-control)
 
 #### Disable animation?
 ```javascript
@@ -163,7 +163,7 @@ ToastService.success('Instant', '', {
   animation: false
 });
 ```
-[Animation options →](./API.md#animation)
+[Animation options →](API.md#animation)
 
 ---
 
@@ -275,17 +275,17 @@ A: Verify `autohide: true` and `delay` is set appropriately.
 ## 🎓 Learning Path
 
 ### Beginner
-1. Read [README.md](./README.md)
-2. Try [Quick Start](./README.md#quick-start)
-3. Practice with [Basic Examples](./EXAMPLES.md#basic-examples)
+1. Read [README.md](README.md)
+2. Try [Quick Start](README.md#quick-start)
+3. Practice with [Basic Examples](EXAMPLES.md#basic-examples)
 
 ### Intermediate
-1. Study [API Reference](./API.md)
-2. Review [Real-World Use Cases](./EXAMPLES.md#real-world-use-cases)
-3. Learn [Integration Patterns](./EXAMPLES.md#integration-examples)
+1. Study [API Reference](API.md)
+2. Review [Real-World Use Cases](EXAMPLES.md#real-world-use-cases)
+3. Learn [Integration Patterns](EXAMPLES.md#integration-examples)
 
 ### Advanced
-1. Master [Advanced Patterns](./EXAMPLES.md#advanced-patterns)
+1. Master [Advanced Patterns](EXAMPLES.md#advanced-patterns)
 2. Read [Coding Standards](./CONTRIBUTING.md#coding-standards)
 3. Contribute to the project!
 

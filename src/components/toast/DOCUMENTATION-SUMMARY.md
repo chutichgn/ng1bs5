@@ -263,7 +263,7 @@ All documentation files link to each other appropriately:
 
 **Quick navigation available from any doc:**
 ```markdown
-- [Overview](./README.md)
+- [Overview](README.md)
 - [API Reference](./API.md)
 - [Examples](./EXAMPLES.md)
 - [Quick Reference](./QUICK-REFERENCE.md)

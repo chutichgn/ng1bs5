@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="carouselDemo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel Component Demo - ng1bs5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+    <style>
+        .demo-section { margin-bottom: 3rem; }
+        .code-example { background-color: #f8f9fa; padding: 1rem; border-radius: 0.25rem; margin-top: 1rem; }
+        .carousel-placeholder { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 400px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">← Back to Components</a>
+            <span class="navbar-text">Carousel Component Demo</span>
+        </div>
+    </nav>
+
+    <div class="container" ng-controller="CarouselDemoCtrl">
+        <h1 class="mb-4">Carousel Component</h1>
+        <p class="lead">A slideshow component for cycling through elements—images or slides of text—like a carousel.</p>
+
+        <div class="demo-section">
+            <h2>Basic Carousel</h2>
+            <div class="mb-3">
+                <bs-carousel>
+                    <bs-carousel-item active="true">
+                        <div class="carousel-placeholder">
+                            <span>First slide</span>
+                        </div>
+                    </bs-carousel-item>
+                    <bs-carousel-item>
+                        <div class="carousel-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <span>Second slide</span>
+                        </div>
+                    </bs-carousel-item>
+                    <bs-carousel-item>
+                        <div class="carousel-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <span>Third slide</span>
+                        </div>
+                    </bs-carousel-item>
+                </bs-carousel>
+            </div>
+            <div class="code-example">
+                <pre><code class="language-html">&lt;bs-carousel&gt;
+    &lt;bs-carousel-item active="true"&gt;
+        &lt;!-- Slide content --&gt;
+    &lt;/bs-carousel-item&gt;
+    &lt;bs-carousel-item&gt;
+        &lt;!-- Slide content --&gt;
+    &lt;/bs-carousel-item&gt;
+&lt;/bs-carousel&gt;</code></pre>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>With Captions</h2>
+            <div class="mb-3">
+                <bs-carousel>
+                    <bs-carousel-item active="true">
+                        <div class="carousel-placeholder">First slide</div>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>First slide label</h5>
+                            <p>Some representative placeholder content.</p>
+                        </div>
+                    </bs-carousel-item>
+                    <bs-carousel-item>
+                        <div class="carousel-placeholder" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">Second slide</div>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Second slide label</h5>
+                            <p>Some representative placeholder content.</p>
+                        </div>
+                    </bs-carousel-item>
+                </bs-carousel>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Component API</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>interval</code></td>
+                        <td>number</td>
+                        <td>5000</td>
+                        <td>Time to delay between cycling an item (ms)</td>
+                    </tr>
+                    <tr>
+                        <td><code>keyboard</code></td>
+                        <td>boolean</td>
+                        <td>true</td>
+                        <td>Whether carousel should react to keyboard events</td>
+                    </tr>
+                    <tr>
+                        <td><code>pause</code></td>
+                        <td>string|boolean</td>
+                        <td>'hover'</td>
+                        <td>Pauses cycling on hover</td>
+                    </tr>
+                    <tr>
+                        <td><code>ride</code></td>
+                        <td>string|boolean</td>
+                        <td>false</td>
+                        <td>Autoplays the carousel after load</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+    <script src="../dist/ng1bs5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script>
+        angular.module('carouselDemo', ['ng1bs5'])
+            .controller('CarouselDemoCtrl', ['$scope', function($scope) {}]);
+    </script>
+</body>
+</html>

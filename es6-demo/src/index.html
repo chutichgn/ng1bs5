@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ng1bs5Demo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ng1bs5 ES6 Demo - Bootstrap 5 Components for AngularJS</title>
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .demo-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 30px;
+            margin-bottom: 40px;
+            border-radius: 10px;
+        }
+        .component-section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .section-title {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        .example-area {
+            min-height: 100px;
+            padding: 20px;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .code-example {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 15px;
+            overflow-x: auto;
+        }
+        pre {
+            margin: 0;
+        }
+        .nav-tabs {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" ng-controller="DemoController">
+        <!-- Header -->
+        <div class="demo-header text-center">
+            <h1 class="display-4 fw-bold mb-3">ng1bs5 ES6 Demo</h1>
+            <p class="lead mb-2">Bootstrap 5 Components for AngularJS with ES6 Modules</p>
+            <p class="mb-0">This demo imports components directly from source using ES6 modules</p>
+        </div>
+
+        <!-- Info Alert -->
+        <div class="alert alert-info mb-4">
+            <h5 class="alert-heading">📦 ES6 Module Demo</h5>
+            <p class="mb-0">
+                This demo application uses ES6 imports to load ng1bs5 components directly from the source.
+                It's built with Webpack and demonstrates how to use the library in modern JavaScript applications.
+            </p>
+        </div>
+
+        <!-- Component Tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#modal-tab" type="button">
+                    Modal
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#popover-tab" type="button">
+                    Popover
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tooltip-tab" type="button">
+                    Tooltip
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#dropdown-tab" type="button">
+                    Dropdown
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#accordion-tab" type="button">
+                    Accordion
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Modal Tab -->
+            <div class="tab-pane fade show active" id="modal-tab">
+                <div class="component-section">
+                    <h2 class="section-title">Modal Component</h2>
+                    <p>Dialog boxes and popup windows with Bootstrap 5 styling.</p>
+                    
+                    <div class="example-area text-center">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">
+                            Launch Modal
+                        </button>
+                    </div>
+
+                    <div class="modal fade" id="demoModal" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">ES6 Demo Modal</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>This modal is loaded from the ng1bs5 source using ES6 imports!</p>
+                                    <p class="mb-0">The component is imported directly, not from a bundled distribution file.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-example">
+                        <strong>Import:</strong>
+                        <pre><code>import { ModalModule } from '@ng1bs5/modal';</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Popover Tab -->
+            <div class="tab-pane fade" id="popover-tab">
+                <div class="component-section">
+                    <h2 class="section-title">Popover Component</h2>
+                    <p>Contextual overlays for displaying additional content.</p>
+                    
+                    <div class="example-area text-center">
+                        <button type="button" 
+                                class="btn btn-primary"
+                                bs-popover 
+                                data-bs-title="ES6 Popover"
+                                data-bs-content="This popover is imported as an ES6 module!"
+                                data-bs-placement="top">
+                            Click for Popover
+                        </button>
+                    </div>
+
+                    <div class="code-example">
+                        <strong>Import:</strong>
+                        <pre><code>import { PopoverModule } from '@ng1bs5/popover';</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tooltip Tab -->
+            <div class="tab-pane fade" id="tooltip-tab">
+                <div class="component-section">
+                    <h2 class="section-title">Tooltip Component</h2>
+                    <p>Helpful hints that appear on hover.</p>
+                    
+                    <div class="example-area text-center">
+                        <button type="button" 
+                                class="btn btn-primary"
+                                bs-tooltip 
+                                data-bs-title="ES6 Tooltip!"
+                                data-bs-placement="top">
+                            Hover for Tooltip
+                        </button>
+                    </div>
+
+                    <div class="code-example">
+                        <strong>Import:</strong>
+                        <pre><code>import { TooltipModule } from '@ng1bs5/tooltip';</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dropdown Tab -->
+            <div class="tab-pane fade" id="dropdown-tab">
+                <div class="component-section">
+                    <h2 class="section-title">Dropdown Component</h2>
+                    <p>Toggleable contextual menus.</p>
+                    
+                    <div class="example-area text-center">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                Dropdown Menu
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Separated link</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="code-example">
+                        <strong>Import:</strong>
+                        <pre><code>import { DropdownModule } from '@ng1bs5/dropdown';</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion Tab -->
+            <div class="tab-pane fade" id="accordion-tab">
+                <div class="component-section">
+                    <h2 class="section-title">Accordion Component</h2>
+                    <p>Collapsible content panels.</p>
+                    
+                    <div class="example-area">
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                        Accordion Item #1
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        This is the first item's accordion body loaded via ES6 modules.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                        Accordion Item #2
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        This is the second item's accordion body.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-example">
+                        <strong>Import:</strong>
+                        <pre><code>import { AccordionModule } from '@ng1bs5/accordion';</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Getting Started -->
+        <div class="component-section mt-4">
+            <h2 class="section-title">🚀 Getting Started with ES6</h2>
+            <div class="code-example">
+                <strong>1. Install dependencies:</strong>
+                <pre><code>npm install</code></pre>
+            </div>
+            <div class="code-example">
+                <strong>2. Run development server:</strong>
+                <pre><code>npm run dev</code></pre>
+            </div>
+            <div class="code-example">
+                <strong>3. Build for production:</strong>
+                <pre><code>npm run build</code></pre>
+            </div>
+            <div class="code-example">
+                <strong>4. Import components in your app.js:</strong>
+                <pre><code>import angular from 'angular';
+import { ModalModule } from '@ng1bs5/modal';
+import { PopoverModule } from '@ng1bs5/popover';
+
+const app = angular.module('myApp', [
+  ModalModule.name,
+  PopoverModule.name
+]);</code></pre>
+            </div>
+        </div>
+
+        <footer class="text-center mt-5 pt-4 border-top">
+            <p class="text-muted">
+                ng1bs5 ES6 Demo | 
+                <a href="https://github.com/chutichgn/ng1bs5" target="_blank" class="text-decoration-none">GitHub</a> | 
+                <a href="../html-demo/index.html" class="text-decoration-none">View Standalone Demos</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

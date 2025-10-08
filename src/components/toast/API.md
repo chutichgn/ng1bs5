@@ -396,6 +396,6 @@ Requires CSS Transitions and ES6 support.
 
 ## See Also
 
-- [README](./README.md) - Overview and quick start
-- [Examples](./EXAMPLES.md) - More usage examples
-- [Changelog](./CHANGELOG.md) - Version history
+- [README](README.md) - Overview and quick start
+- [Examples](EXAMPLES.md) - More usage examples
+- [Changelog](CHANGELOG.md) - Version history
