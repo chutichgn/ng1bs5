@@ -42,53 +42,7 @@ That's it! All components are now available in your application.
 
 ## Project Structure
 
-```
-ng1bs5/
-├── index.js                    # Main entry point
-├── package.json                # NPM dependencies
-├── webpack.config.js           # Webpack configuration
-├── services/                   # Core services
-│   ├── dom.service.js         # DOM manipulation service (COMPLETE)
-│   └── position.service.js    # Positioning service (COMPLETE)
-├── components/                 # UI Components
-│   ├── accordion/
-│   │   └── accordion.module.js        # COMPLETE
-│   ├── alert/
-│   │   └── alert.module.js            # COMPLETE
-│   ├── autocomplete/
-│   │   └── autocomplete.module.js     # STUB - TODO
-│   ├── collapse/
-│   │   └── collapse.module.js         # COMPLETE
-│   ├── datepicker/
-│   │   └── datepicker.module.js       # STUB - TODO
-│   ├── icons/
-│   │   └── icons.module.js            # COMPLETE
-│   ├── loading-overlay/
-│   │   └── loading-overlay.module.js  # STUB - TODO
-│   ├── modal/
-│   │   └── modal.module.js            # STUB - TODO
-│   ├── offcanvas/
-│   │   └── offcanvas.module.js        # STUB - TODO
-│   ├── pagination/
-│   │   └── pagination.module.js       # COMPLETE
-│   ├── popover/
-│   │   ├── popover.module.js          # COMPLETE ✅
-│   │   ├── README.md                  # Full documentation
-│   │   └── popover.spec.js            # Unit tests
-│   ├── progressbar/
-│   │   └── progressbar.module.js      # COMPLETE
-│   ├── rating/
-│   │   └── rating.module.js           # STUB - TODO
-│   ├── tabs/
-│   │   └── tabs.module.js             # STUB - TODO
-│   ├── toast/
-│   │   └── toast.module.js            # STUB - TODO
-│   └── tooltip/
-│       └── tooltip.module.js          # COMPLETE
-└── styles/
-    └── styles.css              # Component styles
-
-```
+[See PROJECT_STRUCTURE.md for more details ](PROJECT_STRUCTURE.md)
 
 ## Installation
 
