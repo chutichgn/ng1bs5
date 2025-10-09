@@ -18,14 +18,20 @@ class DemoController {
             return state.name && state.data && state.data.displayName;
         });
 
-// Tabs array on scope
+// Tabs array on scope - includes all demo components
         $scope.tabs = [
-            {id: 'tab1', heading: 'Tab 1', route: 'main.tab1', active: false},
-            {id: 'tab2', heading: 'Tab 2', route: 'main.tab2', active: false},
-            {id: 'tab3', heading: 'Tab 3', route: 'main.tab3', active: false},
-            {id: 'main.tabs', heading: 'main tabs', route: 'main.tabs', active: false},
-            {id: 'main.modal', heading: 'main modal', route: 'main.modal', active: false},
-            {id: 'main.popover', heading: 'main popover', route: 'main.popover', active: false}
+            {id: 'main.tabs', heading: 'Tabs', route: 'main.tabs', active: false},
+            {id: 'main.modal', heading: 'Modal', route: 'main.modal', active: false},
+            {id: 'main.popover', heading: 'Popover', route: 'main.popover', active: false},
+            {id: 'main.tooltip', heading: 'Tooltip', route: 'main.tooltip', active: false},
+            {id: 'main.dropdown', heading: 'Dropdown', route: 'main.dropdown', active: false},
+            {id: 'main.accordion', heading: 'Accordion', route: 'main.accordion', active: false},
+            {id: 'main.collapse', heading: 'Collapse', route: 'main.collapse', active: false},
+            {id: 'main.alert', heading: 'Alert', route: 'main.alert', active: false},
+            {id: 'main.toast', heading: 'Toast', route: 'main.toast', active: false},
+            {id: 'main.offcanvas', heading: 'Offcanvas', route: 'main.offcanvas', active: false},
+            {id: 'main.pagination', heading: 'Pagination', route: 'main.pagination', active: false},
+            {id: 'main.progressbar', heading: 'Progressbar', route: 'main.progressbar', active: false}
         ];
 
 // Listen for state changes and sync

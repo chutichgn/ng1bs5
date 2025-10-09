@@ -1,0 +1,211 @@
+<div class="demo-content">
+    <div class="alert alert-info">
+        <h5><i class="bi bi-list-nested"></i> Accordion Component</h5>
+        <p class="mb-0">Collapsible content panels using ng1bs5 directive <code>bs5-accordion</code>.</p>
+    </div>
+
+    <h3 class="mb-3">Accordion Examples</h3>
+
+    <!-- Basic Accordion with ng1bs5 -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Basic Accordion (ng1bs5 Component)</h5>
+        </div>
+        <div class="card-body">
+            <bs5-accordion close-others="true">
+                <bs5-accordion-group heading="Accordion Item #1" is-open="true">
+                    <div class="p-2">
+                        <h6>First Item Content</h6>
+                        <p>This is the first item's accordion body. It's shown by default using <code>is-open="true"</code>.</p>
+                        <p class="mb-0">The ng1bs5 accordion component provides a clean AngularJS API for Bootstrap 5 accordions.</p>
+                    </div>
+                </bs5-accordion-group>
+                
+                <bs5-accordion-group heading="Accordion Item #2">
+                    <div class="p-2">
+                        <h6>Second Item Content</h6>
+                        <p>This is the second item's accordion body.</p>
+                        <ul>
+                            <li>AngularJS directives</li>
+                            <li>Bootstrap 5 styling</li>
+                            <li>Easy integration</li>
+                        </ul>
+                    </div>
+                </bs5-accordion-group>
+                
+                <bs5-accordion-group heading="Accordion Item #3">
+                    <div class="p-2">
+                        <h6>Third Item Content</h6>
+                        <p>This is the third item's accordion body.</p>
+                        <button class="btn btn-sm btn-primary">Action Button</button>
+                    </div>
+                </bs5-accordion-group>
+                
+                <bs5-accordion-group heading="Disabled Item" is-disabled="true">
+                    <div class="p-2">
+                        <p>This content won't show because the item is disabled.</p>
+                    </div>
+                </bs5-accordion-group>
+            </bs5-accordion>
+        </div>
+    </div>
+
+    <!-- Dynamic Accordion -->
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Dynamic Accordion from Data</h5>
+        </div>
+        <div class="card-body">
+            <bs5-accordion close-others="true">
+                <bs5-accordion-group ng-repeat="item in $ctrl.items" 
+                                     heading="{{item.title}}" 
+                                     is-open="item.show">
+                    <div class="p-2">
+                        <p>{{item.content}}</p>
+                        <small class="text-muted">Item ID: {{item.id}}</small>
+                    </div>
+                </bs5-accordion-group>
+            </bs5-accordion>
+        </div>
+    </div>
+
+    <!-- Allow Multiple Open -->
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">Allow Multiple Panels Open</h5>
+        </div>
+        <div class="card-body">
+            <bs5-accordion close-others="false">
+                <bs5-accordion-group heading="Panel 1">
+                    <div class="p-2">
+                        <p>This accordion allows multiple panels to be open at the same time.</p>
+                        <p class="mb-0">Set <code>close-others="false"</code> on the accordion element.</p>
+                    </div>
+                </bs5-accordion-group>
+                
+                <bs5-accordion-group heading="Panel 2">
+                    <div class="p-2">
+                        <p>You can expand both this panel and the one above simultaneously!</p>
+                    </div>
+                </bs5-accordion-group>
+                
+                <bs5-accordion-group heading="Panel 3">
+                    <div class="p-2">
+                        <p>All three panels can be open at the same time.</p>
+                    </div>
+                </bs5-accordion-group>
+            </bs5-accordion>
+        </div>
+    </div>
+
+    <!-- Custom Heading with Transclude -->
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0">Custom Headings</h5>
+        </div>
+        <div class="card-body">
+            <bs5-accordion>
+                <bs5-accordion-group>
+                    <bs5-accordion-heading>
+                        <i class="bi bi-star-fill text-warning"></i> Custom Heading with Icon
+                    </bs5-accordion-heading>
+                    <div class="p-2">
+                        <p>You can use <code>bs5-accordion-heading</code> to create custom heading content.</p>
+                        <p class="mb-0">This allows you to add icons, badges, or any HTML content to the heading.</p>
+                    </div>
+                </bs5-accordion-group>
+                
+                <bs5-accordion-group>
+                    <bs5-accordion-heading>
+                        <span class="badge bg-danger me-2">New</span>
+                        Heading with Badge
+                    </bs5-accordion-heading>
+                    <div class="p-2">
+                        <p>The heading can contain any HTML elements.</p>
+                    </div>
+                </bs5-accordion-group>
+            </bs5-accordion>
+        </div>
+    </div>
+
+    <!-- Bootstrap Native Accordion (for comparison) -->
+    <div class="card mb-4">
+        <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0">Bootstrap Native Accordion</h5>
+        </div>
+        <div class="card-body">
+            <p class="text-muted">For comparison, here's a standard Bootstrap 5 accordion using native HTML:</p>
+            <div class="accordion" id="nativeAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" 
+                                type="button" 
+                                data-bs-toggle="collapse" 
+                                data-bs-target="#collapseOne">
+                            Native Accordion Item #1
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#nativeAccordion">
+                        <div class="accordion-body">
+                            This is the standard Bootstrap 5 accordion markup.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" 
+                                type="button" 
+                                data-bs-toggle="collapse" 
+                                data-bs-target="#collapseTwo">
+                            Native Accordion Item #2
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#nativeAccordion">
+                        <div class="accordion-body">
+                            The ng1bs5 version provides a cleaner AngularJS API.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code Example -->
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Usage</h5>
+        </div>
+        <div class="card-body">
+            <div class="code-example">
+                <strong>Basic Accordion:</strong>
+                <pre><code>&lt;bs5-accordion close-others="true"&gt;
+    &lt;bs5-accordion-group heading="Item 1" is-open="true"&gt;
+        Content for item 1
+    &lt;/bs5-accordion-group&gt;
+    
+    &lt;bs5-accordion-group heading="Item 2"&gt;
+        Content for item 2
+    &lt;/bs5-accordion-group&gt;
+&lt;/bs5-accordion&gt;</code></pre>
+            </div>
+            <div class="code-example">
+                <strong>With Custom Heading:</strong>
+                <pre><code>&lt;bs5-accordion-group&gt;
+    &lt;bs5-accordion-heading&gt;
+        &lt;i class="bi bi-star"&gt;&lt;/i&gt; Custom Heading
+    &lt;/bs5-accordion-heading&gt;
+    Content here
+&lt;/bs5-accordion-group&gt;</code></pre>
+            </div>
+            <div class="code-example">
+                <strong>Attributes:</strong>
+                <ul>
+                    <li><code>close-others</code> - (boolean) Close other panels when one opens (default: true)</li>
+                    <li><code>heading</code> - Text for the accordion heading</li>
+                    <li><code>is-open</code> - (boolean) Initial open state</li>
+                    <li><code>is-disabled</code> - (boolean) Disable the accordion item</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

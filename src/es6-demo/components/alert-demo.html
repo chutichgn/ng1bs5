@@ -1,0 +1,185 @@
+<div class="demo-content">
+    <div class="alert alert-info">
+        <h5><i class="bi bi-exclamation-triangle"></i> Alert Component</h5>
+        <p class="mb-0">Contextual feedback messages using ng1bs5 <code>bs5-alert</code> component.</p>
+    </div>
+
+    <h3 class="mb-3">Alert Examples</h3>
+
+    <!-- Basic Alerts -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Basic Alerts</h5>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-primary" role="alert">
+                A simple primary alert—check it out!
+            </div>
+            <div class="alert alert-secondary" role="alert">
+                A simple secondary alert—check it out!
+            </div>
+            <div class="alert alert-success" role="alert">
+                A simple success alert—check it out!
+            </div>
+            <div class="alert alert-danger" role="alert">
+                A simple danger alert—check it out!
+            </div>
+            <div class="alert alert-warning" role="alert">
+                A simple warning alert—check it out!
+            </div>
+            <div class="alert alert-info" role="alert">
+                A simple info alert—check it out!
+            </div>
+            <div class="alert alert-light" role="alert">
+                A simple light alert—check it out!
+            </div>
+            <div class="alert alert-dark mb-0" role="alert">
+                A simple dark alert—check it out!
+            </div>
+        </div>
+    </div>
+
+    <!-- Dismissible Alerts with ng-repeat -->
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Dismissible Alerts (Dynamic)</h5>
+        </div>
+        <div class="card-body">
+            <button class="btn btn-primary mb-3" ng-click="$ctrl.addAlert()">
+                Add Alert
+            </button>
+            
+            <div ng-repeat="alert in $ctrl.alerts" 
+                 class="alert alert-{{alert.type}} alert-dismissible fade show" 
+                 role="alert">
+                {{alert.msg}}
+                <button type="button" 
+                        class="btn-close" 
+                        ng-click="$ctrl.closeAlert($index)"></button>
+            </div>
+            
+            <p class="text-muted mb-0" ng-if="$ctrl.alerts.length === 0">
+                No alerts to display. Click "Add Alert" to create one.
+            </p>
+        </div>
+    </div>
+
+    <!-- Alerts with Icons -->
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">Alerts with Icons</h5>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-success d-flex align-items-center" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <div>
+                    Success! Your action was completed successfully.
+                </div>
+            </div>
+            <div class="alert alert-warning d-flex align-items-center" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <div>
+                    Warning! Please review the information below.
+                </div>
+            </div>
+            <div class="alert alert-danger d-flex align-items-center mb-0" role="alert">
+                <i class="bi bi-x-circle-fill me-2"></i>
+                <div>
+                    Error! There was a problem processing your request.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alerts with Additional Content -->
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0">Alerts with Additional Content</h5>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Well done!</h4>
+                <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+                <hr>
+                <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+            </div>
+            
+            <div class="alert alert-warning mb-0" role="alert">
+                <h4 class="alert-heading">Heads up!</h4>
+                <p class="mb-0">This alert has multiple paragraphs and works well with additional content like headings and horizontal rules.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alerts with Links -->
+    <div class="card mb-4">
+        <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0">Alerts with Links</h5>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-primary" role="alert">
+                A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+            </div>
+            <div class="alert alert-success" role="alert">
+                A simple success alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+            </div>
+            <div class="alert alert-danger mb-0" role="alert">
+                A simple danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+            </div>
+        </div>
+    </div>
+
+    <!-- Dismissible Alert (Single) -->
+    <div class="card mb-4">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Dismissible Alert</h5>
+        </div>
+        <div class="card-body">
+            <div ng-if="$ctrl.showDismissible" 
+                 class="alert alert-warning alert-dismissible fade show" 
+                 role="alert">
+                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                <button type="button" 
+                        class="btn-close" 
+                        ng-click="$ctrl.showDismissible = false"></button>
+            </div>
+            <button ng-if="!$ctrl.showDismissible" 
+                    class="btn btn-warning" 
+                    ng-click="$ctrl.showDismissible = true">
+                Show Alert Again
+            </button>
+        </div>
+    </div>
+
+    <!-- Code Example -->
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Usage</h5>
+        </div>
+        <div class="card-body">
+            <div class="code-example">
+                <strong>Basic Alert:</strong>
+                <pre><code>&lt;div class="alert alert-primary" role="alert"&gt;
+    A simple primary alert
+&lt;/div&gt;</code></pre>
+            </div>
+            <div class="code-example">
+                <strong>Dismissible Alert:</strong>
+                <pre><code>&lt;div class="alert alert-warning alert-dismissible fade show" role="alert"&gt;
+    Alert content
+    &lt;button type="button" class="btn-close" ng-click="closeAlert()"&gt;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+            <div class="code-example">
+                <strong>Available Classes:</strong>
+                <ul>
+                    <li><code>.alert-primary</code>, <code>.alert-secondary</code>, <code>.alert-success</code></li>
+                    <li><code>.alert-danger</code>, <code>.alert-warning</code>, <code>.alert-info</code></li>
+                    <li><code>.alert-light</code>, <code>.alert-dark</code></li>
+                    <li><code>.alert-dismissible</code> - Makes alert dismissible</li>
+                    <li><code>.alert-link</code> - Styles links within alerts</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

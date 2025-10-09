@@ -1,0 +1,211 @@
+<div class="demo-content">
+    <div class="alert alert-info">
+        <h5><i class="bi bi-arrows-collapse"></i> Collapse Component</h5>
+        <p class="mb-0">Show and hide content using ng1bs5 directive <code>bs5-collapse</code>.</p>
+    </div>
+
+    <h3 class="mb-3">Collapse Examples</h3>
+
+    <!-- Basic Collapse with ng1bs5 -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Basic Collapse (ng1bs5 Directive)</h5>
+        </div>
+        <div class="card-body">
+            <button class="btn btn-primary mb-3" 
+                    ng-click="$ctrl.isCollapsed1 = !$ctrl.isCollapsed1">
+                Toggle Collapse
+            </button>
+            <div bs5-collapse="$ctrl.isCollapsed1" class="card card-body">
+                <h6>Collapsible Content</h6>
+                <p>This content is controlled by the ng1bs5 <code>bs5-collapse</code> directive.</p>
+                <p class="mb-0">The directive provides smooth animations and integrates with AngularJS data binding.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Multiple Collapses -->
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Multiple Independent Collapses</h5>
+        </div>
+        <div class="card-body">
+            <button class="btn btn-success me-2 mb-3" 
+                    ng-click="$ctrl.isCollapsed2 = !$ctrl.isCollapsed2">
+                Toggle First
+            </button>
+            <button class="btn btn-success mb-3" 
+                    ng-click="$ctrl.isCollapsed3 = !$ctrl.isCollapsed3">
+                Toggle Second
+            </button>
+            
+            <div bs5-collapse="$ctrl.isCollapsed2" class="card card-body mb-3">
+                <strong>First Collapsible Element</strong>
+                <p class="mb-0">This is controlled by the first button.</p>
+            </div>
+            
+            <div bs5-collapse="$ctrl.isCollapsed3" class="card card-body">
+                <strong>Second Collapsible Element</strong>
+                <p class="mb-0">This is controlled by the second button.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Multi-target Collapse -->
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">Multi-Target Collapse</h5>
+        </div>
+        <div class="card-body">
+            <div class="mb-3">
+                <button class="btn btn-info me-2" 
+                        ng-click="$ctrl.multiCollapse1 = !$ctrl.multiCollapse1">
+                    Toggle First
+                </button>
+                <button class="btn btn-info me-2" 
+                        ng-click="$ctrl.multiCollapse2 = !$ctrl.multiCollapse2">
+                    Toggle Second
+                </button>
+                <button class="btn btn-info" 
+                        ng-click="$ctrl.toggleAll()">
+                    Toggle Both
+                </button>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div bs5-collapse="$ctrl.multiCollapse1" class="card card-body">
+                        <strong>First Element</strong>
+                        <p class="mb-0">Can be toggled independently or with the second element.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div bs5-collapse="$ctrl.multiCollapse2" class="card card-body">
+                        <strong>Second Element</strong>
+                        <p class="mb-0">Can also be toggled independently or with the first element.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Horizontal Collapse -->
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0">Horizontal Collapse</h5>
+        </div>
+        <div class="card-body">
+            <p class="text-muted">
+                Horizontal collapse uses Bootstrap's <code>.collapse-horizontal</code> class.
+            </p>
+            <button class="btn btn-warning mb-3" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample">
+                Toggle Width
+            </button>
+            <div style="min-height: 120px;">
+                <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                    <div class="card card-body" style="width: 300px;">
+                        This is a horizontal collapse example using Bootstrap's native classes.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Native Collapse -->
+    <div class="card mb-4">
+        <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0">Bootstrap Native Collapse (for comparison)</h5>
+        </div>
+        <div class="card-body">
+            <p class="text-muted">
+                Standard Bootstrap 5 collapse using <code>data-bs-toggle="collapse"</code>:
+            </p>
+            <button class="btn btn-secondary mb-3" 
+                    type="button" 
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#collapseNative">
+                Toggle Native Collapse
+            </button>
+            <div class="collapse" id="collapseNative">
+                <div class="card card-body">
+                    This uses Bootstrap's native JavaScript collapse functionality.
+                    The ng1bs5 directive provides better AngularJS integration.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Collapse with Card -->
+    <div class="card mb-4">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Collapse in Navigation</h5>
+        </div>
+        <div class="card-body">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" 
+                            type="button" 
+                            data-bs-toggle="collapse" 
+                            data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Features</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Pricing</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <p class="text-muted mt-3 mb-0">
+                Collapse is commonly used in responsive navigation bars.
+            </p>
+        </div>
+    </div>
+
+    <!-- Code Example -->
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Usage</h5>
+        </div>
+        <div class="card-body">
+            <div class="code-example">
+                <strong>ng1bs5 Directive:</strong>
+                <pre><code>&lt;button ng-click="isCollapsed = !isCollapsed"&gt;
+    Toggle
+&lt;/button&gt;
+
+&lt;div bs5-collapse="isCollapsed"&gt;
+    Collapsible content here
+&lt;/div&gt;</code></pre>
+            </div>
+            <div class="code-example">
+                <strong>Bootstrap Native:</strong>
+                <pre><code>&lt;button data-bs-toggle="collapse" 
+        data-bs-target="#myCollapse"&gt;
+    Toggle
+&lt;/button&gt;
+
+&lt;div class="collapse" id="myCollapse"&gt;
+    Collapsible content here
+&lt;/div&gt;</code></pre>
+            </div>
+            <div class="code-example">
+                <strong>Attributes:</strong>
+                <ul>
+                    <li><code>bs5-collapse</code> - Boolean expression to control collapsed state</li>
+                    <li>The directive automatically handles the Bootstrap classes and animations</li>
+                    <li>Works seamlessly with AngularJS data binding</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -42,7 +42,7 @@ class Popover {
 
             if (this.config.popoverController) {
                 const ctrl = this.services.$controller(
-                    this.config.popoverController, 
+                    this.config.popoverController,
                     { $scope: this.config.scope }
                 );
 
@@ -111,15 +111,15 @@ class Popover {
 
     getShowDelay() {
         const delay = this.config.delay;
-        return angular.isObject(delay) 
-            ? (angular.isNumber(delay.show) ? delay.show : 0) 
+        return angular.isObject(delay)
+            ? (angular.isNumber(delay.show) ? delay.show : 0)
             : (angular.isNumber(delay) ? delay : 0);
     }
 
     getHideDelay() {
         const delay = this.config.delay;
-        return angular.isObject(delay) 
-            ? (angular.isNumber(delay.hide) ? delay.hide : 0) 
+        return angular.isObject(delay)
+            ? (angular.isNumber(delay.hide) ? delay.hide : 0)
             : (angular.isNumber(delay) ? delay : 0);
     }
 }
@@ -150,39 +150,53 @@ class PopoverDirective {
     link = (scope, elm, attrs) => {
         const deferred = this.$q.defer();
 
+        // Support both bs5-popover and bs-popover directive names
+        // Support Bootstrap-style data-bs-* attributes
+        const getAttr = (name, bsName) => {
+            return attrs[bsName] || attrs[name] || attrs['bs' + name.charAt(0).toUpperCase() + name.slice(1)];
+        };
+
         // Parse configuration from attributes
         const config = {
             animate: attrs.animate ? scope.$eval(attrs.animate) : true,
-            delay: scope.$eval(attrs.delay),
-            html: attrs.html ? scope.$eval(attrs.html) : false,
-            placement: ['left', 'top', 'bottom'].includes(attrs.placement) ? attrs.placement : 'right',
-            title: attrs.title || '',
-            trigger: ['focus', 'hover'].includes(attrs.trigger) ? attrs.trigger : 'click',
-            offset: scope.$eval(attrs.offset) || [0, 0],
-            fallbackPlacements: scope.$eval(attrs.fallbackPlacements) || ['left', 'right', 'top', 'bottom'],
-            container: attrs.container 
-                ? angular.element(document.querySelector(attrs.container)) 
+            delay: scope.$eval(attrs.delay || attrs.bsDelay),
+            html: scope.$eval(attrs.html || attrs.bsHtml) || false,
+            placement: ['left', 'top', 'bottom', 'right'].includes(attrs.placement || attrs.bsPlacement)
+                ? (attrs.placement || attrs.bsPlacement)
+                : 'right',
+            title: attrs.title || attrs.bsTitle || '',
+            trigger: ['focus', 'hover', 'click'].includes(attrs.trigger || attrs.bsTrigger)
+                ? (attrs.trigger || attrs.bsTrigger)
+                : 'click',
+            offset: scope.$eval(attrs.offset || attrs.bsOffset) || [0, 0],
+            fallbackPlacements: scope.$eval(attrs.fallbackPlacements || attrs.bsFallbackPlacements) || ['left', 'right', 'top', 'bottom'],
+            container: (attrs.container || attrs.bsContainer)
+                ? angular.element(document.querySelector(attrs.container || attrs.bsContainer))
                 : angular.element(document.body),
-            popoverController: attrs.popoverController
+            popoverController: attrs.popoverController || attrs.bsController
         };
 
         // Validate offset
-        if (!angular.isArray(config.offset) || 
-            config.offset.length !== 2 || 
-            !angular.isNumber(config.offset[0]) || 
+        if (!angular.isArray(config.offset) ||
+            config.offset.length !== 2 ||
+            !angular.isNumber(config.offset[0]) ||
             !angular.isNumber(config.offset[1])) {
             config.offset = [0, 0];
         }
 
         // Load template or content
-        if (attrs.templateUrl) {
-            const template = this.$templateCache.get(attrs.templateUrl);
+        // Support multiple attribute names: bs5-popover, bs-popover, bs-content, content
+        const contentAttr = attrs.bs5Popover || attrs.bsPopover || attrs.bsContent || attrs.content;
+
+        if (attrs.templateUrl || attrs.bsTemplateUrl) {
+            const templateUrl = attrs.templateUrl || attrs.bsTemplateUrl;
+            const template = this.$templateCache.get(templateUrl);
             if (template) {
                 config.html = true;
                 deferred.resolve(template);
             } else {
                 this.$http({
-                    url: attrs.templateUrl,
+                    url: templateUrl,
                     method: 'GET'
                 }).then(
                     (r) => {
@@ -190,13 +204,13 @@ class PopoverDirective {
                         deferred.resolve(r.data);
                     },
                     () => {
-                        deferred.resolve(attrs.bs5Popover);
+                        deferred.resolve(contentAttr);
                         elm.removeAttr('template-url');
                     }
                 );
             }
         } else {
-            deferred.resolve(attrs.bs5Popover);
+            deferred.resolve(contentAttr);
         }
 
         // Process template and create popover
@@ -276,6 +290,7 @@ const POPOVER_MODULE_NAME = 'ng1bs5.popover';
 
 angular
     .module(POPOVER_MODULE_NAME, [DOMModule, PositionModule])
-    .directive('bs5Popover', () => new PopoverDirective(...PopoverDirective.$inject));
+    .directive('bs5Popover', () => new PopoverDirective(...PopoverDirective.$inject))
+    .directive('bsPopover', () => new PopoverDirective(...PopoverDirective.$inject));
 
 export default POPOVER_MODULE_NAME;

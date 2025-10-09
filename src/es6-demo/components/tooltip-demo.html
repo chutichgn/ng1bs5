@@ -1,0 +1,166 @@
+<div class="demo-content">
+    <div class="alert alert-info">
+        <h5><i class="bi bi-chat-dots"></i> Tooltip Component</h5>
+        <p class="mb-0">Helpful hints using ng1bs5 directive <code>bs-tooltip</code> or <code>bs5-tooltip</code>.</p>
+    </div>
+
+    <h3 class="mb-3">Tooltip Examples</h3>
+
+    <!-- Basic Tooltips -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Basic Tooltips - Different Positions</h5>
+        </div>
+        <div class="card-body">
+            <div class="example-area text-center" style="padding: 2rem;">
+                <button type="button" 
+                        class="btn btn-primary me-2 mb-2"
+                        bs-tooltip 
+                        data-bs-title="Tooltip on top!"
+                        data-bs-placement="top">
+                    Top
+                </button>
+                <button type="button" 
+                        class="btn btn-success me-2 mb-2"
+                        bs-tooltip 
+                        data-bs-title="Tooltip on right!"
+                        data-bs-placement="right">
+                    Right
+                </button>
+                <button type="button" 
+                        class="btn btn-info me-2 mb-2"
+                        bs-tooltip 
+                        data-bs-title="Tooltip on bottom!"
+                        data-bs-placement="bottom">
+                    Bottom
+                </button>
+                <button type="button" 
+                        class="btn btn-warning mb-2"
+                        bs-tooltip 
+                        data-bs-title="Tooltip on left!"
+                        data-bs-placement="left">
+                    Left
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HTML Content Tooltips -->
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Tooltips with HTML Content</h5>
+        </div>
+        <div class="card-body">
+            <div class="example-area text-center" style="padding: 2rem;">
+                <button type="button"
+                        class="btn btn-danger me-2"
+                        bs-tooltip
+                        data-bs-title="<strong>Bold Text</strong> and <em>Italic</em>"
+                        data-bs-html="true"
+                        data-bs-placement="top">
+                    HTML Tooltip
+                </button>
+                <span class="badge bg-secondary"
+                      bs-tooltip
+                      data-bs-title="<ul class='mb-0 ps-3'><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>"
+                      data-bs-html="true"
+                      data-bs-placement="right">
+                    Hover for List
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Different Triggers -->
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">Different Trigger Methods</h5>
+        </div>
+        <div class="card-body">
+            <div class="example-area text-center" style="padding: 2rem;">
+                <button type="button"
+                        class="btn btn-outline-primary me-2 mb-2"
+                        bs-tooltip
+                        data-bs-title="Shown on hover (default)"
+                        data-bs-placement="top">
+                    Hover Me
+                </button>
+                <button type="button"
+                        class="btn btn-outline-success me-2 mb-2"
+                        bs-tooltip
+                        data-bs-title="Shown on click"
+                        data-bs-placement="top"
+                        data-bs-trigger="click">
+                    Click Me
+                </button>
+                <input type="text"
+                       class="form-control d-inline-block me-2"
+                       style="width: auto;"
+                       placeholder="Focus on me"
+                       bs-tooltip
+                       data-bs-title="Focus tooltip!"
+                       data-bs-trigger="focus"
+                       data-bs-placement="right">
+            </div>
+        </div>
+    </div>
+
+    <!-- Disabled Elements -->
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0">Tooltips on Disabled Elements</h5>
+        </div>
+        <div class="card-body">
+            <div class="example-area text-center" style="padding: 2rem;">
+                <span class="d-inline-block" 
+                      bs-tooltip 
+                      data-bs-title="Disabled button tooltip"
+                      data-bs-placement="top">
+                    <button class="btn btn-primary" type="button" disabled>
+                        Disabled Button
+                    </button>
+                </span>
+                <p class="text-muted small mt-2">
+                    Tip: Wrap disabled elements in a span with the tooltip directive.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code Example -->
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Usage</h5>
+        </div>
+        <div class="card-body">
+            <div class="code-example">
+                <strong>Basic Usage:</strong>
+                <pre><code>&lt;button bs-tooltip 
+        data-bs-title="Tooltip text"
+        data-bs-placement="top"&gt;
+    Hover me
+&lt;/button&gt;</code></pre>
+            </div>
+            <div class="code-example">
+                <strong>With HTML Content:</strong>
+                <pre><code>&lt;button bs-tooltip 
+        data-bs-title="&lt;strong&gt;Bold&lt;/strong&gt; text"
+        data-bs-html="true"
+        data-bs-placement="right"&gt;
+    Hover me
+&lt;/button&gt;</code></pre>
+            </div>
+            <div class="code-example">
+                <strong>Available Attributes:</strong>
+                <ul>
+                    <li><code>data-bs-title</code> - Tooltip content (required)</li>
+                    <li><code>data-bs-placement</code> - Position: 'top', 'right', 'bottom', 'left' (default: 'top')</li>
+                    <li><code>data-bs-html</code> - Enable HTML content (default: false)</li>
+                    <li><code>data-bs-trigger</code> - Trigger method: 'hover', 'click', 'focus' (default: 'hover')</li>
+                    <li><code>data-bs-delay</code> - Delay in ms before showing/hiding</li>
+                    <li><code>data-bs-container</code> - Container selector for tooltip element</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

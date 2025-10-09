@@ -1,0 +1,250 @@
+<div class="demo-content">
+    <div class="alert alert-info">
+        <h5><i class="bi bi-list"></i> Dropdown Component</h5>
+        <p class="mb-0">Toggleable contextual menus using Bootstrap 5 native dropdown with ng1bs5.</p>
+    </div>
+
+    <h3 class="mb-3">Dropdown Examples</h3>
+
+    <!-- Basic Dropdowns -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Basic Dropdowns</h5>
+        </div>
+        <div class="card-body">
+            <div class="example-area" style="padding: 2rem;">
+                <div class="dropdown d-inline-block me-2">
+                    <button class="btn btn-primary dropdown-toggle" 
+                            type="button" 
+                            data-bs-toggle="dropdown">
+                        Primary Dropdown
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" ng-click="$ctrl.selectItem('Action')">Action</a></li>
+                        <li><a class="dropdown-item" href="#" ng-click="$ctrl.selectItem('Another action')">Another action</a></li>
+                        <li><a class="dropdown-item" href="#" ng-click="$ctrl.selectItem('Something else')">Something else</a></li>
+                    </ul>
+                </div>
+
+                <div class="dropdown d-inline-block me-2">
+                    <button class="btn btn-success dropdown-toggle" 
+                            type="button" 
+                            data-bs-toggle="dropdown">
+                        Success Dropdown
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Regular link</a></li>
+                        <li><a class="dropdown-item active" href="#">Active link</a></li>
+                        <li><a class="dropdown-item" href="#">Another link</a></li>
+                    </ul>
+                </div>
+
+                <div class="dropdown d-inline-block">
+                    <button class="btn btn-info dropdown-toggle" 
+                            type="button" 
+                            data-bs-toggle="dropdown">
+                        Info Dropdown
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Normal item</a></li>
+                        <li><a class="dropdown-item disabled" href="#">Disabled item</a></li>
+                        <li><a class="dropdown-item" href="#">Another item</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div ng-if="$ctrl.selectedItem" class="alert alert-success mt-3 mb-0">
+                Selected: <strong>{{$ctrl.selectedItem}}</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- Split Button Dropdowns -->
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Split Button Dropdowns</h5>
+        </div>
+        <div class="card-body">
+            <div class="example-area" style="padding: 2rem;">
+                <div class="btn-group me-2">
+                    <button type="button" class="btn btn-danger">Action</button>
+                    <button type="button" 
+                            class="btn btn-danger dropdown-toggle dropdown-toggle-split" 
+                            data-bs-toggle="dropdown">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-warning">Warning</button>
+                    <button type="button" 
+                            class="btn btn-warning dropdown-toggle dropdown-toggle-split" 
+                            data-bs-toggle="dropdown">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Item 1</a></li>
+                        <li><a class="dropdown-item" href="#">Item 2</a></li>
+                        <li><a class="dropdown-item" href="#">Item 3</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dropdown Directions -->
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">Dropdown Directions</h5>
+        </div>
+        <div class="card-body">
+            <div class="example-area" style="padding: 2rem;">
+                <!-- Dropup -->
+                <div class="btn-group dropup me-2">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                        Dropup
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+
+                <!-- Dropend -->
+                <div class="btn-group dropend me-2">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                        Dropend
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+
+                <!-- Dropstart -->
+                <div class="btn-group dropstart">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                        Dropstart
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dropdown Menu Content -->
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0">Rich Dropdown Content</h5>
+        </div>
+        <div class="card-body">
+            <div class="example-area" style="padding: 2rem;">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Dropdown with Forms
+                    </button>
+                    <div class="dropdown-menu p-3" style="min-width: 300px;">
+                        <form>
+                            <div class="mb-3">
+                                <label for="emailInput" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="emailInput" placeholder="email@example.com">
+                            </div>
+                            <div class="mb-3">
+                                <label for="passwordInput" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="rememberCheck">
+                                    <label class="form-check-label" for="rememberCheck">
+                                        Remember me
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sign in</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dark Dropdowns -->
+    <div class="card mb-4">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Dark Dropdown</h5>
+        </div>
+        <div class="card-body">
+            <div class="example-area" style="padding: 2rem;">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Dark Dropdown
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item active" href="#">Active item</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code Example -->
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Usage</h5>
+        </div>
+        <div class="card-body">
+            <div class="code-example">
+                <strong>Basic Dropdown:</strong>
+                <pre><code>&lt;div class="dropdown"&gt;
+    &lt;button class="btn btn-primary dropdown-toggle" 
+            type="button" 
+            data-bs-toggle="dropdown"&gt;
+        Dropdown button
+    &lt;/button&gt;
+    &lt;ul class="dropdown-menu"&gt;
+        &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;Action&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;Another action&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;hr class="dropdown-divider"&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;Separated link&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+            <div class="code-example">
+                <strong>Split Button:</strong>
+                <pre><code>&lt;div class="btn-group"&gt;
+    &lt;button type="button" class="btn btn-danger"&gt;Action&lt;/button&gt;
+    &lt;button type="button" 
+            class="btn btn-danger dropdown-toggle dropdown-toggle-split" 
+            data-bs-toggle="dropdown"&gt;
+    &lt;/button&gt;
+    &lt;ul class="dropdown-menu"&gt;
+        &lt;li&gt;&lt;a class="dropdown-item" href="#"&gt;Action&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+            <div class="code-example">
+                <strong>Note:</strong>
+                <p class="mb-0">Dropdowns use Bootstrap 5's native JavaScript for toggling. The ng1bs5 library ensures proper initialization and cleanup of Bootstrap components within AngularJS applications.</p>
+            </div>
+        </div>
+    </div>
+</div>
