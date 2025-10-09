@@ -1,4 +1,4 @@
-import html from "./popover-demo.html"
+import html from "./tabs-demo.html"
 
 /**
  * Popover Component Example
@@ -15,7 +15,7 @@ import angular from 'angular';
 /**
  * Example popover controller using ES6 class
  */
-class PopoverExampleController {
+class TabsExampleController {
   constructor($scope) {
     'ngInject';
     
@@ -31,16 +31,16 @@ class PopoverExampleController {
  * Note: The actual popover functionality is provided by the ng1bs5 'bs-popover' directive.
  * Just add bs-popover attribute to any element along with data-bs-title and data-bs-content.
  */
-const PopoverExampleComponent = {
+const TabsDemoComponent = {
   template:html  ,
-  controller: PopoverExampleController
+  controller: TabsExampleController
 };
 
 // Create a module for this example
-const popoverExampleModule = angular.module('popoverExample', [
+const tabsDemoModule = angular.module('TabsDemoModule', [
   // Add PopoverModule.name here when you import it:
   // PopoverModule.name
 ])
-.component('popoverExample', PopoverExampleComponent);
+.component('tabsDemo', TabsDemoComponent);
 
-export default popoverExampleModule;
+export default tabsDemoModule;

@@ -23,8 +23,12 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                type: 'asset/source'
-            }
+                use: ['html-loader'], // Ensure html-loader is applied to .html files
+            },
+            // {
+            //     test: /\.html$/,
+            //     type: 'asset/source'
+            // }
         ]
     },
     plugins: [
@@ -47,25 +51,25 @@ module.exports = {
             // Alias to import ng1bs5 components directly from source
             // Updated path to match new project structure with src/ folder
             '@ng1bs5': path.resolve(__dirname, './src/components'),
-            extensions: ['.js', '.json']
+            // extensions: ['.js', '.json']
         }
     },
-    optimization: {
-        splitChunks: {
-            chunks: 'all',
-            cacheGroups: {
-                vendor: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendors',
-                    priority: 10
-                },
-                ng1bs5: {
-                    test: /[\\/]src[\\/]components[\\/]/,
-                    name: 'ng1bs5',
-                    priority: 5
-                }
-            }
-        }
-    }
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: 'all',
+    //         cacheGroups: {
+    //             vendor: {
+    //                 test: /[\\/]node_modules[\\/]/,
+    //                 name: 'vendors',
+    //                 priority: 10
+    //             },
+    //             ng1bs5: {
+    //                 test: /[\\/]src[\\/]components[\\/]/,
+    //                 name: 'ng1bs5',
+    //                 priority: 5
+    //             }
+    //         }
+    //     }
+    // }
 
 };

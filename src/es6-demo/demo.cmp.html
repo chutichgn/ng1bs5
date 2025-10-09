@@ -1,0 +1,178 @@
+<div class="container" >
+    <!-- Header -->
+    <div class="demo-header text-center">
+        <h1 class="display-4 fw-bold mb-3">
+            <i class="bi bi-boxes"></i> ng1bs5 Demo
+        </h1>
+        <p class="lead mb-2">Bootstrap 5 Components for AngularJS</p>
+        <p class="mb-3">ES6 Modules + UI-Router + Tabs Component</p>
+        <div>
+            <span class="badge bg-light text-dark me-2">AngularJS 1.x</span>
+            <span class="badge bg-light text-dark me-2">Bootstrap 5</span>
+            <span class="badge bg-light text-dark me-2">ES6</span>
+            <span class="badge bg-light text-dark me-2">UI-Router</span>
+            <span class="badge bg-light text-dark">Tabs Component</span>
+        </div>
+    </div>
+
+    <!-- Info Alert -->
+    <div class="alert alert-info mb-4">
+        <h5 class="alert-heading">
+            <i class="bi bi-info-circle"></i> Component Portal with Tabs & UI-Router
+        </h5>
+        <p class="mb-2">
+            This demo uses the <strong>ng1bs5 tabs component</strong> we just developed,
+            integrated with <strong>UI-Router</strong> for state management.
+            Each tab corresponds to a UI-Router state, creating a seamless navigation experience.
+        </p>
+        <p class="mb-0">
+            <strong>Features:</strong>
+            <span class="badge bg-primary badge-feature">Tabs Component</span>
+            <span class="badge bg-success badge-feature">UI-Router States</span>
+            <span class="badge bg-info badge-feature">Synchronized Navigation</span>
+            <span class="badge bg-warning text-dark badge-feature">Deep Linking</span>
+        </p>
+    </div>
+
+    <!-- Component Portal using Tabs -->
+    <div class="component-section">
+        <h2 class="section-title mb-4">
+            <i class="bi bi-grid-3x3-gap"></i> Component Portal
+        </h2>
+
+        <!-- Tabs Component with UI-Router Integration -->
+        <bs5-tabset
+                tabset-id="demoTabset"
+                fade="true"
+                on-select="onTabSelect(tab)">
+            <bs5-tab
+                    tab-id="{{t.id}}"
+                    ng-repeat="t in tabs"
+                    heading="{{t.heading}}"
+                    active="t.active"
+            >
+            </bs5-tab>
+        </bs5-tabset>
+
+        <h2>View:</h2>
+        <div ui-view></div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="component-section">
+        <h2 class="section-title">
+            <i class="bi bi-link-45deg"></i> Quick Links
+        </h2>
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Direct State Navigation</h5>
+                <div class="list-group">
+                    <a ng-repeat="state in states"
+                       ng-click="goToState(state.name)"
+                       class="list-group-item list-group-item-action"
+                       ng-class="{'active': isActive(state.name)}"
+                       style="cursor: pointer;">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">{{ state.data.displayName }}</h6>
+                            <small ng-if="isActive(state.name)">Active</small>
+                        </div>
+                        <small>{{ state.data.description }}</small>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h5>Getting Started</h5>
+                <div class="code-example">
+                    <strong>1. Install dependencies:</strong>
+                    <pre><code>npm install @uirouter/angularjs</code></pre>
+                </div>
+                <div class="code-example">
+                    <strong>2. Import in your app:</strong>
+                    <pre><code>import uiRouter from '@uirouter/angularjs';
+import ng1bs5 from 'ng1bs5';
+
+angular.module('app', [uiRouter, ng1bs5]);</code></pre>
+                </div>
+                <div class="code-example">
+                    <strong>3. Configure states:</strong>
+                    <pre><code>$stateProvider.state('myState', {
+  url: '/my-state',
+  template: '<div>Content</div>'
+});</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Architecture Info -->
+    <div class="component-section">
+        <h2 class="section-title">
+            <i class="bi bi-diagram-3"></i> Architecture
+        </h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card border-primary h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">
+                            <i class="bi bi-layout-text-sidebar"></i> Tabs Component
+                        </h5>
+                        <p class="card-text">
+                            Uses the <code>&lt;bs5-tabset&gt;</code> component we developed.
+                            Each tab wraps a <code>&lt;div ui-view&gt;&lt;/div&gt;</code> for state content.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-success h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-success">
+                            <i class="bi bi-signpost-split"></i> UI-Router States
+                        </h5>
+                        <p class="card-text">
+                            Each component demo is a separate state with its own URL.
+                            States are synchronized with tabs for seamless navigation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-info h-100">
+                    <div class="card-body">
+                        <h5 class="card-title text-info">
+                            <i class="bi bi-arrow-left-right"></i> Synchronization
+                        </h5>
+                        <p class="card-text">
+                            Tab clicks trigger state changes. State changes sync tab selection.
+                            Browser back/forward buttons work perfectly.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <p class="text-muted mb-2">
+            <strong>ng1bs5</strong> - Bootstrap 5 Components for AngularJS
+        </p>
+        <p class="text-muted small">
+            <a href="https://github.com/chutichgn/ng1bs5" target="_blank" class="text-decoration-none me-3">
+                <i class="bi bi-github"></i> GitHub
+            </a>
+            <a href="#" class="text-decoration-none me-3">
+                <i class="bi bi-book"></i> Documentation
+            </a>
+            <a href="#" class="text-decoration-none">
+                <i class="bi bi-question-circle"></i> Help
+            </a>
+        </p>
+    </footer>
+
+    <!-- State Indicator -->
+    <div class="state-indicator">
+        <i class="bi bi-signpost"></i>
+        Current State: <strong>{{ currentState }}</strong>
+    </div>
+</div>

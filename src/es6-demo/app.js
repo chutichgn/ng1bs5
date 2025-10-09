@@ -10,7 +10,18 @@ import uiRouter from '@uirouter/angularjs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Import ng1bs5 library (this imports all components)
+// Import component examples
+import './components/modal-example';
+import './components/popover-example';
+import './components/tooltip-example';
+import './components/dropdown-example';
+import './components/accordion-example';
+
 import ng1bs5 from '../index';
+import modalExampleModule from "./components/modal-example";
+import popoverExampleModule from "./components/popover-example";
+import tabsDemoModule from "./components/tabs-example";
+import DemoComponent from "./demo.cmp";
 
 /**
  * Main application module
@@ -18,16 +29,23 @@ import ng1bs5 from '../index';
  */
 const app = angular.module('ng1bs5Demo', [
     uiRouter,
-    ng1bs5
+    ng1bs5,
+    // Component example modules
+    tabsDemoModule.name,
+    modalExampleModule.name,
+    popoverExampleModule.name,
+    // 'tooltipExample',
+    // 'dropdownExample',
+    // 'accordionExample'
 ]);
 
 /**
  * UI-Router Configuration
  * Defines states for each component demo
  */
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 
-    function($stateProvider, $urlRouterProvider, $locationProvider) {
-        
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
+    function ($stateProvider, $urlRouterProvider, $locationProvider) {
+
         // Enable HTML5 mode (optional, removes # from URLs)
         $locationProvider.html5Mode({
             enabled: false,
@@ -35,180 +53,141 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
         });
 
         // Default route
-        $urlRouterProvider.otherwise('/tabs');
+        $urlRouterProvider.otherwise('/main/modal');
 
         // Define states for each component demo
         $stateProvider
+            .state("main", {
+                abtract: true, url: "/main",
+                component: 'demoComponent'
+            })
+            .state("main.tab1", {url: "/tab1", templateUrl: "tab1.html"})
+            .state("main.tab2", {url: "/tab2", templateUrl: "tab2.html"})
+            .state("main.tab3", {url: "/tab3", templateUrl: "tab3.html"})
+
             // Tabs Demo
-            .state('tabs', {
+            .state('main.tabs', {
                 url: '/tabs',
-                template: '<div ng-include="\'views/tabs-demo.html\'"></div>',
+                component: 'tabsDemo',
                 data: {
                     displayName: 'Tabs',
                     description: 'Bootstrap 5 tabs and pills component'
                 }
             })
             // Modal Demo
-            .state('modal', {
+            .state('main.modal', {
                 url: '/modal',
-                template: '<div ng-include="\'views/modal-demo.html\'"></div>',
+                component: 'modalTab',
                 data: {
                     displayName: 'Modal',
                     description: 'Dialog boxes and popup windows'
                 }
             })
             // Popover Demo
-            .state('popover', {
+            .state('main.popover', {
                 url: '/popover',
-                template: '<div ng-include="\'views/popover-demo.html\'"></div>',
+                component: 'popoverExample',
                 data: {
                     displayName: 'Popover',
                     description: 'Contextual overlays'
                 }
             })
-            // Tooltip Demo
-            .state('tooltip', {
-                url: '/tooltip',
-                template: '<div ng-include="\'views/tooltip-demo.html\'"></div>',
-                data: {
-                    displayName: 'Tooltip',
-                    description: 'Helpful hints and tips'
-                }
-            })
-            // Dropdown Demo
-            .state('dropdown', {
-                url: '/dropdown',
-                template: '<div ng-include="\'views/dropdown-demo.html\'"></div>',
-                data: {
-                    displayName: 'Dropdown',
-                    description: 'Toggleable contextual menus'
-                }
-            })
-            // Accordion Demo
-            .state('accordion', {
-                url: '/accordion',
-                template: '<div ng-include="\'views/accordion-demo.html\'"></div>',
-                data: {
-                    displayName: 'Accordion',
-                    description: 'Collapsible content panels'
-                }
-            })
-            // Collapse Demo
-            .state('collapse', {
-                url: '/collapse',
-                template: '<div ng-include="\'views/collapse-demo.html\'"></div>',
-                data: {
-                    displayName: 'Collapse',
-                    description: 'Show and hide content'
-                }
-            })
-            // Alert Demo
-            .state('alert', {
-                url: '/alert',
-                template: '<div ng-include="\'views/alert-demo.html\'"></div>',
-                data: {
-                    displayName: 'Alert',
-                    description: 'Contextual feedback messages'
-                }
-            })
-            // Offcanvas Demo
-            .state('offcanvas', {
-                url: '/offcanvas',
-                template: '<div ng-include="\'views/offcanvas-demo.html\'"></div>',
-                data: {
-                    displayName: 'Offcanvas',
-                    description: 'Hidden sidebar content'
-                }
-            })
-            // Toast Demo
-            .state('toast', {
-                url: '/toast',
-                template: '<div ng-include="\'views/toast-demo.html\'"></div>',
-                data: {
-                    displayName: 'Toast',
-                    description: 'Push notifications'
-                }
-            })
-            // Pagination Demo
-            .state('pagination', {
-                url: '/pagination',
-                template: '<div ng-include="\'views/pagination-demo.html\'"></div>',
-                data: {
-                    displayName: 'Pagination',
-                    description: 'Page navigation'
-                }
-            })
-            // Progressbar Demo
-            .state('progressbar', {
-                url: '/progressbar',
-                template: '<div ng-include="\'views/progressbar-demo.html\'"></div>',
-                data: {
-                    displayName: 'Progressbar',
-                    description: 'Progress indicators'
-                }
-            });
-    }
-]);
-
-/**
- * Main demo controller
- */
-app.controller('DemoController', ['$scope', '$state', '$transitions', 'TabsService',
-    function($scope, $state, $transitions, TabsService) {
-        console.log('ng1bs5 ES6 Demo initialized with UI-Router and Tabs');
-
-        // Demo data
-        $scope.message = 'Welcome to ng1bs5 ES6 Demo';
-        $scope.currentState = $state.current.name;
-
-        // Get all states for navigation
-        $scope.states = $state.get().filter(function(state) {
-            return state.name && state.data && state.data.displayName;
-        });
-
-        // Listen for state changes
-        $transitions.onSuccess({}, function(transition) {
-            $scope.currentState = transition.to().name;
-            
-            // Sync tabs with state
-            const tabId = transition.to().name + '-tab';
-            TabsService.show('demoTabset', tabId);
-        });
-
-        // Handle tab selection
-        $scope.onTabSelect = function(tab) {
-            // Navigate to the corresponding state
-            const stateName = tab.tabId.replace('-tab', '');
-            $state.go(stateName);
-        };
-
-        // Navigate to state
-        $scope.goToState = function(stateName) {
-            $state.go(stateName);
-        };
-
-        // Check if state is active
-        $scope.isActive = function(stateName) {
-            return $state.is(stateName);
-        };
-
-        // Get current state data
-        $scope.getCurrentStateData = function() {
-            return $state.current.data || {};
-        };
+        // Tooltip Demo
+        // .state('tooltip', {
+        //     url: '/tooltip',
+        //     template: '<div ng-include="\'views/tooltip-demo.html\'"></div>',
+        //     data: {
+        //         displayName: 'Tooltip',
+        //         description: 'Helpful hints and tips'
+        //     }
+        // })
+        // // Dropdown Demo
+        // .state('dropdown', {
+        //     url: '/dropdown',
+        //     template: '<div ng-include="\'views/dropdown-demo.html\'"></div>',
+        //     data: {
+        //         displayName: 'Dropdown',
+        //         description: 'Toggleable contextual menus'
+        //     }
+        // })
+        // // Accordion Demo
+        // .state('accordion', {
+        //     url: '/accordion',
+        //     template: '<div ng-include="\'views/accordion-demo.html\'"></div>',
+        //     data: {
+        //         displayName: 'Accordion',
+        //         description: 'Collapsible content panels'
+        //     }
+        // })
+        // // Collapse Demo
+        // .state('collapse', {
+        //     url: '/collapse',
+        //     template: '<div ng-include="\'views/collapse-demo.html\'"></div>',
+        //     data: {
+        //         displayName: 'Collapse',
+        //         description: 'Show and hide content'
+        //     }
+        // })
+        // // Alert Demo
+        // .state('alert', {
+        //     url: '/alert',
+        //     template: '<div ng-include="\'views/alert-demo.html\'"></div>',
+        //     data: {
+        //         displayName: 'Alert',
+        //         description: 'Contextual feedback messages'
+        //     }
+        // })
+        // // Offcanvas Demo
+        // .state('offcanvas', {
+        //     url: '/offcanvas',
+        //     template: '<div ng-include="\'views/offcanvas-demo.html\'"></div>',
+        //     data: {
+        //         displayName: 'Offcanvas',
+        //         description: 'Hidden sidebar content'
+        //     }
+        // })
+        // // Toast Demo
+        // .state('toast', {
+        //     url: '/toast',
+        //     template: '<div ng-include="\'views/toast-demo.html\'"></div>',
+        //     data: {
+        //         displayName: 'Toast',
+        //         description: 'Push notifications'
+        //     }
+        // })
+        // // Pagination Demo
+        // .state('pagination', {
+        //     url: '/pagination',
+        //     template: '<div ng-include="\'views/pagination-demo.html\'"></div>',
+        //     data: {
+        //         displayName: 'Pagination',
+        //         description: 'Page navigation'
+        //     }
+        // })
+        // Progressbar Demo
+        // .state('progressbar', {
+        //     url: '/progressbar',
+        //     template: '<div ng-include="\'views/progressbar-demo.html\'"></div>',
+        //     data: {
+        //         displayName: 'Progressbar',
+        //         description: 'Progress indicators'
+        //     }
+        // });
     }
 ]);
 
 /**
  * Run block - initialize app
  */
-app.run(['$rootScope', '$state', function($rootScope, $state) {
+app.run(['$rootScope', '$state', function ($rootScope, $state) {
     $rootScope.$state = $state;
 }]);
+app
+    .component('demoComponent', DemoComponent);
 
 // Bootstrap the application
-angular.element(document).ready(function() {
-    angular.bootstrap(document, ['ng1bs5Demo']);
-});
+// angular.element(document).ready(function() {
+//     angular.bootstrap(document, ['ng1bs5Demo']);
+// });
 
 export default app;
