@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dropdownDemo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ng1bs5 Dropdown Demo</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .demo-section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .demo-section h2 {
+            margin-bottom: 20px;
+            color: #212529;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 10px;
+        }
+        .demo-row {
+            margin-bottom: 20px;
+        }
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body ng-controller="DemoController as $ctrl">
+<div class="container-fluid">
+    <h1 class="mb-4">ng1bs5 Dropdown Component Demo</h1>
+
+    <!-- Basic Dropdowns -->
+    <div class="demo-section">
+        <h2>Basic Dropdowns</h2>
+
+        <div class="demo-row">
+            <h5>Button Dropdown</h5>
+            <div ng1bs5-dropdown>
+                <button class="btn btn-secondary" ng1bs5-dropdown-toggle>
+                    Dropdown button
+                </button>
+                <ul ng1bs5-dropdown-menu>
+                    <li><a class="dropdown-item" href="#" ng-click="$ctrl.handleClick('Action')">Action</a></li>
+                    <li><a class="dropdown-item" href="#" ng-click="$ctrl.handleClick('Another action')">Another action</a></li>
+                    <li><a class="dropdown-item" href="#" ng-click="$ctrl.handleClick('Something else')">Something else here</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="demo-row">
+            <h5>Link Dropdown</h5>
+            <div ng1bs5-dropdown>
+                <a class="btn btn-secondary" href="#" ng1bs5-dropdown-toggle>
+                    Dropdown link
+                </a>
+                <ul ng1bs5-dropdown-menu>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="demo-row">
+            <h5>Button Variants</h5>
+            <div class="d-flex gap-2 flex-wrap">
+                <div ng1bs5-dropdown>
+                    <button class="btn btn-primary" ng1bs5-dropdown-toggle>Primary</button>
+                    <ul ng1bs5-dropdown-menu>
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                    </ul>
+                </div>
+
+                <div ng1bs5-dropdown>
+                    <button class="btn btn-success" ng1bs5-dropdown-toggle>Success</button>
+                    <ul ng1bs5-dropdown-menu>
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                    </ul>
+                </div>
+
+                <div ng1bs5-dropdown>
+                    <button class="btn btn-danger" ng1bs5-dropdown-toggle>Danger</button>
+                    <ul ng1bs5-dropdown-menu>
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                    </ul>
+                </div>
+
+                <div ng1bs5-dropdown>
+                    <button class="btn btn-warning" ng1bs5-dropdown-toggle>Warning</button>
+                    <ul ng1bs5-dropdown-menu>
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Split Button Dropdowns -->
+    <div class="demo-section">
+        <h2>Split Button Dropdowns</h2>
+
+        <div class="demo-row">
+            <div class="d-flex gap-2 flex-wrap">
+                <div class="btn-group" ng1bs5-dropdown>
+                    <button type="button" class="btn btn-primary">Action</button>
+                    <button type="button" class="btn btn-primary dropdown-toggle-split"
+                            ng1bs5-dropdown-toggle>
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul ng1bs5-dropdown-menu>
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group" ng1bs5-dropdown>
+                    <button type="button" class="btn btn-danger">Danger</button>
+                    <button type="button" class="btn btn-danger dropdown-toggle-split"
+                            ng1bs5-dropdown-toggle>
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul ng1bs5-dropdown-menu>
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dropdown Directions -->
+    <div class="demo-section">
+        <h2>Dropdown Directions</h2>
+
+        <div class="demo-row">
+            <div class="d-flex gap-3 flex-wrap">
+                <!-- Dropdown (default) -->
+                <div class="btn-group" ng1bs5-dropdown>
+                    <button class="btn btn-secondary" ng1bs5-dropdown-toggle>
+                        Dropdown
+                    </button>
+                    <ul ng1bs5-dropdown-menu>
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                    </ul>
+                </div>
+
+                <!-- Dropup -->
+                <div class="btn-group dropup" ng1bs5-dropdown>
+                    <button class="btn btn-secondary" ng1bs5-dropdown-toggle>
+                        Dropup
+                    </button>
+                    <ul ng1bs5-dropdown-menu>
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                    </ul>
+                </div>
+
+                <!-- Dropend -->
+                <div class="btn-group dropend" ng1bs5-dropdown>
+                    <button class="btn btn-secondary" ng1bs5-dropdown-toggle>
+                        Dropend
+                    </button>
+                    <ul ng1bs5-dropdown-menu>
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                    </ul>
+                </div>
+
+                <!-- Dropstart -->
+                <div class="btn-group dropstart" ng1bs5-dropdown>
+                    <button class="btn btn-secondary" ng1bs5-dropdown-toggle>
+                        Dropstart
+                    </button>
+                    <ul ng1bs5-dropdown-menu>
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                        <li><a class="dropdown-item" href="#">Menu item</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Alignment -->
+    <div class="demo-section">
+        <h2>Menu Alignment</h2>
+
+        <div class="demo-row">
+            <h5>Right-aligned Menu</h5>
+            <div ng1bs5-dropdown>
+                <button class="btn btn-secondary" ng1bs5-dropdown-toggle>
+                    Right-aligned menu
+                </button>
+                <ul ng1bs5-dropdown-menu class="dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Menu item</a></li>
+                    <li><a class="dropdown-item" href="#">Menu item</a></li>
+                    <li><a class="dropdown-item" href="#">Menu item</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sizing -->
+    <div class="demo-section">
+        <h2>Sizing</h2>
+
+        <div class="demo-row">
+            <div class="d-flex gap-2 flex-wrap align-items-center">
+                <!-- Large -->
+                <div class="btn-group" ng1bs5-dropdown>
+                    <button class="btn btn-secondary btn-lg" ng1bs5-dropdown-toggle>
+                        Large button
+                    </button>
+                    <ul ng1bs5-dropdown-menu>
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                    </ul>
+                </div>
+
+                <!-- Default -->
+                <div class="btn-group" ng1bs5-dropdown>
+                    <button class="btn btn-secondary" ng1bs5-dropdown-toggle>
+                        Default button
+                    </button>
+                    <ul ng1bs5-dropdown-menu>
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                    </ul>
+                </div>
+
+                <!-- Small -->
+                <div class="btn-group" ng1bs5-dropdown>
+                    <button class="btn btn-secondary btn-sm" ng1bs5-dropdown-toggle>
+                        Small button
+                    </button>
+                    <ul ng1bs5-dropdown-menu>
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dark Dropdown -->
+    <div class="demo-section">
+        <h2>Dark Dropdown</h2>
+
+        <div class="demo-row">
+            <div ng1bs5-dropdown>
+                <button class="btn btn-secondary" ng1bs5-dropdown-toggle>
+                    Dark dropdown
+                </button>
+                <ul ng1bs5-dropdown-menu class="dropdown-menu-dark">
+                    <li><a class="dropdown-item active" href="#">Active</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Content -->
+    <div class="demo-section">
+        <h2>Menu Content</h2>
+
+        <div class="demo-row">
+            <h5>Headers and Dividers</h5>
+            <div ng1bs5-dropdown>
+                <button class="btn btn-secondary" ng1bs5-dropdown-toggle>
+                    Menu with headers
+                </button>
+                <ul ng1bs5-dropdown-menu>
+                    <li><h6 class="dropdown-header">Dropdown header</h6></li>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><h6 class="dropdown-header">Another header</h6></li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="demo-row">
+            <h5>Active and Disabled Items</h5>
+            <div ng1bs5-dropdown>
+                <button class="btn btn-secondary" ng1bs5-dropdown-toggle>
+                    Menu with states
+                </button>
+                <ul ng1bs5-dropdown-menu>
+                    <li><a class="dropdown-item" href="#">Regular link</a></li>
+                    <li><a class="dropdown-item active" href="#" aria-current="true">Active link</a></li>
+                    <li><a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">Disabled link</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="demo-row">
+            <h5>Form in Dropdown</h5>
+            <div ng1bs5-dropdown ng1bs5-dropdown-auto-close="outside">
+                <button class="btn btn-secondary" ng1bs5-dropdown-toggle>
+                    Login Form
+                </button>
+                <form ng1bs5-dropdown-menu class="px-4 py-3" style="min-width: 300px;">
+                    <div class="mb-3">
+                        <label class="form-label">Email address</label>
+                        <input type="email" class="form-control" placeholder="email@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberCheck">
+                            <label class="form-check-label" for="rememberCheck">
+                                Remember me
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auto-close Behavior -->
+    <div class="demo-section">
+        <h2>Auto-close Behavior</h2>
+
+        <div class="demo-row">
+            <div class="d-flex gap-2 flex-wrap">
+                <!-- Default: close on any click -->
+                <div ng1bs5-dropdown ng1bs5-dropdown-auto-close="true">
+                    <button class="btn btn-secondary" ng1bs5-dropdown-toggle>
+                        Default (true)
+                    </button>
+                    <ul ng1bs5-dropdown-menu>
+                        <li><a class="dropdown-item" href="#">Closes on click</a></li>
+                        <li><a class="dropdown-item" href="#">Click me!</a></li>
+                    </ul>
+                </div>
+
+                <!-- Close only on outside clicks -->
+                <div ng1bs5-dropdown ng1bs5-dropdown-auto-close="outside">
+                    <button class="btn btn-secondary" ng1bs5-dropdown-toggle>
+                        Clickable inside
+                    </button>
+                    <ul ng1bs5-dropdown-menu>
+                        <li><a class="dropdown-item" href="#">Click won't close</a></li>
+                        <li><a class="dropdown-item" href="#">Still open!</a></li>
+                    </ul>
+                </div>
+
+                <!-- Close only on inside clicks -->
+                <div ng1bs5-dropdown ng1bs5-dropdown-auto-close="inside">
+                    <button class="btn btn-secondary" ng1bs5-dropdown-toggle>
+                        Clickable outside
+                    </button>
+                    <ul ng1bs5-dropdown-menu>
+                        <li><a class="dropdown-item" href="#">Click closes</a></li>
+                        <li><a class="dropdown-item" href="#">Me too!</a></li>
+                    </ul>
+                </div>
+
+                <!-- Manual close only -->
+                <div ng1bs5-dropdown ng1bs5-dropdown-auto-close="false">
+                    <button class="btn btn-secondary" ng1bs5-dropdown-toggle>
+                        Manual close
+                    </button>
+                    <ul ng1bs5-dropdown-menu>
+                        <li><a class="dropdown-item" href="#">Won't close</a></li>
+                        <li><a class="dropdown-item" href="#">Use toggle button</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Events -->
+    <div class="demo-section">
+        <h2>Events</h2>
+
+        <div class="demo-row">
+            <div ng1bs5-dropdown
+                 ng1bs5-dropdown-on-show="$ctrl.onShow()"
+                 ng1bs5-dropdown-on-shown="$ctrl.onShown()"
+                 ng1bs5-dropdown-on-hide="$ctrl.onHide()"
+                 ng1bs5-dropdown-on-hidden="$ctrl.onHidden()">
+                <button class="btn btn-info" ng1bs5-dropdown-toggle>
+                    Dropdown with events
+                </button>
+                <ul ng1bs5-dropdown-menu>
+                    <li><a class="dropdown-item" href="#">Check console</a></li>
+                    <li><a class="dropdown-item" href="#">For event logs</a></li>
+                </ul>
+            </div>
+
+            <div class="alert alert-info mt-3">
+                <strong>Event Log:</strong>
+                <div ng-repeat="event in $ctrl.eventLog track by $index">
+                    {{ event }}
+                </div>
+                <div ng-if="$ctrl.eventLog.length === 0">
+                    No events yet. Open the dropdown above.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Programmatic Control -->
+    <div class="demo-section">
+        <h2>Programmatic Control</h2>
+
+        <div class="demo-row">
+            <div ng1bs5-dropdown ng-init="myDropdown = $dropdown">
+                <button class="btn btn-secondary" ng1bs5-dropdown-toggle>
+                    Controlled dropdown
+                </button>
+                <ul ng1bs5-dropdown-menu>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                </ul>
+            </div>
+
+            <div class="mt-3">
+                <button class="btn btn-success" ng-click="myDropdown.show()">
+                    Show Dropdown
+                </button>
+                <button class="btn btn-danger" ng-click="myDropdown.hide()">
+                    Hide Dropdown
+                </button>
+                <button class="btn btn-primary" ng-click="myDropdown.toggle()">
+                    Toggle Dropdown
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Section -->
+    <div class="demo-section">
+        <h2>Usage Instructions</h2>
+        <div class="alert alert-info">
+            <h5>Keyboard Navigation:</h5>
+            <ul>
+                <li><kbd>ESC</kbd> - Close dropdown and return focus to toggle</li>
+                <li><kbd>↓</kbd> - Move to next item</li>
+                <li><kbd>↑</kbd> - Move to previous item</li>
+            </ul>
+        </div>
+
+        <div class="alert alert-success">
+            <h5>Selected Action:</h5>
+            <div ng-if="$ctrl.selectedAction">
+                You clicked: <strong>{{ $ctrl.selectedAction }}</strong>
+            </div>
+            <div ng-if="!$ctrl.selectedAction">
+                No action selected yet
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AngularJS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+<!-- Demo Controller -->
+<script>
+    angular.module('dropdownDemo', ['ng1bs5'])
+        .controller('DemoController', function() {
+            const vm = this;
+
+            vm.selectedAction = null;
+            vm.eventLog = [];
+
+            vm.handleClick = function(action) {
+                vm.selectedAction = action;
+            };
+
+            vm.onShow = function() {
+                vm.eventLog.unshift('onShow - Dropdown is about to show');
+                if (vm.eventLog.length > 10) vm.eventLog.pop();
+                console.log('Dropdown show event');
+            };
+
+            vm.onShown = function() {
+                vm.eventLog.unshift('onShown - Dropdown is now visible');
+                if (vm.eventLog.length > 10) vm.eventLog.pop();
+                console.log('Dropdown shown event');
+            };
+
+            vm.onHide = function() {
+                vm.eventLog.unshift('onHide - Dropdown is about to hide');
+                if (vm.eventLog.length > 10) vm.eventLog.pop();
+                console.log('Dropdown hide event');
+            };
+
+            vm.onHidden = function() {
+                vm.eventLog.unshift('onHidden - Dropdown is now hidden');
+                if (vm.eventLog.length > 10) vm.eventLog.pop();
+                console.log('Dropdown hidden event');
+            };
+        });
+</script>
+
+<!-- Note: You need to include your built ng1bs5.js file -->
+<!-- <script src="../dist/lib/ng1bs5.js"></script> -->
+</body>
+</html>

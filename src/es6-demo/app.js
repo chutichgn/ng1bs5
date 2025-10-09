@@ -120,7 +120,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
             // Dropdown Demo
             .state('main.dropdown', {
                 url: '/dropdown',
-                component: 'dropdownExample',
+                // component: 'dropdownExample',
+                component: 'dropdownDemo',
                 data: {
                     displayName: 'Dropdown',
                     description: 'Toggleable contextual menus'

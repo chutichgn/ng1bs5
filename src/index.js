@@ -28,6 +28,7 @@ import TooltipModule from './components/tooltip/tooltip.module';
 
 // Styles
 import './styles/styles.css';
+import dropdownModule from "./components/dropdown/dropdown_module";
 
 const NG1BS5_MODULE_NAME = 'ng1bs5';
 
@@ -37,6 +38,7 @@ angular.module(NG1BS5_MODULE_NAME, [
     AutocompleteModule,
     CollapseModule,
     DatepickerModule,
+    dropdownModule,
     IconsModule,
     LoadingOverlayModule,
     ModalModule,

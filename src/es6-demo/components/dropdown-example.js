@@ -8,6 +8,7 @@ import html from "./dropdown-demo.html";
  */
 
 import angular from 'angular';
+import DropdownDemoComponent from "./dropdown-demo.component";
 
 class DropdownExampleController {
   constructor($scope) {
@@ -32,6 +33,7 @@ const DropdownExampleComponent = {
 };
 
 const dropdownExampleModule = angular.module('dropdownExample', [])
-  .component('dropdownExample', DropdownExampleComponent);
+  .component('dropdownExample', DropdownExampleComponent)
+  .component('dropdownDemo', DropdownDemoComponent);
 
 export default dropdownExampleModule;
