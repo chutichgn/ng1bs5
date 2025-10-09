@@ -20,6 +20,10 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.html$/,
+                type: 'asset/source'
             }
         ]
     },
@@ -42,7 +46,26 @@ module.exports = {
         alias: {
             // Alias to import ng1bs5 components directly from source
             // Updated path to match new project structure with src/ folder
-            '@ng1bs5': path.resolve(__dirname, './src/components')
+            '@ng1bs5': path.resolve(__dirname, './src/components'),
+            extensions: ['.js', '.json']
+        }
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    priority: 10
+                },
+                ng1bs5: {
+                    test: /[\\/]src[\\/]components[\\/]/,
+                    name: 'ng1bs5',
+                    priority: 5
+                }
+            }
         }
     }
+
 };

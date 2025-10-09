@@ -13,7 +13,8 @@
     "build:dev": "webpack --mode development",
     "watch": "webpack --mode development --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deployGhP": "npm run build && npm run build:demo && gh-pages -d dist"
+    "deployGhP": "npm run build && npm run build:demo && gh-pages -d dist",
+    "clean": "rm -rf dist"
   },
   "keywords": [
     "angularjs",
@@ -29,7 +30,8 @@
   "license": "MIT",
   "peerDependencies": {
     "angular": "^1.8.0",
-    "bootstrap": "^5.0.0"
+    "bootstrap": "^5.0.0",
+    "@uirouter/angularjs": "^1.0.30"
   },
   "devDependencies": {
     "@babel/core": "^7.23.0",
@@ -44,7 +46,8 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
-    "angular": "^1.8.3"
+    "angular": "^1.8.3",
+    "@uirouter/angularjs": "^1.0.30"
   },
   "repository": {
     "type": "git",

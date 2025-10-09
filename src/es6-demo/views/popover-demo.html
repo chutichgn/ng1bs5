@@ -1,0 +1,95 @@
+<div class="demo-content">
+    <div class="alert alert-info">
+        <h5><i class="bi bi-info-circle"></i> Popover Component</h5>
+        <p class="mb-0">Contextual overlays using ng1bs5 directive <code>bs-popover</code>.</p>
+    </div>
+
+    <h3 class="mb-3">Popover Examples</h3>
+
+    <!-- Basic Popovers -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Basic Popovers</h5>
+        </div>
+        <div class="card-body">
+            <div class="example-area text-center">
+                <button type="button" 
+                        class="btn btn-primary me-2 mb-2"
+                        bs-popover 
+                        data-bs-title="Top Popover"
+                        data-bs-content="This popover appears on top!"
+                        data-bs-placement="top">
+                    Popover on Top
+                </button>
+                <button type="button" 
+                        class="btn btn-success me-2 mb-2"
+                        bs-popover 
+                        data-bs-title="Right Popover"
+                        data-bs-content="This popover appears on the right!"
+                        data-bs-placement="right">
+                    Popover on Right
+                </button>
+                <button type="button" 
+                        class="btn btn-info me-2 mb-2"
+                        bs-popover 
+                        data-bs-title="Bottom Popover"
+                        data-bs-content="This popover appears on the bottom!"
+                        data-bs-placement="bottom">
+                    Popover on Bottom
+                </button>
+                <button type="button" 
+                        class="btn btn-warning mb-2"
+                        bs-popover 
+                        data-bs-title="Left Popover"
+                        data-bs-content="This popover appears on the left!"
+                        data-bs-placement="left">
+                    Popover on Left
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HTML Content -->
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Popovers with HTML Content</h5>
+        </div>
+        <div class="card-body">
+            <div class="example-area text-center">
+                <button type="button" 
+                        class="btn btn-danger"
+                        bs-popover 
+                        data-bs-title="<i class='bi bi-star-fill'></i> Rich Content"
+                        data-bs-content="<ul><li>List item 1</li><li>List item 2</li><li>List item 3</li></ul>"
+                        data-bs-html="true"
+                        data-bs-placement="bottom">
+                    Click for HTML Popover
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code Example -->
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Usage</h5>
+        </div>
+        <div class="card-body">
+            <div class="code-example">
+                <strong>Import:</strong>
+                <pre><code>import PopoverModule from '@ng1bs5/popover';
+
+angular.module('myApp', [PopoverModule.name]);</code></pre>
+            </div>
+            <div class="code-example">
+                <strong>HTML:</strong>
+                <pre><code>&lt;button bs-popover 
+        data-bs-title="Title"
+        data-bs-content="Content"
+        data-bs-placement="top"&gt;
+    Click me
+&lt;/button&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+</div>

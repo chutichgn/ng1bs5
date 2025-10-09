@@ -1,0 +1,130 @@
+<div class="demo-content">
+    <div class="alert alert-info">
+        <h5><i class="bi bi-window"></i> Modal Component</h5>
+        <p class="mb-0">Dialog boxes and popup windows with ng1bs5.</p>
+    </div>
+
+    <h3 class="mb-3">Modal Examples</h3>
+
+    <!-- Basic Modal -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Basic Modal</h5>
+        </div>
+        <div class="card-body">
+            <div class="example-area text-center">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
+                    Launch Modal
+                </button>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="basicModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Modal Title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>This is a basic modal powered by ng1bs5!</p>
+                            <p class="mb-0">Modal dialogs are great for capturing user attention.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Large Modal -->
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Large Modal</h5>
+        </div>
+        <div class="card-body">
+            <div class="example-area text-center">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#largeModal">
+                    Launch Large Modal
+                </button>
+            </div>
+
+            <!-- Large Modal -->
+            <div class="modal fade" id="largeModal" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Large Modal</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>This is a large modal with more content space.</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>Features</h6>
+                                    <ul>
+                                        <li>Multiple sizes</li>
+                                        <li>Scrollable content</li>
+                                        <li>Centered alignment</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Use Cases</h6>
+                                    <ul>
+                                        <li>Forms</li>
+                                        <li>Confirmations</li>
+                                        <li>Image galleries</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code Example -->
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Usage</h5>
+        </div>
+        <div class="card-body">
+            <div class="code-example">
+                <strong>Import:</strong>
+                <pre><code>import ModalModule from '@ng1bs5/modal';
+
+angular.module('myApp', [ModalModule.name]);</code></pre>
+            </div>
+            <div class="code-example">
+                <strong>HTML:</strong>
+                <pre><code>&lt;!-- Trigger Button --&gt;
+&lt;button data-bs-toggle="modal" data-bs-target="#myModal"&gt;
+    Launch Modal
+&lt;/button&gt;
+
+&lt;!-- Modal --&gt;
+&lt;div class="modal fade" id="myModal"&gt;
+    &lt;div class="modal-dialog"&gt;
+        &lt;div class="modal-content"&gt;
+            &lt;div class="modal-header"&gt;
+                &lt;h5 class="modal-title"&gt;Title&lt;/h5&gt;
+                &lt;button class="btn-close" data-bs-dismiss="modal"&gt;&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class="modal-body"&gt;Content&lt;/div&gt;
+            &lt;div class="modal-footer"&gt;
+                &lt;button class="btn btn-secondary" data-bs-dismiss="modal"&gt;Close&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+</div>

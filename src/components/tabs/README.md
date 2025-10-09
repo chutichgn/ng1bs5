@@ -143,19 +143,19 @@ Bootstrap 5 tabs component for AngularJS using ES6 style with Strict DI.
 ```javascript
 angular.module('myApp', ['ng1bs5'])
     .controller('MyController', function(TabsService) {
-
+        
         // Show a specific tab
         TabsService.show('myTabset', 'profile-tab');
-
+        
         // Get active tab
         const activeTab = TabsService.getActiveTab('myTabset');
-
+        
         // Get all tabs
         const tabs = TabsService.getTabs('myTabset');
-
+        
         // Disable a tab
         TabsService.disable('myTabset', 'profile-tab');
-
+        
         // Enable a tab
         TabsService.enable('myTabset', 'profile-tab');
     });
@@ -208,25 +208,25 @@ You can also listen to native Bootstrap 5 tab events:
 angular.module('myApp', ['ng1bs5'])
     .controller('MyController', function($element) {
         const button = $element[0].querySelector('[data-bs-toggle="tab"]');
-
+        
         // Event fires on tab show, but before the new tab has been shown
         button.addEventListener('show.bs.tab', function(event) {
             console.log('About to show:', event.target);
             console.log('Previously active:', event.detail.relatedTarget);
         });
-
+        
         // Event fires after a tab has been shown
         button.addEventListener('shown.bs.tab', function(event) {
             console.log('Shown:', event.target);
             console.log('Previously active:', event.detail.relatedTarget);
         });
-
+        
         // Event fires when a new tab is to be shown (previous tab is to be hidden)
         button.addEventListener('hide.bs.tab', function(event) {
             console.log('About to hide:', event.target);
             console.log('Next active:', event.detail.relatedTarget);
         });
-
+        
         // Event fires after a new tab is shown (previous tab is hidden)
         button.addEventListener('hidden.bs.tab', function(event) {
             console.log('Hidden:', event.target);
@@ -323,15 +323,15 @@ TabsService.enable('myTabset', 'profile-tab');
 ```html
 <div ng-controller="TabsController">
     <bs5-tabset tabset-id="dynamicTabs">
-        <bs5-tab
-                ng-repeat="tab in tabs track by tab.id"
-                tab-id="{{tab.id}}"
-                heading="{{tab.title}}"
-                active="{{$first}}">
+        <bs5-tab 
+            ng-repeat="tab in tabs track by tab.id"
+            tab-id="{{tab.id}}"
+            heading="{{tab.title}}"
+            active="{{$first}}">
             <p>{{tab.content}}</p>
         </bs5-tab>
     </bs5-tabset>
-
+    
     <button ng-click="addTab()">Add Tab</button>
 </div>
 ```
@@ -343,7 +343,7 @@ angular.module('myApp', ['ng1bs5'])
             { id: 'tab1', title: 'Tab 1', content: 'Content 1' },
             { id: 'tab2', title: 'Tab 2', content: 'Content 2' }
         ];
-
+        
         let counter = 3;
         $scope.addTab = function() {
             $scope.tabs.push({
@@ -368,7 +368,7 @@ angular.module('myApp', ['ng1bs5'])
             </div>
         </div>
     </bs5-tab>
-
+    
     <bs5-tab heading="Form">
         <form>
             <div class="mb-3">

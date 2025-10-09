@@ -1,0 +1,194 @@
+<div class="demo-content">
+    <div class="alert alert-success">
+        <h5><i class="bi bi-check-circle"></i> You're viewing the Tabs Demo!</h5>
+        <p class="mb-0">This entire portal is built using the tabs component we just developed.</p>
+    </div>
+
+    <h3 class="mb-3">Tabs Component Examples</h3>
+
+    <!-- Basic Tabs Example -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Basic Tabs</h5>
+        </div>
+        <div class="card-body">
+            <bs5-tabset>
+                <bs5-tab heading="Home" active="true">
+                    <div class="p-3">
+                        <h5>Home Tab</h5>
+                        <p>This is the home tab content. It demonstrates basic tab functionality.</p>
+                        <p class="mb-0">Tabs make it easy to organize content into separate panels.</p>
+                    </div>
+                </bs5-tab>
+                <bs5-tab heading="Profile">
+                    <div class="p-3">
+                        <h5>Profile Tab</h5>
+                        <p>This is the profile tab content.</p>
+                        <ul>
+                            <li>Easy to use</li>
+                            <li>Bootstrap 5 compatible</li>
+                            <li>AngularJS integrated</li>
+                        </ul>
+                    </div>
+                </bs5-tab>
+                <bs5-tab heading="Contact">
+                    <div class="p-3">
+                        <h5>Contact Tab</h5>
+                        <p>This is the contact tab content.</p>
+                        <button class="btn btn-primary">Send Message</button>
+                    </div>
+                </bs5-tab>
+                <bs5-tab heading="Disabled" disabled="true">
+                    <div class="p-3">
+                        <p>You won't see this because the tab is disabled.</p>
+                    </div>
+                </bs5-tab>
+            </bs5-tabset>
+        </div>
+    </div>
+
+    <!-- Pills Style -->
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Pills Style</h5>
+        </div>
+        <div class="card-body">
+            <bs5-tabset type="pills">
+                <bs5-tab heading="Overview" active="true">
+                    <div class="p-3">
+                        <h5>Pills Overview</h5>
+                        <p>Pills provide a different visual style for navigation.</p>
+                    </div>
+                </bs5-tab>
+                <bs5-tab heading="Features">
+                    <div class="p-3">
+                        <h5>Key Features</h5>
+                        <ul>
+                            <li>Multiple styles (tabs, pills, underline)</li>
+                            <li>Fade animations</li>
+                            <li>Keyboard navigation</li>
+                            <li>Programmatic control</li>
+                        </ul>
+                    </div>
+                </bs5-tab>
+                <bs5-tab heading="Usage">
+                    <div class="p-3">
+                        <h5>How to Use</h5>
+                        <div class="code-example">
+                            <pre><code>&lt;bs5-tabset type="pills"&gt;
+  &lt;bs5-tab heading="Tab 1" active="true"&gt;
+    Content 1
+  &lt;/bs5-tab&gt;
+  &lt;bs5-tab heading="Tab 2"&gt;
+    Content 2
+  &lt;/bs5-tab&gt;
+&lt;/bs5-tabset&gt;</code></pre>
+                        </div>
+                    </div>
+                </bs5-tab>
+            </bs5-tabset>
+        </div>
+    </div>
+
+    <!-- With Fade Animation -->
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">With Fade Animation</h5>
+        </div>
+        <div class="card-body">
+            <bs5-tabset fade="true">
+                <bs5-tab heading="Animated 1" active="true">
+                    <div class="p-3">
+                        <h5>Smooth Transitions</h5>
+                        <p>Notice the smooth fade effect when switching between tabs!</p>
+                    </div>
+                </bs5-tab>
+                <bs5-tab heading="Animated 2">
+                    <div class="p-3">
+                        <h5>Fade In</h5>
+                        <p>The content fades in smoothly, creating a polished experience.</p>
+                    </div>
+                </bs5-tab>
+                <bs5-tab heading="Animated 3">
+                    <div class="p-3">
+                        <h5>Professional Feel</h5>
+                        <p>Animations make your application feel more professional and responsive.</p>
+                    </div>
+                </bs5-tab>
+            </bs5-tabset>
+        </div>
+    </div>
+
+    <!-- Vertical Tabs -->
+    <div class="card mb-4">
+        <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0">Vertical Orientation</h5>
+        </div>
+        <div class="card-body">
+            <bs5-tabset vertical="true" type="pills">
+                <bs5-tab heading="Settings" active="true">
+                    <div class="p-3">
+                        <h5>Settings Panel</h5>
+                        <p>Vertical tabs are great for settings pages or side navigation.</p>
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="setting1">
+                            <label class="form-check-label" for="setting1">Enable notifications</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="setting2" checked>
+                            <label class="form-check-label" for="setting2">Auto-save</label>
+                        </div>
+                    </div>
+                </bs5-tab>
+                <bs5-tab heading="Profile">
+                    <div class="p-3">
+                        <h5>Profile Settings</h5>
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Username</label>
+                                <input type="text" class="form-control" value="demo_user">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" value="demo@example.com">
+                            </div>
+                        </form>
+                    </div>
+                </bs5-tab>
+                <bs5-tab heading="Security">
+                    <div class="p-3">
+                        <h5>Security Options</h5>
+                        <button class="btn btn-primary mb-2 d-block">Change Password</button>
+                        <button class="btn btn-outline-secondary d-block">Two-Factor Auth</button>
+                    </div>
+                </bs5-tab>
+            </bs5-tabset>
+        </div>
+    </div>
+
+    <!-- API Reference -->
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">API Reference</h5>
+        </div>
+        <div class="card-body">
+            <h6>bs5-tabset Attributes:</h6>
+            <ul>
+                <li><code>tabset-id</code> - Unique identifier for programmatic control</li>
+                <li><code>type</code> - 'tabs', 'pills', or 'underline'</li>
+                <li><code>vertical</code> - Display tabs vertically</li>
+                <li><code>justified</code> - Equal width tabs</li>
+                <li><code>fill</code> - Proportional width tabs</li>
+                <li><code>fade</code> - Enable fade animation</li>
+                <li><code>on-select</code> - Callback when tab is selected</li>
+            </ul>
+            <h6 class="mt-3">bs5-tab Attributes:</h6>
+            <ul>
+                <li><code>tab-id</code> - Unique identifier</li>
+                <li><code>heading</code> - Tab heading text</li>
+                <li><code>active</code> - Initial active state</li>
+                <li><code>disabled</code> - Disabled state</li>
+            </ul>
+        </div>
+    </div>
+</div>
