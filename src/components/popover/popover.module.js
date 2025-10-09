@@ -129,9 +129,9 @@ class Popover {
  * Creates Bootstrap 5 popovers with advanced features
  */
 class PopoverDirective {
-    static $inject = ['$templateCache', '$compile', '$http', '$q', '$timeout', '$bs5Position', '$bs5DOM', '$controller'];
-
     constructor($templateCache, $compile, $http, $q, $timeout, $bs5Position, $bs5DOM, $controller) {
+        'ngInject';
+
         this.$templateCache = $templateCache;
         this.$compile = $compile;
         this.$http = $http;
@@ -288,9 +288,15 @@ class PopoverDirective {
 
 const POPOVER_MODULE_NAME = 'ng1bs5.popover';
 
+// Factory function - babel-plugin-angularjs-annotate will handle DI
+function popoverDirectiveFactory($templateCache, $compile, $http, $q, $timeout, $bs5Position, $bs5DOM, $controller) {
+    'ngInject';
+    return new PopoverDirective($templateCache, $compile, $http, $q, $timeout, $bs5Position, $bs5DOM, $controller);
+}
+
 angular
     .module(POPOVER_MODULE_NAME, [DOMModule, PositionModule])
-    .directive('bs5Popover', () => new PopoverDirective(...PopoverDirective.$inject))
-    .directive('bsPopover', () => new PopoverDirective(...PopoverDirective.$inject));
+    .directive('bs5Popover', popoverDirectiveFactory)
+    .directive('bsPopover', popoverDirectiveFactory);
 
 export default POPOVER_MODULE_NAME;

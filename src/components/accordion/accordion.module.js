@@ -29,19 +29,19 @@ const ACCORDION_GROUP_TEMPLATE = `
 </div>`;
 
 class AccordionController {
-    static $inject = ['$scope', '$attrs'];
-
     constructor($scope, $attrs) {
+        'ngInject';
+
         this.$scope = $scope;
         this.$attrs = $attrs;
         this.groups = [];
     }
 
     closeOthers(openGroup) {
-        const closeOthers = angular.isDefined(this.$attrs.closeOthers) 
-            ? this.$scope.$eval(this.$attrs.closeOthers) 
+        const closeOthers = angular.isDefined(this.$attrs.closeOthers)
+            ? this.$scope.$eval(this.$attrs.closeOthers)
             : ACCORDION_CONFIG.closeOthers;
-            
+
         if (closeOthers) {
             angular.forEach(this.groups, (group) => {
                 if (group !== openGroup) {
@@ -104,13 +104,13 @@ class AccordionGroupDirective {
 
     link = (scope, elm, attrs, accordionCtrl) => {
         accordionCtrl.addGroup(scope);
-        
+
         scope.$watch('isOpen', (value) => {
             if (value) {
                 accordionCtrl.closeOthers(scope);
             }
         });
-        
+
         scope.toggleOpen = (event) => {
             if (!scope.isDisabled) {
                 if (!event || event.which === 32) {

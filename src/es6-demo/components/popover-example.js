@@ -37,7 +37,7 @@ const PopoverExampleComponent = {
 };
 
 // Create a module for this example
-const popoverExampleModule = angular.module('popoverExample', ['ng1bs5.popover'
+const popoverExampleModule = angular.module('popoverExample', [
   // Add PopoverModule.name here when you import it:
   // PopoverModule.name
 ])

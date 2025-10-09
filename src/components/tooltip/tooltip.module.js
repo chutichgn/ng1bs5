@@ -9,9 +9,9 @@ const TEMPLATE = `
 </div>`;
 
 class TooltipDirective {
-    static $inject = ['$templateCache', '$compile', '$http', '$q', '$bs5Position', '$bs5DOM', '$timeout'];
-
     constructor($templateCache, $compile, $http, $q, $bs5Position, $bs5DOM, $timeout) {
+        'ngInject';
+
         this.$templateCache = $templateCache;
         this.$compile = $compile;
         this.$http = $http;
@@ -19,42 +19,51 @@ class TooltipDirective {
         this.$bs5Position = $bs5Position;
         this.$bs5DOM = $bs5DOM;
         this.$timeout = $timeout;
-        
+
         this.restrict = 'A';
     }
 
     link = (scope, elm, attrs) => {
         const deferred = this.$q.defer();
 
-        const offset = /^\[ *?\d+?, *?\d+? *?\]$/.test(attrs.offset) ? scope.$eval(attrs.offset) : [0, 0];
-        const delay = scope.$eval(attrs.delay);
+        // Support Bootstrap-style data-bs-* attributes
+        const offset = /^\[ *?\d+?, *?\d+? *?\]$/.test(attrs.offset || attrs.bsOffset)
+            ? scope.$eval(attrs.offset || attrs.bsOffset)
+            : [0, 0];
+        const delay = scope.$eval(attrs.delay || attrs.bsDelay);
         const animate = attrs.animate ? scope.$eval(attrs.animate) : true;
-        const html = scope.$eval(attrs.html);
-        const placement = ['left', 'bottom', 'right', 'top'].includes(attrs.placement) ? attrs.placement : 'top';
-        let fp = scope.$eval(attrs.fallbackPlacements);
+        const html = scope.$eval(attrs.html || attrs.bsHtml);
+        const placement = ['left', 'bottom', 'right', 'top'].includes(attrs.placement || attrs.bsPlacement)
+            ? (attrs.placement || attrs.bsPlacement)
+            : 'top';
+        let fp = scope.$eval(attrs.fallbackPlacements || attrs.bsFallbackPlacements);
         fp = angular.isArray(fp) ? fp : ['left', 'right', 'top', 'bottom'];
-        const container = attrs.container 
-            ? angular.element(document.querySelector(attrs.container)) 
+        const container = (attrs.container || attrs.bsContainer)
+            ? angular.element(document.querySelector(attrs.container || attrs.bsContainer))
             : angular.element(document.body);
 
         if (!(container instanceof angular.element) || !container.length) {
             throw new DOMException('bs5Tooltip: The specified container could not be found');
         }
 
-        if (attrs.templateUrl) {
+        // Support multiple attribute names for content
+        const contentAttr = attrs.bs5Tooltip || attrs.bsTooltip || attrs.bsTitle || attrs.title;
+
+        if (attrs.templateUrl || attrs.bsTemplateUrl) {
+            const templateUrl = attrs.templateUrl || attrs.bsTemplateUrl;
             this.$http({
-                url: attrs.templateUrl,
+                url: templateUrl,
                 method: 'GET'
             }).then(
                 (r) => {
                     deferred.resolve(r.data);
                 },
                 () => {
-                    deferred.resolve(attrs.bs5Tooltip);
+                    deferred.resolve(contentAttr);
                 }
             );
         } else {
-            deferred.resolve(attrs.bs5Tooltip);
+            deferred.resolve(contentAttr);
         }
 
         deferred.promise.then((content) => {
@@ -71,7 +80,7 @@ class TooltipDirective {
                         if (this.el) {
                             this.el.remove();
                         }
-                        
+
                         this.el = angular.copy(this.tooltipEl);
                         const arrow = angular.element(this.el[0].querySelector('.tooltip-arrow'));
 
@@ -138,9 +147,11 @@ class TooltipDirective {
                 $bs5DOM: this.$bs5DOM
             });
 
-            if (attrs.trigger === 'click') {
+            const trigger = attrs.trigger || attrs.bsTrigger || 'hover';
+
+            if (trigger === 'click') {
                 elm.on('click', () => tooltip.toggle());
-            } else if (attrs.trigger === 'focus') {
+            } else if (trigger === 'focus') {
                 elm.on('focus', () => tooltip.show());
                 elm.on('blur', () => tooltip.hide());
             } else {
@@ -153,8 +164,15 @@ class TooltipDirective {
 
 const MODULE_NAME = 'ng1bs5.tooltip';
 
+// Factory function - babel-plugin-angularjs-annotate will handle DI
+function tooltipDirectiveFactory($templateCache, $compile, $http, $q, $bs5Position, $bs5DOM, $timeout) {
+    'ngInject';
+    return new TooltipDirective($templateCache, $compile, $http, $q, $bs5Position, $bs5DOM, $timeout);
+}
+
 angular
     .module(MODULE_NAME, [DOMModule, PositionModule])
-    .directive('bs5Tooltip', () => new TooltipDirective(...TooltipDirective.$inject));
+    .directive('bs5Tooltip', tooltipDirectiveFactory)
+    .directive('bsTooltip', tooltipDirectiveFactory);
 
 export default MODULE_NAME;
