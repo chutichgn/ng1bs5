@@ -1,6 +1,6 @@
 /**
  * ng1bs5 ES6 Demo Application
- * 
+ *
  * This demo shows how to use ng1bs5 components with ES6 modules.
  * Components are imported directly from the source (src/components/), not from the bundled dist file.
  */
@@ -34,54 +34,54 @@ import './components/accordion-example';
  * Add your ng1bs5 component modules here
  */
 const app = angular.module('ng1bs5Demo', [
-  // Add ng1bs5 modules here as you import them above
-  // Example:
-  // ModalModule.name,
-  // PopoverModule.name,
-  // TooltipModule.name,
-  // DropdownModule.name,
-  // AccordionModule.name,
-  // CollapseModule.name,
-  // OffcanvasModule.name,
-  // ToastModule.name,
-  // AlertModule.name
-  
-  // Component example modules
-  'modalExample',
-  'popoverExample',
-  'tooltipExample',
-  'dropdownExample',
-  'accordionExample'
+    // Add ng1bs5 modules here as you import them above
+    // Example:
+    // ModalModule.name,
+    // PopoverModule.name,
+    // TooltipModule.name,
+    // DropdownModule.name,
+    // AccordionModule.name,
+    // CollapseModule.name,
+    // OffcanvasModule.name,
+    // ToastModule.name,
+    // AlertModule.name
+
+    // Component example modules
+    'modalExample',
+    'popoverExample',
+    'tooltipExample',
+    'dropdownExample',
+    'accordionExample'
 ]);
 
 /**
  * Main demo controller
  */
-app.controller('DemoController', ['$scope', function($scope) {
-  console.log('ng1bs5 ES6 Demo initialized');
-  
-  // Demo data
-  $scope.message = 'Welcome to ng1bs5 ES6 Demo';
-  $scope.currentTab = 'modal';
-  
-  // Tab switching
-  $scope.switchTab = function(tab) {
-    $scope.currentTab = tab;
-  };
-  
-  // Example: Toast functionality
-  $scope.showToast = function() {
-    const toastElement = document.getElementById('liveToast');
-    if (toastElement && window.bootstrap) {
-      const toast = new window.bootstrap.Toast(toastElement);
-      toast.show();
-    }
-  };
+app.controller('DemoController', ['$scope', function ($scope) {
+    console.log('ng1bs5 ES6 Demo initialized');
+
+    // Demo data
+    $scope.message = 'Welcome to ng1bs5 ES6 Demo';
+    $scope.currentTab = 'modal';
+
+    // Tab switching
+    $scope.switchTab = function (tab) {
+        $scope.currentTab = tab;
+    };
+
+    // Example: Toast functionality
+    $scope.showToast = function () {
+        const toastElement = document.getElementById('liveToast');
+        if (toastElement && window.bootstrap) {
+            const toast = new window.bootstrap.Toast(toastElement);
+            toast.show();
+        }
+    };
 }]);
 
 // Bootstrap the application
-// angular.element(document).ready(function() {
-//   angular.bootstrap(document, ['ng1bs5Demo']);
-// });
+angular.element(document).ready(function () {
+    angular.bootstrap(document, ['ng1bs5Demo']);
+});
 
 export default app;

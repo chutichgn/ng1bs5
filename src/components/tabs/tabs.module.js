@@ -1,17 +1,14 @@
 import angular from 'angular';
 import DOMModule from '../../services/dom.service';
-
-// TODO: Implement Tabs component following the pattern from the original ES5 code
-// Key features:
-// - Bs5TabsetController for managing tabs
-// - bs5Tabset directive for container
-// - bs5Tab directive for individual tabs
-// - Support for pills, tabs, and underline styles
-// - Transclude support for custom heading content
+import { Bs5TabsetDirective, Bs5TabDirective } from './tabs.directive';
+import TabsService from './tabs.service';
 
 const MODULE_NAME = 'ng1bs5.tabs';
 
 angular
-    .module(MODULE_NAME, [DOMModule]);
+    .module(MODULE_NAME, [DOMModule])
+    .component('bs5Tabset', Bs5TabsetDirective)
+    .component('bs5Tab', Bs5TabDirective)
+    .service('TabsService', TabsService);
 
 export default MODULE_NAME;
