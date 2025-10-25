@@ -1,5 +1,7 @@
 import angular from 'angular';
 import DOMModule from '../../services/dom.service';
+import {OffCanvasDirective} from "./offcanvas.directive";
+import OffcanvasService from "./offcanvas.service";
 
 // TODO: Implement Offcanvas component following the pattern from the completed components
 // Key features:
@@ -16,6 +18,8 @@ import DOMModule from '../../services/dom.service';
 const MODULE_NAME = 'ng1bs5.offcanvas';
 
 angular
-    .module(MODULE_NAME, [DOMModule]);
+    .module(MODULE_NAME, [DOMModule])
+    .component('offcanvas', OffCanvasDirective)
+    .service('OffcanvasService', OffcanvasService);
 
 export default MODULE_NAME;

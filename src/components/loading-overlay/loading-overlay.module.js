@@ -1,4 +1,6 @@
 import angular from 'angular';
+import LoadingOverlayService from "./loading-overlay.service";
+import bsLoadingOverlayDirective from "./loading-overlay.directive";
 
 // TODO: Implement Loading Overlay component following the pattern from the completed components
 // Key features:
@@ -15,6 +17,8 @@ import angular from 'angular';
 const MODULE_NAME = 'ng1bs5.loadingOverlay';
 
 angular
-    .module(MODULE_NAME, []);
+    .module(MODULE_NAME, [])
+    .service('LoadingOverlayService', LoadingOverlayService)
+    .directive('bsLoadingOverlay', bsLoadingOverlayDirective);
 
 export default MODULE_NAME;

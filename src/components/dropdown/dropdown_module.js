@@ -1,5 +1,5 @@
 /**
- * ng1bs5 Dropdown Component
+ * bs5 Dropdown Component
  * Bootstrap 5 Dropdown for AngularJS
  *
  * Based on Bootstrap 5.0 Dropdown API
@@ -15,9 +15,9 @@ const MODULE_NAME = 'ng1bs5.dropdown';
  * Main dropdown container directive
  *
  * @usage:
- * <div ng1bs5-dropdown>
- *   <button ng1bs5-dropdown-toggle>Toggle</button>
- *   <ul ng1bs5-dropdown-menu>
+ * <div bs5-dropdown>
+ *   <button bs5-dropdown-toggle>Toggle</button>
+ *   <ul bs5-dropdown-menu>
  *     <li><a class="dropdown-item" href="#">Action</a></li>
  *   </ul>
  * </div>
@@ -30,15 +30,15 @@ class DropdownDirective {
         this.controllerAs = '$dropdown';
         this.bindToController = true;
         this.scope = {
-            autoClose: '@?ng1bs5DropdownAutoClose',
-            offset: '@?ng1bs5DropdownOffset',
-            boundary: '@?ng1bs5DropdownBoundary',
-            reference: '@?ng1bs5DropdownReference',
-            display: '@?ng1bs5DropdownDisplay',
-            onShow: '&?ng1bs5DropdownOnShow',
-            onShown: '&?ng1bs5DropdownOnShown',
-            onHide: '&?ng1bs5DropdownOnHide',
-            onHidden: '&?ng1bs5DropdownOnHidden'
+            autoClose: '@?bs5DropdownAutoClose',
+            offset: '@?bs5DropdownOffset',
+            boundary: '@?bs5DropdownBoundary',
+            reference: '@?bs5DropdownReference',
+            display: '@?bs5DropdownDisplay',
+            onShow: '&?bs5DropdownOnShow',
+            onShown: '&?bs5DropdownOnShown',
+            onHide: '&?bs5DropdownOnHide',
+            onHidden: '&?bs5DropdownOnHidden'
         };
     }
 
@@ -338,13 +338,13 @@ class DropdownController {
  * Marks the toggle button/link
  *
  * @usage:
- * <button ng1bs5-dropdown-toggle>Toggle</button>
+ * <button bs5-dropdown-toggle>Toggle</button>
  */
 class DropdownToggleDirective {
     constructor() {
         'ngInject';
         this.restrict = 'A';
-        this.require = '^ng1bs5Dropdown';
+        this.require = '^bs5Dropdown';
     }
 
     link(scope, element, attrs, dropdownCtrl) {
@@ -380,7 +380,7 @@ class DropdownToggleDirective {
  * Marks the dropdown menu container
  *
  * @usage:
- * <ul ng1bs5-dropdown-menu>
+ * <ul bs5-dropdown-menu>
  *   <li><a class="dropdown-item" href="#">Item</a></li>
  * </ul>
  */
@@ -388,7 +388,7 @@ class DropdownMenuDirective {
     constructor() {
         'ngInject';
         this.restrict = 'A';
-        this.require = '^ng1bs5Dropdown';
+        this.require = '^bs5Dropdown';
     }
 
     link(scope, element, attrs, dropdownCtrl) {
@@ -431,8 +431,9 @@ class DropdownMenuDirective {
  * Register module
  */
 angular.module(MODULE_NAME, [])
-    .directive('ng1bs5Dropdown', DropdownDirective.factory)
-    .directive('ng1bs5DropdownToggle', DropdownToggleDirective.factory)
-    .directive('ng1bs5DropdownMenu', DropdownMenuDirective.factory);
+    .directive('bs5Dropdown', DropdownDirective.factory)
+    .directive('bs5DropdownToggle', DropdownToggleDirective.factory)
+    .directive('bs5DropdownMenu', DropdownMenuDirective.factory);
+
 
 export default MODULE_NAME;
