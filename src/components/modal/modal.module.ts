@@ -5,8 +5,8 @@ import Bs5ModalService from './modal.service';
 const moduleName = 'ng1bs5.modal';
 
 angular
-  .module(moduleName, [])
-  .component('bs5Modal', modalComponent)
-  .service('$bs5Modal', Bs5ModalService);
+    .module(moduleName, [])
+    .component('bs5Modal', modalComponent)
+    .service('Bs5ModalService', Bs5ModalService);
 
 export default moduleName;

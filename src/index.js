@@ -25,6 +25,7 @@ import RatingModule from './components/rating/rating.module';
 import TabsModule from './components/tabs/tabs.module';
 import ToastModule from './components/toast/toast.module';
 import TooltipModule from './components/tooltip/tooltip.module';
+import BreadcrumbModule from './components/breadcrumb/breadcrumb.module';
 
 // Styles
 import './styles/styles.css';
@@ -49,7 +50,8 @@ angular.module(NG1BS5_MODULE_NAME, [
     RatingModule,
     TabsModule,
     ToastModule,
-    TooltipModule
+    TooltipModule,
+    BreadcrumbModule
 ]);
 
 export default NG1BS5_MODULE_NAME;

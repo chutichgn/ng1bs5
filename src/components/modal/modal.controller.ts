@@ -1,33 +1,49 @@
+import { ModalController as IModalController, ModalInstanceAPI, ModalSize, getModalDialogClasses } from './modal-types';
+
 /**
  * Modal Controller
  * Pure AngularJS implementation without Bootstrap JS dependency
  */
-class ModalController {
-    /**
-     * @ngInject
-     */
-    constructor($element, $timeout, $scope, $attrs, $document, $animate) {
-        'ngInject';
+class ModalController implements IModalController {
+    public visible?: boolean;
+    public backdrop?: string;
+    public keyboard?: boolean;
+    public focus?: boolean;
+    public size?: ModalSize;
+    public centered?: boolean;
+    public scrollable?: boolean;
+    public modalInstance?: ModalInstanceAPI;
+    public onClose?: (params: { $result: any }) => void;
+    public onDismiss?: (params: { $reason: any }) => void;
+    public onShow?: (params: { $event: any }) => void;
+    public onShown?: (params: { $event: any }) => void;
+    public onHide?: (params: { $event: any }) => void;
+    public onHidden?: (params: { $event: any }) => void;
+    public onHidePrevented?: (params: { $event: any }) => void;
 
-        this.$element = $element;
-        this.$timeout = $timeout;
-        this.$scope = $scope;
-        this.$attrs = $attrs;
-        this.$document = $document;
-        this.$animate = $animate;
+    private modalElement: HTMLElement | null = null;
+    private backdropElement: HTMLElement | null = null;
+    private initialized: boolean = false;
+    private _isVisible: boolean = false;
+    private _isAnimating: boolean = false;
+    private _handleKeydown: (event: KeyboardEvent) => void;
+    private _handleBackdropClick: (event: MouseEvent) => void;
 
-        this.modalElement = null;
-        this.backdropElement = null;
-        this.initialized = false;
-        this._isVisible = false;
-        this._isAnimating = false;
+    static $inject = ['$element', '$timeout', '$scope', '$attrs', '$document', '$animate'];
 
-        // Bind event handlers
-        this._handleKeydown = this._handleKeydown.bind(this);
-        this._handleBackdropClick = this._handleBackdropClick.bind(this);
+    constructor(
+        private $element: ng.IAugmentedJQuery,
+        private $timeout: ng.ITimeoutService,
+        private $scope: ng.IScope,
+        private $attrs: ng.IAttributes,
+        private $document: ng.IDocumentService,
+        private $animate: ng.animate.IAnimateService
+    ) {
+        this._handleKeydown = this.handleKeydown.bind(this);
+        this._handleBackdropClick = this.handleBackdropClick.bind(this);
     }
 
-    $onInit() {
+    $onInit(): void {
         // Set default values
         this.backdrop = this.backdrop !== undefined ? this.backdrop : 'true';
         this.keyboard = this.keyboard !== false;
@@ -37,9 +53,9 @@ class ModalController {
         this.scrollable = this.scrollable || false;
 
         // Expose close/dismiss to parent scope for transcluded content
-        const parentScope = this.$scope.$parent;
-        parentScope.close = (result) => this.close(result);
-        parentScope.dismiss = (reason) => this.dismiss(reason);
+        const parentScope = this.$scope.$parent as any;
+        parentScope.close = (result?: any) => this.close(result);
+        parentScope.dismiss = (reason?: any) => this.dismiss(reason);
 
         this.$timeout(() => {
             this.modalElement = this.$element[0].querySelector('.modal');
@@ -72,7 +88,7 @@ class ModalController {
         });
     }
 
-    $onChanges(changes) {
+    $onChanges(changes: ng.IOnChangesObject): void {
         if (changes.visible && this.initialized) {
             if (changes.visible.currentValue && !this._isVisible) {
                 this.show();
@@ -85,7 +101,7 @@ class ModalController {
     /**
      * Close modal with result (called from transcluded content)
      */
-    close(result) {
+    close(result?: any): void {
         if (this.onClose) {
             this.onClose({ $result: result });
         }
@@ -95,15 +111,15 @@ class ModalController {
     /**
      * Dismiss modal with reason (called from transcluded content)
      */
-    dismiss(reason) {
+    dismiss(reason?: any): void {
         if (this.onDismiss) {
             this.onDismiss({ $reason: reason });
         }
         this.hide();
     }
 
-    show() {
-        if (this._isVisible || this._isAnimating) return;
+    show(): void {
+        if (this._isVisible || this._isAnimating || !this.modalElement) return;
 
         this._isAnimating = true;
 
@@ -141,7 +157,7 @@ class ModalController {
             this._isAnimating = false;
 
             // Focus modal
-            if (this.focus) {
+            if (this.focus && this.modalElement) {
                 this.modalElement.focus();
             }
 
@@ -152,8 +168,8 @@ class ModalController {
         }, 150); // Bootstrap modal transition time
     }
 
-    hide() {
-        if (!this._isVisible || this._isAnimating) return;
+    hide(): void {
+        if (!this._isVisible || this._isAnimating || !this.modalElement) return;
 
         this._isAnimating = true;
 
@@ -170,10 +186,12 @@ class ModalController {
 
         // Wait for animation to complete
         this.$timeout(() => {
-            this.modalElement.style.display = 'none';
-            this.modalElement.setAttribute('aria-hidden', 'true');
-            this.modalElement.removeAttribute('aria-modal');
-            this.modalElement.removeAttribute('role');
+            if (this.modalElement) {
+                this.modalElement.style.display = 'none';
+                this.modalElement.setAttribute('aria-hidden', 'true');
+                this.modalElement.removeAttribute('aria-modal');
+                this.modalElement.removeAttribute('role');
+            }
 
             // Remove backdrop
             this._removeBackdrop();
@@ -191,7 +209,7 @@ class ModalController {
         }, 150);
     }
 
-    toggle() {
+    toggle(): void {
         if (this._isVisible) {
             this.hide();
         } else {
@@ -199,12 +217,12 @@ class ModalController {
         }
     }
 
-    handleUpdate() {
+    handleUpdate(): void {
         // Recalculate modal position if needed
         // For most cases, Bootstrap CSS handles this automatically
     }
 
-    _createBackdrop() {
+    private _createBackdrop(): void {
         const backdropOption = this._getBackdropOption();
 
         if (backdropOption === false) return;
@@ -220,20 +238,20 @@ class ModalController {
         this.backdropElement.classList.add('show');
     }
 
-    _removeBackdrop() {
+    private _removeBackdrop(): void {
         if (!this.backdropElement) return;
 
         this.backdropElement.classList.remove('show');
 
         this.$timeout(() => {
-            if (this.backdropElement) {
-                this.backdropElement.remove();
+            if (this.backdropElement && this.backdropElement.parentNode) {
+                this.backdropElement.parentNode.removeChild(this.backdropElement);
                 this.backdropElement = null;
             }
         }, 150);
     }
 
-    _handleKeydown(event) {
+    private handleKeydown(event: KeyboardEvent): void {
         if (event.key === 'Escape' || event.keyCode === 27) {
             event.preventDefault();
             this.hide();
@@ -241,7 +259,7 @@ class ModalController {
         }
     }
 
-    _handleBackdropClick(event) {
+    private handleBackdropClick(event: MouseEvent): void {
         // Only handle clicks on the modal itself (not modal-dialog or its children)
         if (event.target !== this.modalElement) return;
 
@@ -259,39 +277,17 @@ class ModalController {
         }
     }
 
-    _getBackdropOption() {
+    private _getBackdropOption(): boolean | 'static' {
         if (this.backdrop === 'false') return false;
         if (this.backdrop === 'static') return 'static';
         return true;
     }
 
-    _getDialogClasses() {
-        const classes = ['modal-dialog'];
-
-        if (this.size === 'sm') {
-            classes.push('modal-sm');
-        } else if (this.size === 'lg') {
-            classes.push('modal-lg');
-        } else if (this.size === 'xl') {
-            classes.push('modal-xl');
-        } else if (this.size === 'fullscreen') {
-            classes.push('modal-fullscreen');
-        } else if (this.size && this.size.startsWith('fullscreen-')) {
-            classes.push(`modal-${this.size}`);
-        }
-
-        if (this.centered) {
-            classes.push('modal-dialog-centered');
-        }
-
-        if (this.scrollable) {
-            classes.push('modal-dialog-scrollable');
-        }
-
-        return classes.join(' ');
+    _getDialogClasses(): string {
+        return getModalDialogClasses(this.size, this.centered, this.scrollable);
     }
 
-    _dispose() {
+    private _dispose(): void {
         if (this._isVisible) {
             this.hide();
         }
@@ -300,7 +296,7 @@ class ModalController {
         this.$document[0].removeEventListener('keydown', this._handleKeydown);
     }
 
-    $onDestroy() {
+    $onDestroy(): void {
         this._dispose();
     }
 }

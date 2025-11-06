@@ -5,7 +5,7 @@ import template from './modal.template.html';
  * Modal Component
  * Wraps Bootstrap 5 Modal component
  */
-export default {
+const modalComponent: angular.IComponentOptions = {
     transclude: true,
     bindings: {
         // Visibility control
@@ -38,3 +38,5 @@ export default {
     controller: ModalController,
     template
 };
+
+export default modalComponent;
