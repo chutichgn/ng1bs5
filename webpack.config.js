@@ -14,6 +14,17 @@ module.exports = {
     },
     module: {
         rules: [
+            // TypeScript loader - NEW
+            {
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                use: ['babel-loader', {
+                    loader: "ts-loader",
+                    options: {
+                        transpileOnly: true  // Faster builds, type-checking done separately
+                    }
+                }]  // ts-loader → babel-loader
+            },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
@@ -39,7 +50,7 @@ module.exports = {
         }
     },
     resolve: {
-        extensions: ['.js']
+        extensions: ['.ts', '.js', '.html'],  // Added .ts first
     },
     devtool: 'source-map'
 };
