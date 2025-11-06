@@ -1,6 +1,6 @@
-# ng1bs5 - AngularJS 1.x Bootstrap 5 Components
+# ng1bs5 - AngularJS 1.x Bootstrap 5 Components (TypeScript)
 
-A modern ES6 conversion of Bootstrap 5 components for AngularJS 1.x with Strict DI, webpack support, and modular architecture.
+Modern TypeScript ES6 implementation of Bootstrap 5 components for AngularJS 1.x with strict typing, webpack support, and modular architecture.
 
 **GitHub Repository**: [https://github.com/chutichgn/ng1bs5](https://github.com/chutichgn/ng1bs5)
 
@@ -34,20 +34,39 @@ npm run build
 ```
 
 ### 2. Add Module Dependency
-```javascript
-angular.module('myApp', ['ng1bs5']);
+```typescript
+import angular from 'angular';
+import ng1bs5 from 'ng1bs5';
+
+angular.module('myApp', [ng1bs5]);
 ```
 
-That's it! All components are now available in your application.
+## TypeScript Configuration
 
-## Project Structure
+### tsconfig.json
+```json
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "ES6",
+        "moduleResolution": "node",
+        "strict": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": true,
+        "declaration": true,
+        "types": ["angular", "@uirouter/angularjs"]
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist"]
+}
+```
 
-[See PROJECT_STRUCTURE.md for more details ](PROJECT_STRUCTURE.md)
+### Type Definitions
 
-## Installation
-
+Install AngularJS types:
 ```bash
-npm install
+npm install --save-dev @types/angular @types/angular-mocks
 ```
 
 ## Building
@@ -56,102 +75,182 @@ npm install
 # Production build
 npm run build
 
-# Development build
+# Development build with source maps
 npm run build:dev
 
-# Watch mode
-npm watch
+# Watch mode for development
+npm run watch
+
+# Type checking only
+npm run type-check
 ```
+
+## Project Structure
+
+[See PROJECT_STRUCTURE.md for details](PROJECT_STRUCTURE.md)
 
 ## Key Concepts & Patterns
 
-### 1. ES6 Class-Based Directives
+### 1. TypeScript Class-Based Directives
 
-All directives are implemented as ES6 classes with Strict DI:
+All directives are TypeScript classes with strict typing:
 
-```javascript
-class MyDirective {
-    static $inject = ['$timeout', '$http'];
+```typescript
+import angular from 'angular';
 
-    constructor($timeout, $http) {
-        this.$timeout = $timeout;
-        this.$http = $http;
-        
-        this.restrict = 'E';
-        this.template = '<div>My Template</div>';
-        this.scope = {
-            value: '='
-        };
+interface MyDirectiveScope extends ng.IScope {
+    value: string;
+}
+
+class MyDirective implements ng.IDirective {
+    restrict = 'E';
+    template = '<div>{{value}}</div>';
+    scope = {
+        value: '='
+    };
+
+    constructor(
+        private $timeout: ng.ITimeoutService,
+        private $http: ng.IHttpService
+    ) {
+        'ngInject';
     }
 
-    link = (scope, elm, attrs) => {
-        // Link function logic
+    link = (scope: MyDirectiveScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes): void => {
+        this.$timeout(() => {
+            element.addClass('loaded');
+        }, 100);
+    };
+
+    static factory(): ng.IDirectiveFactory {
+        const directive = ($timeout: ng.ITimeoutService, $http: ng.IHttpService) =>
+            new MyDirective($timeout, $http);
+        directive.$inject = ['$timeout', '$http'];
+        return directive;
     }
 }
 
-// Register the directive
-angular
-    .module('myModule', [])
-    .directive('myDirective', () => new MyDirective(...MyDirective.$inject));
-```
-
-### 2. ES6 Class-Based Controllers
-
-Controllers use ES6 classes with Strict DI:
-
-```javascript
-class MyController {
-    static $inject = ['$scope', '$attrs'];
-
-    constructor($scope, $attrs) {
-        this.$scope = $scope;
-        this.$attrs = $attrs;
-        this.data = [];
-    }
-
-    myMethod() {
-        // Controller method
-    }
-}
-
-angular
-    .module('myModule', [])
-    .controller('MyController', MyController);
-```
-
-### 3. ES6 Class-Based Services
-
-Services use ES6 classes with methods:
-
-```javascript
-export class MyService {
-    static $inject = ['$http', '$q'];
-
-    constructor($http, $q) {
-        this.$http = $http;
-        this.$q = $q;
-    }
-
-    doSomething() {
-        // Service method
-    }
-}
-
-const MODULE_NAME = 'myService';
+const MODULE_NAME = 'myModule';
 
 angular
     .module(MODULE_NAME, [])
-    .service('myService', MyService);
+    .directive('myDirective', MyDirective.factory());
 
 export default MODULE_NAME;
 ```
 
-### 4. Module Exports and Imports
+### 2. TypeScript Class-Based Controllers
 
-Each module exports its module name for dependency injection:
+Controllers with strict typing:
 
-```javascript
-// In component file
+```typescript
+interface Product {
+    id: number;
+    name: string;
+    price: number;
+}
+
+interface MyScope extends ng.IScope {
+    products: Product[];
+}
+
+class MyController {
+    static $inject = ['$scope', '$http'];
+
+    products: Product[] = [];
+
+    constructor(
+        private $scope: MyScope,
+        private $http: ng.IHttpService
+    ) {
+        this.loadProducts();
+    }
+
+    loadProducts(): void {
+        this.$http.get<Product[]>('/api/products')
+            .then(response => {
+                this.products = response.data;
+            });
+    }
+
+    deleteProduct(id: number): void {
+        this.$http.delete(`/api/products/${id}`)
+            .then(() => {
+                this.products = this.products.filter(p => p.id !== id);
+            });
+    }
+}
+
+angular
+    .module('myModule')
+    .controller('MyController', MyController);
+```
+
+### 3. TypeScript Service with Interfaces
+
+```typescript
+export interface UserData {
+    id: number;
+    name: string;
+    email: string;
+}
+
+export interface UserServiceOptions {
+    cache?: boolean;
+    timeout?: number;
+}
+
+export class UserService {
+    static $inject = ['$http', '$q', '$log'];
+
+    private cache: Map<number, UserData> = new Map();
+
+    constructor(
+        private $http: ng.IHttpService,
+        private $q: ng.IQService,
+        private $log: ng.ILogService
+    ) {}
+
+    getUser(id: number, options: UserServiceOptions = {}): ng.IPromise<UserData> {
+        if (options.cache && this.cache.has(id)) {
+            return this.$q.resolve(this.cache.get(id)!);
+        }
+
+        return this.$http.get<UserData>(`/api/users/${id}`)
+            .then(response => {
+                if (options.cache) {
+                    this.cache.set(id, response.data);
+                }
+                return response.data;
+            })
+            .catch(error => {
+                this.$log.error('Failed to load user:', error);
+                return this.$q.reject(error);
+            });
+    }
+
+    updateUser(user: UserData): ng.IPromise<UserData> {
+        return this.$http.put<UserData>(`/api/users/${user.id}`, user)
+            .then(response => {
+                this.cache.delete(user.id);
+                return response.data;
+            });
+    }
+}
+
+const MODULE_NAME = 'userService';
+
+angular
+    .module(MODULE_NAME, [])
+    .service('UserService', UserService);
+
+export default MODULE_NAME;
+```
+
+### 4. Module Exports with Type Safety
+
+```typescript
+// component.module.ts
 import angular from 'angular';
 import DependencyModule from '../dependency/dependency.module';
 
@@ -162,195 +261,63 @@ angular.module(MODULE_NAME, [DependencyModule]);
 export default MODULE_NAME;
 ```
 
-```javascript
-// In index.js
-import { MyModule } from './components/my/my.module';
+## Component Status
 
-angular.module('app', [MyModule]);
-```
+### Completed Components (10/16 - 62.5%)
 
-## Completing the Remaining Components
+1. ✅ **Accordion** - Multi-level collapsible panels
+2. ✅ **Alert** - Dismissible alerts with timeout
+3. ✅ **Breadcrumb** - UI Router breadcrumb navigation
+4. ✅ **Collapse** - Animated collapse/expand
+5. ✅ **Dropdown** - Context menus with keyboard nav
+6. ✅ **Icons** - Bootstrap Icons integration
+7. ✅ **Pagination** - Advanced pagination
+8. ✅ **Popover** - Smart popovers with templates
+9. ✅ **Progressbar** - Progress indicators
+10. ✅ **Tooltip** - Smart tooltips
 
-### Completed Components (8/16 - 50%)
+### TODO Components (6/16 - 37.5%)
 
-1. ✅ **Accordion** - Multi-level collapsible panels with auto-close
-2. ✅ **Alert** - Dismissible alerts with auto-timeout
-3. ✅ **Collapse** - Animated collapse/expand with horizontal support
-4. ✅ **Icons** - Bootstrap Icons with caching and dynamic loading
-5. ✅ **Pagination** - Advanced pagination with pivot mode
-6. ✅ **Progressbar** - Striped and animated progress bars
-7. ✅ **Tooltip** - Smart tooltips with fallback positioning
-8. ✅ **Popover** - Advanced popovers with templates, controllers, and callbacks
+1. **Autocomplete** - Type-ahead search
+2. **Datepicker** - Date selection widget
+3. **Loading Overlay** - Loading indicators
+4. **Modal** - Modal dialogs
+5. **Offcanvas** - Sliding panels
+6. **Rating** - Star rating widget
+7. **Tabs** - Tabbed navigation
+8. **Toast** - Notification toasts
 
-### Components to Complete (8/16 remaining)
+## Usage Examples
 
-1. **Autocomplete** (`components/autocomplete/autocomplete.module.js`)
-    - Implement bs5Autocomplete directive
-    - Implement bs5AutocompleteList directive
-    - Add remote and local datasource support
-    - Add keyboard navigation (arrow keys, enter)
+### TypeScript with Webpack
 
-2. **Datepicker** (`components/datepicker/datepicker.module.js`)
-    - Implement bs5Datepicker directive
-    - Create calendar UI with month/year navigation
-    - Add min/max date validation
-    - Integrate with ngModel
-
-3. **Modal** (`components/modal/modal.module.js`)
-    - Implement $bs5Modal factory service
-    - Implement $$modalStack service
-    - Implement $$modalBackdrop service
-    - Add support for templateUrl and controller
-
-4. **Rating** (`components/rating/rating.module.js`)
-    - Implement bs5Rating directive
-    - Implement bs5RatingPartial directive (for partial stars)
-    - Add icon/image support
-    - Add readonly/disabled modes
-    - Integrate with ngModel and form validation
-
-5. **Tabs** (`components/tabs/tabs.module.js`)
-    - Implement Bs5TabsetController
-    - Implement bs5Tabset directive
-    - Implement bs5Tab directive
-    - Add transclude support for custom headings
-    - Support pills, tabs, and underline styles
-
-6. **Toast** (`components/toast/toast.module.js`)
-    - Implement $bs5Toast service for programmatic creation
-    - Support multiple positions (top-left, top-right, bottom-left, bottom-right, etc.)
-    - Auto-dismiss with configurable timeout
-    - Toast stacking and queuing
-    - Different types (success, error, warning, info)
-
-7. **Offcanvas** (`components/offcanvas/offcanvas.module.js`)
-    - Implement $bs5Offcanvas service factory
-    - Four placement options (start, end, top, bottom)
-    - Backdrop support (static, clickable, none)
-    - Keyboard support (ESC to close)
-    - Template and controller binding
-
-8. **Loading Overlay** (`components/loading-overlay/loading-overlay.module.js`)
-    - Implement $bs5LoadingOverlay service
-    - Implement bs5LoadingOverlay directive
-    - Full-screen and container-specific overlays
-    - Customizable spinner styles
-    - Promise integration for async operations
-
-### Steps to Complete Each Component
-
-1. **Refer to the Original ES5 Code**: Check the uploaded `angular-bootstrap-5.js` file for the complete implementation
-
-2. **Convert to ES6 Class Syntax**:
-    - Change function constructors to ES6 classes
-    - Use `static $inject = [...]` for Strict DI
-    - Use arrow functions for link functions to preserve `this` context
-
-3. **Extract Templates**:
-    - Move inline templates to const variables at the top of the file
-    - Or keep them in the directive definition
-
-4. **Import Dependencies**:
-    - Import required modules at the top
-    - Add module dependencies in `angular.module(NAME, [deps])`
-
-5. **Export Module Name**:
-    - Always export the module name: `export default MODULE_NAME;`
-
-6. **Test Thoroughly**: Ensure all functionality works as expected
-
-## Example: Converting a Component
-
-### Original ES5 Code:
-```javascript
-angular.module('ng1bs5.example', [])
-    .directive('bs5Example', ['$timeout', function($timeout) {
-        return {
-            restrict: 'E',
-            template: '<div>{{text}}</div>',
-            scope: { text: '@' },
-            link: function(scope, elm) {
-                $timeout(function() {
-                    elm.addClass('loaded');
-                }, 100);
-            }
-        };
-    }]);
-```
-
-### Converted ES6 Code:
-```javascript
-import angular from 'angular';
-
-const TEMPLATE = '<div>{{text}}</div>';
-
-class ExampleDirective {
-    static $inject = ['$timeout'];
-
-    constructor($timeout) {
-        this.$timeout = $timeout;
-        this.restrict = 'E';
-        this.template = TEMPLATE;
-        this.scope = { text: '@' };
-    }
-
-    link = (scope, elm) => {
-        this.$timeout(() => {
-            elm.addClass('loaded');
-        }, 100);
-    }
-}
-
-const MODULE_NAME = 'ng1bs5.example';
-
-angular
-    .module(MODULE_NAME, [])
-    .directive('bs5Example', () => new ExampleDirective(...ExampleDirective.$inject));
-
-export default MODULE_NAME;
-```
-
-## Usage in Your Application
-
-### Using with Webpack
-
-```javascript
-// Your main app file
+```typescript
+// app.module.ts
 import angular from 'angular';
 import ng1bs5 from 'ng1bs5';
+import { UserService } from './services/user.service';
 
-angular.module('myApp', [ng1bs5]);
+angular
+    .module('myApp', [ng1bs5])
+    .service('UserService', UserService);
 ```
 
-### Using Individual Components
+### Individual Components
 
-```javascript
+```typescript
 import angular from 'angular';
 import AlertModule from 'ng1bs5/components/alert/alert.module';
 import TooltipModule from 'ng1bs5/components/tooltip/tooltip.module';
+import DropdownModule from 'ng1bs5/components/dropdown/dropdown.module';
 
-angular.module('myApp', [AlertModule, TooltipModule]);
+angular.module('myApp', [
+    AlertModule,
+    TooltipModule,
+    DropdownModule
+]);
 ```
 
-### Using via Script Tag
-
-```html
-<!DOCTYPE html>
-<html ng-app="myApp">
-<head>
-    <link href="bootstrap.min.css" rel="stylesheet">
-    <script src="angular.min.js"></script>
-    <script src="ng1bs5.js"></script>
-</head>
-<body>
-    <script>
-        angular.module('myApp', ['ng1bs5']);
-    </script>
-</body>
-</html>
-```
-
-### In Your HTML
+### HTML Usage
 
 ```html
 <!-- Alert -->
@@ -359,9 +326,23 @@ angular.module('myApp', [AlertModule, TooltipModule]);
 </bs5-alert>
 
 <!-- Tooltip -->
-<button bs5-tooltip="Click me!" placement="top">
+<button ng1bs5-tooltip="Click me!" placement="top">
     Hover for tooltip
 </button>
+
+<!-- Dropdown -->
+<div ng1bs5-dropdown>
+    <button class="btn btn-secondary" ng1bs5-dropdown-toggle>
+        Dropdown
+    </button>
+    <ul ng1bs5-dropdown-menu>
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+    </ul>
+</div>
+
+<!-- Breadcrumb (with UI Router) -->
+<div ng1bs5-breadcrumb></div>
 
 <!-- Pagination -->
 <bs5-pagination 
@@ -370,83 +351,218 @@ angular.module('myApp', [AlertModule, TooltipModule]);
     page-size="10"
     page-change="vm.onPageChange($page)">
 </bs5-pagination>
-
-<!-- Accordion -->
-<bs5-accordion>
-    <bs5-accordion-group heading="Section 1">
-        Content for section 1
-    </bs5-accordion-group>
-    <bs5-accordion-group heading="Section 2">
-        Content for section 2
-    </bs5-accordion-group>
-</bs5-accordion>
 ```
 
-## Component Reference
+## TypeScript Component Development Guide
 
-### Completed Components
+### Creating a New Component
 
-#### Alert
-- **Directive**: `bs5-alert`
-- **Attributes**: `type`, `dismissible`, `timeout`, `on-destroy`
+1. **Create interface file** (`component.interface.ts`):
+```typescript
+export interface MyComponentOptions {
+    title?: string;
+    visible?: boolean;
+}
 
-#### Collapse
-- **Directive**: `bs5-collapse` (attribute)
-- **Attributes**: `bs5-collapse`, `on-collapsed`, `on-expanded`, `horizontal`
+export interface MyComponentScope extends ng.IScope {
+    options: MyComponentOptions;
+    data: any[];
+}
+```
 
-#### Icons
-- **Directive**: `bs5-icon`
-- **Attributes**: `icon`, `size`, `color`
+2. **Create component file** (`component.module.ts`):
+```typescript
+import angular from 'angular';
+import { MyComponentOptions, MyComponentScope } from './component.interface';
 
-#### Pagination
-- **Directive**: `bs5-pagination`
-- **Attributes**: `current-page`, `number-items`, `page-size`, `page-range`, etc.
+class MyComponent implements ng.IDirective {
+    restrict = 'E';
+    scope = {
+        options: '=',
+        data: '='
+    };
 
-#### Progressbar
-- **Directive**: `bs5-progressbar`
-- **Attributes**: `value`, `bg-type`, `stripes`, `display-percent`, `animate`
+    constructor(private $log: ng.ILogService) {
+        'ngInject';
+    }
 
-#### Tooltip
-- **Directive**: `bs5-tooltip` (attribute)
-- **Attributes**: `bs5-tooltip`, `placement`, `trigger`, `animate`, `delay`
+    link = (scope: MyComponentScope, element: ng.IAugmentedJQuery): void => {
+        this.$log.debug('Component initialized', scope.options);
+    };
 
-#### Accordion
-- **Directives**: `bs5-accordion`, `bs5-accordion-group`
-- **Features**: Auto-close, custom headings, open/close callbacks
+    static factory(): ng.IDirectiveFactory {
+        const directive = ($log: ng.ILogService) => new MyComponent($log);
+        directive.$inject = ['$log'];
+        return directive;
+    }
+}
 
-#### Popover
-- **Directive**: `bs5-popover` (attribute)
-- **Attributes**: `bs5-popover`, `title`, `placement`, `trigger`, `animate`, `html`, `delay`, `template-url`, `popover-controller`, `handler`, `container`, `offset`, `fallback-placements`
-- **Features**: HTML content, templates, controller binding, promise-based callbacks, smart positioning
-- **Documentation**: See [components/popover/README.md](components/popover/README.md) for full API
+const MODULE_NAME = 'ng1bs5.myComponent';
+
+angular
+    .module(MODULE_NAME, [])
+    .directive('myComponent', MyComponent.factory());
+
+export default MODULE_NAME;
+```
+
+3. **Export types** in main `index.ts`:
+```typescript
+export * from './components/myComponent/component.interface';
+```
+
+### Type Augmentation for UI Router
+
+```typescript
+// types/ui-router.d.ts
+import '@uirouter/angularjs';
+
+declare module '@uirouter/angularjs' {
+    interface StateDeclaration {
+        bs5Breadcrumb?: {
+            label?: string;
+            parent?: string | ((scope: ng.IScope) => string);
+            skip?: boolean;
+            force?: boolean;
+        };
+    }
+}
+```
+
+## Testing with TypeScript
+
+```typescript
+// component.spec.ts
+import angular from 'angular';
+import 'angular-mocks';
+import MODULE_NAME from './component.module';
+
+describe('MyComponent', () => {
+    let $compile: ng.ICompileService;
+    let $rootScope: ng.IRootScopeService;
+    let element: ng.IAugmentedJQuery;
+
+    beforeEach(angular.mock.module(MODULE_NAME));
+
+    beforeEach(inject((_$compile_: ng.ICompileService, _$rootScope_: ng.IRootScopeService) => {
+        $compile = _$compile_;
+        $rootScope = _$rootScope_;
+    }));
+
+    it('should render component', () => {
+        const scope = $rootScope.$new();
+        element = $compile('<my-component></my-component>')(scope);
+        scope.$digest();
+
+        expect(element.html()).toContain('expected content');
+    });
+});
+```
 
 ## Dependencies
 
+### Runtime
 - AngularJS 1.8.x
-- Bootstrap 5.x (CSS)
+- Bootstrap 5.x (CSS only)
+- @uirouter/angularjs (optional, for breadcrumb)
+
+### Development
+- TypeScript 4.x+
+- @types/angular
+- @types/angular-mocks
+- webpack 5.x
+- ts-loader
+
+## Build Configuration
+
+### webpack.config.js
+```javascript
+const path = require('path');
+
+module.exports = {
+    entry: './src/index.ts',
+    output: {
+        path: path.resolve(__dirname, 'dist/lib'),
+        filename: 'ng1bs5.js',
+        library: 'ng1bs5',
+        libraryTarget: 'umd'
+    },
+    resolve: {
+        extensions: ['.ts', '.js']
+    },
+    module: {
+        rules: [
+            {
+                test: /\.ts$/,
+                use: 'ts-loader',
+                exclude: /node_modules/
+            }
+        ]
+    },
+    externals: {
+        angular: 'angular'
+    }
+};
+```
+
+## Contributing
+
+### Development Workflow
+
+1. **Create feature branch**
+```bash
+git checkout -b feature/my-component
+```
+
+2. **Develop with TypeScript**
+- Use strict typing
+- Add interfaces for all public APIs
+- Include JSDoc comments
+- Write unit tests
+
+3. **Type check**
+```bash
+npm run type-check
+```
+
+4. **Build and test**
+```bash
+npm run build
+npm test
+```
+
+5. **Submit PR**
+
+### Code Style
+
+- Use interfaces for all component options
+- Prefer `interface` over `type` for object shapes
+- Use `readonly` for immutable properties
+- Use strict null checks
+- Avoid `any` type - use `unknown` or proper types
+- Use arrow functions for class methods to preserve context
+- Always use `'ngInject'` for dependency injection
+
+### Component Checklist
+
+- [ ] TypeScript interfaces defined
+- [ ] Strict typing throughout
+- [ ] JSDoc comments on public APIs
+- [ ] Unit tests written
+- [ ] README.md with examples
+- [ ] Follows existing patterns
+- [ ] No `any` types
+- [ ] Type declarations exported
 
 ## License
 
 MIT
 
-## Contributing
-
-When contributing:
-1. Follow the ES6 class-based patterns shown in completed components
-2. Always use Strict DI with `static $inject`
-3. Use arrow functions for callbacks to preserve context
-4. Export the module name for proper dependency management
-5. Add JSDoc comments for public APIs
-6. Test thoroughly with Bootstrap 5 CSS
-
-## Next Steps
-
-1. Complete the remaining stub components (see list above)
-2. Add comprehensive tests
-3. Add TypeScript definitions
-4. Create demo/documentation site
-5. Publish to npm
-
 ## Support
 
-For issues and questions, please refer to the original ES5 implementation in the uploaded file and follow the conversion patterns demonstrated in the completed components.
+For TypeScript-specific guidance, see the TypeScript examples in completed components like:
+- `src/components/breadcrumb/breadcrumb.module.ts`
+- `src/components/dropdown/dropdown.module.ts`
+- `src/components/popover/popover.module.ts`
+
+For issues, visit: https://github.com/chutichgn/ng1bs5/issues
